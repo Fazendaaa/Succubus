@@ -1,7 +1,7 @@
 <!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">Succubus</h1>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Fazendaaa/Succubus/master/logo/logo.png" alt="Logo" width="150" height="auto" />
+  <img src="https://raw.githubusercontent.com/Fazendaaa/Succubus/master/img/logo.svg" alt="Logo" width="150" height="auto" />
 </p>
 
 <p align="center">
