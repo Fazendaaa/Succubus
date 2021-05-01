@@ -1,13 +1,154 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<!-- Created using Krita: https://krita.org -->
-<svg xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:krita="http://krita.org/namespaces/svg/krita"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    width="420.72pt"
-    height="420.72pt"
-    viewBox="0 0 420.72 420.72">
-<defs/>
-<ellipse id="shape0" transform="matrix(0.999999979490875 0 0 0.999999979490875 89.6400042626164 220.080016093254)" rx="207.84" ry="200.879988026619" cx="207.84" cy="200.879988026619" fill="#f84c98" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/><path id="shape1" transform="matrix(0.999999979490875 0 0 0.999999979490875 160.337049659968 286.952659956778)" fill="#2c0e1b" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 226.08L87.36 327.12C152.798 345.841 227.679 322.707 270 288C292.021 270.68 310.405 246.331 323.769 223.074C333.826 203.051 340.192 178.462 343.795 159.605C333.621 143.837 331.36 140.907 317.88 120.24C292.31 81.037 254.89 29.9609 235.44 0C158.4 65.28 97.2712 130.56 4.32 195.84C4.32 195.84 2.88 205.92 0 226.08Z"/><ellipse id="shape2" transform="matrix(0.999999979490875 0 0 0.999999979490875 181.560002849486 308.880017361948)" rx="111.48" ry="113.76" cx="111.48" cy="113.76" fill="#cd0400" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/><path id="shape3" transform="matrix(0.999999979490875 0 0 0.999999979490875 192.120002030928 287.880017203584)" fill="#cd0400" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M7.43999 77.4L0 0L46.32 38.16Z"/><path id="shape4" transform="matrix(0.999999979490875 0 0 0.999999979490875 151.305851802441 464.160013302803)" fill="#d80804" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M70.0275 46.9004C-6.60819 83.5049 -25.5596 25.447 39.3742 0C-7.26179 40.8056 2.95597 56.439 70.0275 46.9004Z"/><path id="shape5" transform="matrix(0.999999979490875 0 0 0.999999979490875 401.87997240478 399.120000939463)" fill="#de0904" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 41.28C16.7066 29.685 38.7911 20.651 36.48 0C49.6097 17.7888 37.4497 31.5488 0 41.28Z"/><path id="shape6" transform="matrix(0.999999979490875 0 0 0.999999979490875 423.499822949661 375.240009065721)" fill="#d70602" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M7.66016 35.64C4.53092 33.9675 -5.5632 18.8181 4.06016 0C25.2753 7.17908 28.3542 17.8202 27.4602 27.72C21.1954 40.4274 14.5954 43.0674 7.66016 35.64Z"/><path id="shape01" transform="matrix(-0.999999950781227 0 0 0.999999950781227 395.949349838938 288.297377759606)" fill="#cd0400" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M7.43999 77.4L0 0L46.32 38.16Z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="420.72pt"
+   height="420.72pt"
+   viewBox="0 0 420.72 420.72"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)">
+  <metadata
+     id="metadata16">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1259"
+     inkscape:window-height="1030"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="0.74158585"
+     inkscape:cx="405.25422"
+     inkscape:cy="300.96828"
+     inkscape:window-x="2653"
+     inkscape:window-y="12"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg12" />
+  <defs
+     id="defs2" />
+  <g
+     id="g847"
+     transform="translate(-85.575536,-208.04255)">
+    <g
+       id="g865">
+      <g
+         id="g851">
+        <ellipse
+           id="shape0"
+           transform="translate(89.640004,220.08002)"
+           rx="207.84"
+           ry="200.87999"
+           cx="207.84"
+           cy="200.87999"
+           fill="#f84c98"
+           fill-rule="evenodd"
+           stroke="#000000"
+           stroke-opacity="0"
+           stroke-width="0"
+           stroke-linecap="square"
+           stroke-linejoin="bevel" />
+        <path
+           id="shape1"
+           transform="translate(160.33705,286.95266)"
+           fill="#2c0e1b"
+           fill-rule="evenodd"
+           stroke="#000000"
+           stroke-opacity="0"
+           stroke-width="0"
+           stroke-linecap="square"
+           stroke-linejoin="bevel"
+           d="M 0,226.08 87.36,327.12 C 152.798,345.841 227.679,322.707 270,288 c 22.021,-17.32 40.405,-41.669 53.769,-64.926 10.057,-20.023 16.423,-44.612 20.026,-63.469 C 333.621,143.837 331.36,140.907 317.88,120.24 292.31,81.037 255.06231,31.305618 235.61231,1.3447178 158.57231,66.624718 97.2712,130.56 4.32,195.84 Z"
+           sodipodi:nodetypes="cccccsccc" />
+      </g>
+      <ellipse
+         id="shape2"
+         transform="translate(181.56,308.88002)"
+         rx="111.48"
+         ry="113.76"
+         cx="111.48"
+         cy="113.76"
+         fill="#cd0400"
+         fill-rule="evenodd"
+         stroke="#000000"
+         stroke-opacity="0"
+         stroke-width="0"
+         stroke-linecap="square"
+         stroke-linejoin="bevel" />
+      <path
+         id="shape3"
+         transform="translate(192.12,287.88002)"
+         fill="#cd0400"
+         fill-rule="evenodd"
+         stroke="#000000"
+         stroke-opacity="0"
+         stroke-width="0"
+         stroke-linecap="square"
+         stroke-linejoin="bevel"
+         d="M 7.43999,77.4 0,0 46.32,38.16 Z" />
+      <path
+         id="shape4"
+         transform="translate(151.30585,464.16001)"
+         fill="#d80804"
+         fill-rule="evenodd"
+         stroke="#000000"
+         stroke-opacity="0"
+         stroke-width="0"
+         stroke-linecap="square"
+         stroke-linejoin="bevel"
+         d="M 70.0275,46.9004 C -6.60819,83.5049 -25.5596,25.447 39.3742,0 -7.26179,40.8056 2.95597,56.439 70.0275,46.9004 Z" />
+      <path
+         id="shape5"
+         transform="translate(401.87997,399.12)"
+         fill="#de0904"
+         fill-rule="evenodd"
+         stroke="#000000"
+         stroke-opacity="0"
+         stroke-width="0"
+         stroke-linecap="square"
+         stroke-linejoin="bevel"
+         d="M 0,41.28 C 16.7066,29.685 38.7911,20.651 36.48,0 49.6097,17.7888 37.4497,31.5488 0,41.28 Z" />
+      <path
+         id="shape6"
+         transform="translate(423.49982,375.24001)"
+         fill="#d70602"
+         fill-rule="evenodd"
+         stroke="#000000"
+         stroke-opacity="0"
+         stroke-width="0"
+         stroke-linecap="square"
+         stroke-linejoin="bevel"
+         d="M 7.66016,35.64 C 4.53092,33.9675 -5.5632,18.8181 4.06016,0 25.2753,7.17908 28.3542,17.8202 27.4602,27.72 21.1954,40.4274 14.5954,43.0674 7.66016,35.64 Z" />
+      <path
+         id="shape01"
+         transform="matrix(-0.99999995,0,0,0.99999995,395.94935,288.29738)"
+         fill="#cd0400"
+         stroke="#000000"
+         stroke-opacity="0"
+         stroke-width="0"
+         stroke-linecap="square"
+         stroke-linejoin="bevel"
+         d="M 7.43999,77.4 0,0 46.32,38.16 Z" />
+    </g>
+  </g>
 </svg>

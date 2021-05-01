@@ -6,7 +6,8 @@
   "line": "water",
   "logo": {
     "src": "https://raw.githubusercontent.com/Fazendaaa/Succubus/master/img/logo.svg",
-    "width": "350"
+    "height": "150",
+    "width": "150"
   },
   "badges": [
     {

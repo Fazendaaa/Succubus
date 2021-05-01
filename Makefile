@@ -6,7 +6,6 @@ doc:
 		docs/
 # Jerry Rig
 	@docker run --rm \
-		--volume $(shell pwd)/logo:/home/node/logo \
 		--volume $(shell pwd)/docs:/home/node/app \
 		--workdir /home/node/app appnest
 	@cp docs/README.md .
