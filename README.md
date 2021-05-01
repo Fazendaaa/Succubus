@@ -1,8 +1,16 @@
 <!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">Succubus</h1>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Fazendaaa/Succubus/master/img/logo.svg" alt="Logo" width="150" height="auto" />
+  <img src="https://raw.githubusercontent.com/Fazendaaa/Succubus/master/img/logo.svg" alt="Logo" width="350" height="auto" />
 </p>
+
+<p align="center">
+  <b>A universal package manager based on Docker</b></br>
+  <sub><sub>
+</p>
+
+<br />
+
 
 <p align="center">
 		<a href="https://github.com/badges/shields"><img alt="Custom badge" src="https://img.shields.io/badge/custom-badge-f39f37.svg" height="20"/></a>
@@ -14,14 +22,6 @@
 <a href=""><img alt="" src="" height="20"/></a>
 <a href=""><img alt="" src="" height="20"/></a>
 	</p>
-
-
-<p align="center">
-  <b>A universal package manager based on Docker</b></br>
-  <sub><sub>
-</p>
-
-<br />
 
 
 Welcome to Fazendaaa's Succubus. This is version 0.0.0!
