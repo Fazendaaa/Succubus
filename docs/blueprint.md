@@ -29,4 +29,8 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 
 ## TODO
 
+## References
+
+- [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+
 {{ template:license }}
