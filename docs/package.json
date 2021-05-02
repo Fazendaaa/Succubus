@@ -1,7 +1,7 @@
 {
   "name": "Succubus",
   "version": "0.0.0",
-  "description": "A universal package manager based on Docker",
+  "description": "A universal package manager based on cloud-native",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
