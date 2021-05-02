@@ -59,6 +59,7 @@ As `estat` have grown so much and making it available as FOSS (Free and open-sou
 - [Jinn](https://github.com/Fazendaaa/Jinn): universal project manager built to expand Succubus capabilities
 - [Baba Yaga](https://github.com/Fazendaaa/BabaYaga): universal cloud-native manager built to expand Jinn and Succubus capabilities
 - [Wendigo](https://github.com/Fazendaaa/Wendigo): universal project translator from cloud-native projects to other infra technologies
+- [Shōjō](https://github.com/Fazendaaa/Shojo): LaTex package manager
 
 ## Components
 
