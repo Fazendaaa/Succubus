@@ -65,11 +65,29 @@ As `estat` have grown so much and making it available as FOSS (Free and open-sou
 
 Succubus goes trough the `succ.yaml` file looking for the commands to run when doing one of the following tasks, working as a "manifesto". If they are not described or the file it's not presented the program will follow default steps to each language based on Jinn workflow.
 
+### init
+
+```shell
+succ init
+```
+
 ### add
+
+```shell
+succ add [ pkg01 pkg02 pkg03=1.3 githubUser/pkg ... ]
+```
 
 ### run
 
+```shell
+succ run
+```
+
 ### test
+
+```shell
+succ test
+```
 
 ## Installing
 
@@ -84,8 +102,6 @@ And then running the following to check whether or not is working properly:
 ```shell
 succ --help
 ```
-
-## Running
 
 ## Author
 
