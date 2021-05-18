@@ -119,6 +119,12 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 
 ## References
 
+### Repositories
+
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+
+### Blogposts
+
+- [Static code analysis for golang](https://levelup.gitconnected.com/static-code-analysis-for-golang-5f24b555d227)
 
 {{ template:license }}

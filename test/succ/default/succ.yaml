@@ -1,0 +1,15 @@
+base:
+  run:
+
+  test:
+    go test --verbose
+  add:
+    go get $PKG
+  doc:
+    go doc .
+
+dev:
+  anal:
+    gosec -fmt=sonarqujbe -out report.json ./..
+  linter:
+    golangci-lint run
