@@ -1,15 +1,19 @@
+image: golang
+
 base:
   run:
 
   test:
     go test --verbose
   add:
-    go get $PKG
-  doc:
-    go doc .
+    command: go get $PKG
+    env:
+      - ENV=${ENV}
 
 dev:
   anal:
     gosec -fmt=sonarqujbe -out report.json ./..
   linter:
     golangci-lint run
+  doc:
+    go doc .

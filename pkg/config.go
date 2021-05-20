@@ -8,13 +8,14 @@ import (
 )
 
 type Config struct {
-	base struct {
+	image string
+	base  struct {
 		run  []string
 		test []string
 		add  []string
-		doc  []string
 	}
 	dev struct {
+		doc    []string
 		anal   []string
 		linter []string
 	}
