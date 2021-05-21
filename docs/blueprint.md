@@ -62,6 +62,7 @@ As `estat` have grown so much and making it available as FOSS (Free and open-sou
 - [Shōjō](https://github.com/Fazendaaa/Shojo): LaTex package manager
 - [Hellhound](github.com/Fazendaaa/Hellhound): VSCode extension to integrate Jinn recipes
 - [Crocotta](github.com/Fazendaaa/Crocotta): SOC assisted guider
+- [Changeling](https://github.com/Fazendaaa/Changeling): Recipes for Succubus and Baba Yaga
 
 ## Components
 
@@ -105,6 +106,34 @@ And then running the following to check whether or not is working properly:
 succ --help
 ```
 
+## How does it work?
+
+### Basics
+
+Let me paint a picture for you: *"When you access a remote desktop all the things you did stay there, right?"*... **YES**
+
+You can see the
+
+### Intermediate
+
+<!--
+1. Multiarch
+2. Cloud native
+3. Docker-compose
+4. K8s
+5. Making CI/CD assessible and the standard
+-->
+
+### Advanced
+
+<!--
+1. Multistage-build as cache:
+   1. system
+   2. everything in between
+   3. runner
+2.
+-->
+
 ## Author
 
 Only [me](https://github.com/Fazendaaa) because the aforementioned project was implemented by yours only. By knowing each line of that code wrote doing the port would be more easily done this way.
@@ -126,5 +155,6 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 ### Blogposts
 
 - [Static code analysis for golang](https://levelup.gitconnected.com/static-code-analysis-for-golang-5f24b555d227)
+- [Compilers 101 - Overview and Lexer ](https://dev.to/lefebvre/compilers-101---overview-and-lexer-3i0m)
 
 {{ template:license }}

@@ -1,0 +1,19 @@
+image: golang
+
+base:
+  run:
+
+  test:
+    go test --verbose
+  add:
+    command: go get $ARGV[0]
+    env:
+      - ENV=${ENV}
+
+dev:
+  anal:
+    gosec -fmt=sonarqujbe -out report.json ./..
+  linter:
+    golangci-lint run
+  doc:
+    go doc .
