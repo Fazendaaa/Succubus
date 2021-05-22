@@ -9,7 +9,7 @@ func Load(succPath string) (succ Config, err error) {
 	parsed, fail := ParseConfig(succPath)
 
 	if nil != fail {
-
+		return succ, err
 	}
 
 	succ, fail = LexerConfig(parsed)

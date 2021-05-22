@@ -8,20 +8,29 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+type Command struct {
+	env     []string
+	command []string
+}
+
+type Extended struct {
+	Command
+}
+
 type Config struct {
 	image string
 	base  struct {
-		run  []string
-		test []string
-		add  []string
+		run  []Command
+		test []Command
+		add  []Command
 	}
 	dev struct {
-		doc    []string
-		anal   []string
-		linter []string
+		doc    []Command
+		anal   []Command
+		linter []Command
 	}
 	extended struct {
-		any []string
+		key []Extended
 	}
 }
 
@@ -29,8 +38,8 @@ type Config struct {
 // [this](https://stackoverflow.com/a/12527546/7092954) post
 // It returns whether or not the file exists
 func exists(name string) bool {
-	if _, err := os.Stat(name); err != nil {
-		if os.IsNotExist(err) {
+	if _, fail := os.Stat(name); fail != nil {
+		if os.IsNotExist(fail) {
 			return false
 		}
 	}
@@ -43,11 +52,11 @@ func exists(name string) bool {
 // 2. is there a 'succ.yml'?
 // 3. is there a '<filenameHere>.<yml|yaml>'?
 // Returns the filename
-func readFileOrDir(succPath string) (file string, err error) {
+func readFileOrDir(succPath string) (file string, fail error) {
 	read, fail := os.Stat(succPath)
 
 	if nil != fail {
-		return file, err
+		return file, fail
 	}
 
 	switch mode := read.Mode(); {
@@ -55,51 +64,66 @@ func readFileOrDir(succPath string) (file string, err error) {
 		yaml := filepath.Join(succPath, "succ.yaml")
 
 		if exists(yaml) {
-			return yaml, err
+			return yaml, fail
 		}
 
 		yml := filepath.Join(succPath, "succ.yml")
 
 		if exists(yml) {
-			return yml, err
+			return yml, fail
 		}
 
-		return file, err
+		return file, fail
 	case mode.IsRegular():
-		return succPath, err
+		return succPath, fail
 	}
 
-	return file, err
+	return file, fail
 }
 
-// checkConfig lookd for the config file
+// checkConfig looks for the config file
 // It returns the file or an error
-func checkConfig(succPath string) (succ Config, err error) {
-	succ = Config{}
+func checkConfig(succPath string) (data []byte, fail error) {
 	file, fail := readFileOrDir(succPath)
 
 	if nil != fail {
-		return succ, fail
+		return nil, fail
 	}
 
 	read, fail := ioutil.ReadFile(file)
 
 	if nil != fail {
-		return succ, fail
+		return nil, fail
 	}
 
-	return succ, yaml.Unmarshal([]byte(read), &succ)
+	return read, fail
+}
+
+// fromFileToConfig as many use cases might not need Succubus full power, but to
+// handle code base is easy always to handle the "worst case scenario", this
+// function does that, translate the user specific configuration to a more
+// generic one.
+// It returns the config file as full blown Succubus standard
+func fromFileToConfig(read map[interface{}]interface{}) (succ Config, fail error) {
+
 }
 
 // ParseConfig just reads the given Succubus config file and checks it whether
 // or not it's a valid one.
 // It returns whether or not the config file is valid and any error encountered.
-func ParseConfig(succPath string) (succ Config, err error) {
-	succ, fail := checkConfig(succPath)
+func ParseConfig(succPath string) (succ Config, fail error) {
+	read, fail := checkConfig(succPath)
 
 	if nil != fail {
 		return succ, fail
 	}
 
-	return succ, nil
+	fromFile := make(map[interface{}]interface{})
+	fail = yaml.Unmarshal([]byte(read), &fromFile)
+
+	if nil != fail {
+		return succ, fail
+	}
+
+	return fromFileToConfig(fromFile)
 }

@@ -131,7 +131,8 @@ You can see the
    1. system
    2. everything in between
    3. runner
-2.
+2. Clarity first:
+   1. explicit usage of env vars -- isn't inheritance/overload if you don't know what are you doing
 -->
 
 ## Author
