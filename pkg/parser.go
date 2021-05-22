@@ -3,8 +3,6 @@ package succubus
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
-	"path/filepath"
 
 	"gopkg.in/yaml.v2"
 )
@@ -31,53 +29,6 @@ type Config struct {
 	base     Base
 	dev      Dev
 	extended interface{}
-}
-
-// exists checks whether or not a given file exists, this soluction is based in
-// [this](https://stackoverflow.com/a/12527546/7092954) post
-// It returns whether or not the file exists
-func exists(name string) bool {
-	if _, fail := os.Stat(name); fail != nil {
-		if os.IsNotExist(fail) {
-			return false
-		}
-	}
-	return true
-}
-
-// readFileOrDir is based in [this](https://stackoverflow.com/a/8824952/7092954)
-// code and reads the default YAML file or the given one:
-// 1. is there a 'succ.yaml'?
-// 2. is there a 'succ.yml'?
-// 3. is there a '<filenameHere>.<yml|yaml>'?
-// Returns the filename
-func readFileOrDir(succPath string) (file string, fail error) {
-	read, fail := os.Stat(succPath)
-
-	if nil != fail {
-		return file, fail
-	}
-
-	switch mode := read.Mode(); {
-	case mode.IsDir():
-		yaml := filepath.Join(succPath, "succ.yaml")
-
-		if exists(yaml) {
-			return yaml, fail
-		}
-
-		yml := filepath.Join(succPath, "succ.yml")
-
-		if exists(yml) {
-			return yml, fail
-		}
-
-		return file, fail
-	case mode.IsRegular():
-		return succPath, fail
-	}
-
-	return file, fail
 }
 
 // checkConfig looks for the config file
@@ -215,11 +166,11 @@ func fromFileToConfig(read map[interface{}]interface{}) (succ Config, fail error
 	}
 
 	if fail = mapToDev(read, &succ); nil != fail {
-		return succ, fmt.Errorf("%w; error while mapping base tag", fail)
+		return succ, fmt.Errorf("%w; error while mapping dev tag", fail)
 	}
 
 	if fail = mapToExtended(read, &succ); nil != fail {
-		return succ, fmt.Errorf("%w; error while mapping base tag", fail)
+		return succ, fmt.Errorf("%w; error while mapping extended tag", fail)
 	}
 
 	return succ, fail

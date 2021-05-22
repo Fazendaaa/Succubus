@@ -46,4 +46,13 @@ func TestParse(t *testing.T) {
 		}
 
 	})
+
+	t.Run("many commands", func(t *testing.T) {
+		value, err := ParseConfig("../test/manyCommands/")
+
+		if nil != err {
+			t.Errorf("got %v and the given error condition: %s", value, err)
+		}
+
+	})
 }
