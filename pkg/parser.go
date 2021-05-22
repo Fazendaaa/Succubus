@@ -1,6 +1,7 @@
 package succubus
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -8,26 +9,26 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type Command struct {
+type Task struct {
 	env     []string
 	command []string
 }
 
 type Extended struct {
-	Command
+	Task
 }
 
 type Config struct {
 	image string
 	base  struct {
-		run  []Command
-		test []Command
-		add  []Command
+		run  Task
+		test Task
+		add  Task
 	}
 	dev struct {
-		doc    []Command
-		anal   []Command
-		linter []Command
+		doc    Task
+		anal   Task
+		linter Task
 	}
 	extended struct {
 		key []Extended
@@ -99,13 +100,94 @@ func checkConfig(succPath string) (data []byte, fail error) {
 	return read, fail
 }
 
+// stringToTask handles the case when the Task is:
+// - just a command
+// - a command and/or env
+// - a sequence of both previous
+// It returns an error when the task is not a valid one
+func stringToTask(value string) (task Task, fail error) {
+
+}
+
+// interfaceToTask handles the interface to Task conversion.
+// It returns a sequence of Task structures.
+func interfaceToTask(key string, origin interface{}) (task Task, fail error) {
+	tags, ok := origin.(map[string]interface{})
+
+	if !ok {
+		return task, fmt.Errorf("missing base tag")
+	}
+
+	read, ok := tags[key]
+
+	if !ok {
+		return task, fmt.Errorf("missing %s tag", key)
+	}
+
+	return stringToTask(fmt.Sprintf("%v", read))
+}
+
+// mapToBase just handles the base tag conversion.
+// It returns a error if anything is wrong, like a nested structure or something
+// like it.
+func mapToBase(read map[interface{}]interface{}, succ *Config) (fail error) {
+	if _, ok := read["base"]; !ok {
+		return fmt.Errorf("missing base tag")
+	}
+
+	succ.base.run, fail = interfaceToTask("run", read["base"])
+
+	if nil != fail {
+		return fmt.Errorf("missing base run tag")
+	}
+
+	return fail
+}
+
+// mapToDev just handles the dev tag conversion.
+// It returns a error if anything is wrong, like a nested structure or something
+// like it.
+func mapToDev(read map[interface{}]interface{}, succ *Config) (fail error) {
+	if _, ok := read["dev"]; !ok {
+		return fmt.Errorf("missing dev tag")
+	}
+
+	return fail
+}
+
+// mapToExtended just handles the extended tag conversion.
+// It returns a error if anything is wrong, like a nested structure or something
+// like it.
+func mapToExtended(read map[interface{}]interface{}, succ *Config) (fail error) {
+
+	return fail
+}
+
 // fromFileToConfig as many use cases might not need Succubus full power, but to
 // handle code base is easy always to handle the "worst case scenario", this
 // function does that, translate the user specific configuration to a more
 // generic one.
 // It returns the config file as full blown Succubus standard
 func fromFileToConfig(read map[interface{}]interface{}) (succ Config, fail error) {
+	if image, ok := read["image"]; ok {
+		succ.image = fmt.Sprintf("%v", image)
+	} else {
+		succ.image = ""
+	}
 
+	if nil != mapToBase(read, &succ) {
+		return succ, fmt.Errorf("error while mapping base tag")
+	}
+
+	if nil != mapToDev(read, &succ) {
+		return succ, fmt.Errorf("error while mapping dev tag")
+	}
+
+	if nil != mapToExtended(read, &succ) {
+		return succ, fmt.Errorf("error while mapping extended tag")
+	}
+
+	return succ, fail
 }
 
 // ParseConfig just reads the given Succubus config file and checks it whether
