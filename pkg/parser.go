@@ -14,25 +14,23 @@ type Task struct {
 	command []string
 }
 
-type Extended struct {
-	Task
+type Base struct {
+	run  Task
+	test Task
+	add  Task
+}
+
+type Dev struct {
+	doc    Task
+	anal   Task
+	linter Task
 }
 
 type Config struct {
-	image string
-	base  struct {
-		run  Task
-		test Task
-		add  Task
-	}
-	dev struct {
-		doc    Task
-		anal   Task
-		linter Task
-	}
-	extended struct {
-		key []Extended
-	}
+	image    string
+	base     Base
+	dev      Dev
+	extended interface{}
 }
 
 // exists checks whether or not a given file exists, this soluction is based in
@@ -100,22 +98,53 @@ func checkConfig(succPath string) (data []byte, fail error) {
 	return read, fail
 }
 
-// stringToTask handles the case when the Task is:
+// interfaceToCommand handles the case when the a Command is:
 // - just a command
 // - a command and/or env
 // - a sequence of both previous
 // It returns an error when the task is not a valid one
-func stringToTask(value string) (task Task, fail error) {
+func interfaceToCommand(origin interface{}) (task Task, fail error) {
+	values, ok := origin.(map[string][]string)
 
+	if !ok {
+		return task, fmt.Errorf("command malformed")
+	}
+
+	if _, ok = values["command"]; !ok {
+		return task, fmt.Errorf("command malformed")
+	}
+
+	task.command = values["command"]
+
+	if _, ok = values["env"]; ok {
+		task.env = values["env"]
+	}
+
+	return task, fail
+}
+
+// stringToCommand converts the basic scenario when a command is just a simple
+// string.
+// It returns a Task object.
+func stringToCommand(origin interface{}) (task Task, fail error) {
+	command, ok := origin.(string)
+
+	if !ok {
+		return task, fmt.Errorf("could not convert command")
+	}
+
+	task.command = []string{command}
+
+	return task, fail
 }
 
 // interfaceToTask handles the interface to Task conversion.
 // It returns a sequence of Task structures.
 func interfaceToTask(key string, origin interface{}) (task Task, fail error) {
-	tags, ok := origin.(map[string]interface{})
+	tags, ok := origin.(map[interface{}]interface{})
 
 	if !ok {
-		return task, fmt.Errorf("missing base tag")
+		return task, fmt.Errorf("command malformed")
 	}
 
 	read, ok := tags[key]
@@ -124,7 +153,13 @@ func interfaceToTask(key string, origin interface{}) (task Task, fail error) {
 		return task, fmt.Errorf("missing %s tag", key)
 	}
 
-	return stringToTask(fmt.Sprintf("%v", read))
+	task, fail = stringToCommand(read)
+
+	if nil != fail {
+		return interfaceToCommand(read)
+	}
+
+	return task, fail
 }
 
 // mapToBase just handles the base tag conversion.
@@ -138,7 +173,7 @@ func mapToBase(read map[interface{}]interface{}, succ *Config) (fail error) {
 	succ.base.run, fail = interfaceToTask("run", read["base"])
 
 	if nil != fail {
-		return fmt.Errorf("missing base run tag")
+		return fmt.Errorf("%w; missing base run tag", fail)
 	}
 
 	return fail
@@ -175,16 +210,16 @@ func fromFileToConfig(read map[interface{}]interface{}) (succ Config, fail error
 		succ.image = ""
 	}
 
-	if nil != mapToBase(read, &succ) {
-		return succ, fmt.Errorf("error while mapping base tag")
+	if fail = mapToBase(read, &succ); nil != fail {
+		return succ, fmt.Errorf("%w; error while mapping base tag", fail)
 	}
 
-	if nil != mapToDev(read, &succ) {
-		return succ, fmt.Errorf("error while mapping dev tag")
+	if fail = mapToDev(read, &succ); nil != fail {
+		return succ, fmt.Errorf("%w; error while mapping base tag", fail)
 	}
 
-	if nil != mapToExtended(read, &succ) {
-		return succ, fmt.Errorf("error while mapping extended tag")
+	if fail = mapToExtended(read, &succ); nil != fail {
+		return succ, fmt.Errorf("%w; error while mapping base tag", fail)
 	}
 
 	return succ, fail

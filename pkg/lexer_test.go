@@ -6,19 +6,35 @@ func TestLexer(t *testing.T) {
 	t.Run("basic", func(t *testing.T) {
 		value, err := LexerConfig(Config{
 			image: "some-user/some-image",
-			base: {
-				run:  "",
-				add:  "",
-				test: "",
+			base: Base{
+				run: Task{
+					env:     []string{""},
+					command: []string{""},
+				},
+				add: Task{
+					env:     []string{""},
+					command: []string{""},
+				},
+				test: Task{
+					env:     []string{""},
+					command: []string{""},
+				},
 			},
-			dev: {
-				doc:    "",
-				anal:   "",
-				linter: "",
+			dev: Dev{
+				doc: Task{
+					env:     []string{""},
+					command: []string{""},
+				},
+				anal: Task{
+					env:     []string{""},
+					command: []string{""},
+				},
+				linter: Task{
+					env:     []string{""},
+					command: []string{""},
+				},
 			},
-			extended: []Extended{
-				key: "",
-			},
+			extended: nil,
 		})
 
 		if nil != err {

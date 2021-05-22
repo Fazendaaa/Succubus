@@ -3,7 +3,7 @@ package succubus
 import "testing"
 
 func TestParse(t *testing.T) {
-	t.Run("named", func(t *testing.T) {
+	t.Run("default", func(t *testing.T) {
 		value, err := ParseConfig("../test/default/")
 
 		if nil != err {

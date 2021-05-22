@@ -1,8 +1,7 @@
 image: golang
 
 base:
-  run:
-
+  run: exit 0
   test:
     go test --verbose
   add:
