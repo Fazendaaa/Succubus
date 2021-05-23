@@ -7,9 +7,14 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type Task struct {
+type Command struct {
 	env     []string
-	command []string
+	command string
+}
+
+type Task struct {
+	env   []string
+	rules []Command
 }
 
 type Base struct {

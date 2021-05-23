@@ -47,6 +47,50 @@
 ...
 ```
 
+### Tasks, Rules and Envrionment Variables
+
+```yaml
+...
+base:
+  run: echo "Hello, World"
+...
+```
+
+```yaml
+...
+base:
+  run: |
+    echo "Hello, World"
+    echo "foo bar"
+...
+```
+
+```yaml
+...
+base:
+  run:
+    env:
+      TEST="foo"
+    command: |
+      echo "Hello, World"
+      echo "${TEST} bar"
+...
+```
+
+```yaml
+...
+base:
+  run:
+    env:
+      TEST="foo"
+    command:
+      hello:
+        env: TEST="Hello"
+        command: echo "${TEST}, World"
+      echo "${TEST} bar"
+...
+```
+
 ## Dockerfile
 
 <!-- Explain:
