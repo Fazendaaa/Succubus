@@ -1,10 +1,13 @@
 package succubus
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestLexer(t *testing.T) {
 	t.Run("basic", func(t *testing.T) {
-		value, err := LexerConfig(Config{
+		src := Config{
 			image: "some-user/some-image",
 			base: Base{
 				run: Task{
@@ -35,10 +38,15 @@ func TestLexer(t *testing.T) {
 				},
 			},
 			extended: nil,
-		})
+		}
+		value, err := LexerConfig(src)
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition is: %s", value, err)
+		}
+
+		if !reflect.DeepEqual(src, value) {
+			t.Errorf("got mismatching configurations: %v,  %v", src, value)
 		}
 	})
 }

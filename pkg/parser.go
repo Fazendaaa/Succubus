@@ -25,10 +25,11 @@ type Dev struct {
 }
 
 type Config struct {
-	image    string
-	base     Base
-	dev      Dev
-	extended interface{}
+	image      string
+	dockerfile string
+	base       Base
+	dev        Dev
+	extended   interface{}
 }
 
 // checkConfig looks for the config file
