@@ -21,6 +21,7 @@ type Base struct {
 	run  Task
 	test Task
 	add  Task
+	rm   Task
 }
 
 type Dev struct {
@@ -71,7 +72,8 @@ func interfaceToCommand(origin interface{}) (task Task, fail error) {
 		return task, fmt.Errorf("command malformed")
 	}
 
-	task.command = values["command"]
+	// values["command"]
+	task.rules = []Command{}
 
 	if _, ok = values["env"]; ok {
 		task.env = values["env"]
@@ -90,7 +92,7 @@ func stringToCommand(origin interface{}) (task Task, fail error) {
 		return task, fmt.Errorf("could not convert command")
 	}
 
-	task.command = []string{command}
+	task.rules = []Command{}
 
 	return task, fail
 }

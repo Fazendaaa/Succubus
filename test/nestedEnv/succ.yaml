@@ -1,13 +1,20 @@
-dockerfile: ./dockerimages/Dockerfile.go
+image: golang
 
 base:
-  run: exit 0
+  run: |
+    echo "here"
+    exit 0
   test:
     go test --verbose
   add:
-    rules: go get $ARGV[0]
     env:
-      - ENV=${ENV}
+      ENV=${ENV}
+    rules:
+      foo:
+        env:
+          ENV="bar"
+        rules:
+          go get $ARGV[0]
 
 dev:
   anal:

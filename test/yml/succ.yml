@@ -5,7 +5,7 @@ base:
   test:
     go test --verbose
   add:
-    command: go get $ARGV[0]
+    rules: go get $ARGV[0]
     env:
       - ENV=${ENV}
 

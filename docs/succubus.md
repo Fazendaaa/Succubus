@@ -2,7 +2,23 @@
 
 ## Configuration Description
 
-### Top view
+```shell
+          Project
+|--------------------------|
+|        Objectives        |
+| |----------------------| |
+| |        Tasks         | |
+| | |------------------| | |
+| | |      Rules       | | |
+| | | |--------------| | | |
+| | | |   Commands   | | | |
+| | | |--------------| | | |
+| | |------------------| | |
+| |----------------------| |
+|--------------------------|
+```
+
+### Obejctives
 
 ```yaml
 [optional] image:
@@ -18,17 +34,20 @@
 ...
 ```
 
-### Base
+### Tasks
+
+#### Base
 
 ```yaml
 ...
 [required] base:
 [required]     run: ...
 [required]     add: ...
+[required]     rm: ...
 [required]     test: ...
 ```
 
-### Development
+#### Development
 
 ```yaml
 ...
@@ -38,7 +57,7 @@
 [required]     doc: ...
 ```
 
-### Extended
+#### Extended
 
 ```yaml
 ...
@@ -47,14 +66,19 @@
 ...
 ```
 
-### Tasks, Rules and Envrionment Variables
+### Rules
 
 ```yaml
 ...
 base:
   run: echo "Hello, World"
+  add: echo "Hello, World"
+  rm: echo "Hello, World"
+  test: echo "Hello, World"
 ...
 ```
+
+### Commands
 
 ```yaml
 ...
@@ -71,7 +95,7 @@ base:
   run:
     env:
       TEST="foo"
-    command: |
+    rules: |
       echo "Hello, World"
       echo "${TEST} bar"
 ...
@@ -83,7 +107,7 @@ base:
   run:
     env:
       TEST="foo"
-    command:
+    rules:
       hello:
         env: TEST="Hello"
         command: echo "${TEST}, World"

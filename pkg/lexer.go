@@ -21,8 +21,8 @@ func checkBase(base Base) (ok bool) {
 	return true
 }
 
-func checkForDockerfile() {
-
+func checkForDockerfile() (ok bool) {
+	return true
 }
 
 func checkImage(image string) (ok bool) {

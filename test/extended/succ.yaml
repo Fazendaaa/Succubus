@@ -7,7 +7,7 @@ base:
   add:
     env:
       - ENV=${ENV}
-    command: go get $ARGV[0]
+    rules: go get $ARGV[0]
 
 dev:
   anal:

@@ -11,30 +11,60 @@ func TestLexer(t *testing.T) {
 			image: "some-user/some-image",
 			base: Base{
 				run: Task{
-					env:     []string{""},
-					command: []string{""},
+					env: []string{""},
+					rules: []Command{
+						Command{
+							env:     []string{""},
+							command: "",
+						},
+					},
 				},
 				add: Task{
-					env:     []string{""},
-					command: []string{""},
+					env: []string{""},
+					rules: []Command{
+						Command{
+							env:     []string{""},
+							command: "",
+						},
+					},
 				},
 				test: Task{
-					env:     []string{""},
-					command: []string{""},
+					env: []string{""},
+					rules: []Command{
+						Command{
+							env:     []string{""},
+							command: "",
+						},
+					},
 				},
 			},
 			dev: Dev{
 				doc: Task{
-					env:     []string{""},
-					command: []string{""},
+					env: []string{""},
+					rules: []Command{
+						Command{
+							env:     []string{""},
+							command: "",
+						},
+					},
 				},
 				anal: Task{
-					env:     []string{""},
-					command: []string{""},
+					env: []string{""},
+					rules: []Command{
+						Command{
+							env:     []string{""},
+							command: "",
+						},
+					},
 				},
 				linter: Task{
-					env:     []string{""},
-					command: []string{""},
+					env: []string{""},
+					rules: []Command{
+						Command{
+							env:     []string{""},
+							command: "",
+						},
+					},
 				},
 			},
 			extended: nil,
