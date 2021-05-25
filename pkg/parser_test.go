@@ -4,7 +4,7 @@ import "testing"
 
 func TestParse(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
-		value, err := ParseConfig("../test/default/")
+		value, err := ParseProject("../test/default/")
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition: %s", value, err)
@@ -12,7 +12,7 @@ func TestParse(t *testing.T) {
 	})
 
 	t.Run("extended", func(t *testing.T) {
-		value, err := ParseConfig("../test/extended/")
+		value, err := ParseProject("../test/extended/")
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition: %s", value, err)
@@ -21,7 +21,7 @@ func TestParse(t *testing.T) {
 	})
 
 	t.Run("missing", func(t *testing.T) {
-		value, err := ParseConfig("../test/missing/")
+		value, err := ParseProject("../test/missing/")
 
 		if nil == err {
 			t.Errorf("got %v and the given error condition: %s", value, err)
@@ -30,7 +30,7 @@ func TestParse(t *testing.T) {
 	})
 
 	t.Run("named", func(t *testing.T) {
-		value, err := ParseConfig("../test/named/foo.yaml")
+		value, err := ParseProject("../test/named/foo.yaml")
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition: %s", value, err)
@@ -39,7 +39,7 @@ func TestParse(t *testing.T) {
 	})
 
 	t.Run("yml", func(t *testing.T) {
-		value, err := ParseConfig("../test/yml/")
+		value, err := ParseProject("../test/yml/")
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition: %s", value, err)
@@ -48,7 +48,7 @@ func TestParse(t *testing.T) {
 	})
 
 	t.Run("many commands", func(t *testing.T) {
-		value, err := ParseConfig("../test/manyCommands/")
+		value, err := ParseProject("../test/manyCommands/")
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition: %s", value, err)
@@ -57,7 +57,7 @@ func TestParse(t *testing.T) {
 	})
 
 	t.Run("nested env", func(t *testing.T) {
-		value, err := ParseConfig("../test/nestedEnv/")
+		value, err := ParseProject("../test/nestedEnv/")
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition: %s", value, err)

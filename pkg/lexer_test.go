@@ -7,13 +7,13 @@ import (
 
 func TestLexer(t *testing.T) {
 	t.Run("basic", func(t *testing.T) {
-		src := Config{
+		src := Project{
 			image: "some-user/some-image",
 			base: Base{
 				run: Task{
 					env: []string{""},
 					rules: []Command{
-						Command{
+						{
 							env:     []string{""},
 							command: "",
 						},
@@ -22,7 +22,7 @@ func TestLexer(t *testing.T) {
 				add: Task{
 					env: []string{""},
 					rules: []Command{
-						Command{
+						{
 							env:     []string{""},
 							command: "",
 						},
@@ -31,7 +31,7 @@ func TestLexer(t *testing.T) {
 				test: Task{
 					env: []string{""},
 					rules: []Command{
-						Command{
+						{
 							env:     []string{""},
 							command: "",
 						},
@@ -42,7 +42,7 @@ func TestLexer(t *testing.T) {
 				doc: Task{
 					env: []string{""},
 					rules: []Command{
-						Command{
+						{
 							env:     []string{""},
 							command: "",
 						},
@@ -51,7 +51,7 @@ func TestLexer(t *testing.T) {
 				anal: Task{
 					env: []string{""},
 					rules: []Command{
-						Command{
+						{
 							env:     []string{""},
 							command: "",
 						},
@@ -60,7 +60,7 @@ func TestLexer(t *testing.T) {
 				linter: Task{
 					env: []string{""},
 					rules: []Command{
-						Command{
+						{
 							env:     []string{""},
 							command: "",
 						},
@@ -69,7 +69,7 @@ func TestLexer(t *testing.T) {
 			},
 			extended: nil,
 		}
-		value, err := LexerConfig(src)
+		value, err := LexerProject(src)
 
 		if nil != err {
 			t.Errorf("got %v and the given error condition is: %s", value, err)

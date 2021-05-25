@@ -8,6 +8,8 @@ base:
     rules: go get $ARGV[0]
     env:
       - ENV=${ENV}
+  rm:
+    go mod tidy
 
 dev:
   anal:
