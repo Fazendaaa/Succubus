@@ -14,7 +14,7 @@ func (env *Env) parseSource(source string) (ok bool) {
 	return false
 }
 
-func (env *Env) parseDestiny(source string) (ok bool) {
+func (env *Env) parseDestiny(source []string) (ok bool) {
 	return false
 }
 
@@ -26,7 +26,7 @@ func CreateEnv(origin string) (env Env, fail error) {
 		return env, fmt.Errorf("Error while parsing source environment variable")
 	}
 
-	if !env.parseDestiny(splited[0]) {
+	if !env.parseDestiny(splited[1 : len(splited)-1]) {
 		return env, fmt.Errorf("Error while parsing source environment variable")
 	}
 

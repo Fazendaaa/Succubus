@@ -69,10 +69,10 @@ func TestLexer(t *testing.T) {
 			},
 			extended: nil,
 		}
-		value, err := LexerProject(src)
+		value, fail := LexerProject(src)
 
-		if nil != err {
-			t.Errorf("got %v and the given error condition is: %s", value, err)
+		if nil != fail {
+			t.Errorf("got %v and the given error condition is: %s", value, fail)
 		}
 
 		if !reflect.DeepEqual(src, value) {
