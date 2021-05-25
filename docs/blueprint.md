@@ -154,9 +154,13 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 - [devspace/awesome-github-templates](https://github.com/devspace/awesome-github-templates)
 
-### Blogposts
+### Blog-posts
 
 - [Static code analysis for golang](https://levelup.gitconnected.com/static-code-analysis-for-golang-5f24b555d227)
-- [Compilers 101 - Overview and Lexer ](https://dev.to/lefebvre/compilers-101---overview-and-lexer-3i0m)
+- [Compilers 101 - Overview and Lexer](https://dev.to/lefebvre/compilers-101---overview-and-lexer-3i0m)
+
+### Norms
+
+- [Shell Grammar Rules](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_10_02)
 
 {{ template:license }}

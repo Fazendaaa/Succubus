@@ -6,33 +6,68 @@ import (
 )
 
 func TestLexer(t *testing.T) {
-	t.Run("basic", func(t *testing.T) {
+	t.Run("identity", func(t *testing.T) {
 		src := Project{
-			image: "some-user/some-image",
+			image: Image{
+				registry: "",
+				owner:    "some-user",
+				name:     "some-image",
+				digest:   "",
+			},
 			base: Base{
 				run: Task{
-					env: []string{""},
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
 					rules: []Command{
 						{
-							env:     []string{""},
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
 							command: "",
 						},
 					},
 				},
 				add: Task{
-					env: []string{""},
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
 					rules: []Command{
 						{
-							env:     []string{""},
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
 							command: "",
 						},
 					},
 				},
-				test: Task{
-					env: []string{""},
+				rm: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
 					rules: []Command{
 						{
-							env:     []string{""},
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
 							command: "",
 						},
 					},
@@ -40,28 +75,58 @@ func TestLexer(t *testing.T) {
 			},
 			dev: Dev{
 				doc: Task{
-					env: []string{""},
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
 					rules: []Command{
 						{
-							env:     []string{""},
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
 							command: "",
 						},
 					},
 				},
 				anal: Task{
-					env: []string{""},
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
 					rules: []Command{
 						{
-							env:     []string{""},
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
 							command: "",
 						},
 					},
 				},
 				linter: Task{
-					env: []string{""},
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
 					rules: []Command{
 						{
-							env:     []string{""},
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
 							command: "",
 						},
 					},

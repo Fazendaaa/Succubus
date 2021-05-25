@@ -19,15 +19,6 @@ func TestEnv(t *testing.T) {
 		}
 	})
 
-	t.Run("empty destiny", func(t *testing.T) {
-		value, fail := CreateEnv("=bar")
-
-		if nil != fail {
-			t.Errorf("got %v and the given error condition is: %s", value, fail)
-		}
-
-	})
-
 	t.Run("quotes", func(t *testing.T) {
 		value, fail := CreateEnv("foo=\"bar\"")
 
@@ -55,16 +46,16 @@ func TestEnv(t *testing.T) {
 	t.Run("mismatched quotes in destiny - first", func(t *testing.T) {
 		value, fail := CreateEnv("\"foo=\"bar\"")
 
-		if nil != fail {
-			t.Errorf("got %v and the given error condition is: %s", value, fail)
+		if nil == fail {
+			t.Errorf("got %v in '\"foo', which isn't valid", value)
 		}
 	})
 
 	t.Run("mismatched quotes in destiny - second", func(t *testing.T) {
 		value, fail := CreateEnv("foo\"=\"bar\"")
 
-		if nil != fail {
-			t.Errorf("got %v and the given error condition is: %s", value, fail)
+		if nil == fail {
+			t.Errorf("got %v in 'foo\"', which isn't valid", value)
 		}
 	})
 
@@ -105,6 +96,30 @@ func TestEnv(t *testing.T) {
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition is: %s", value, fail)
+		}
+	})
+
+	t.Run("destiny not valid -- added '?' to it", func(t *testing.T) {
+		value, fail := CreateEnv("fo?o=${bar}")
+
+		if nil == fail {
+			t.Errorf("got '%v' as destiny variable and this should not be valid", value)
+		}
+	})
+
+	t.Run("empty destiny", func(t *testing.T) {
+		value, fail := CreateEnv("=bar")
+
+		if nil == fail {
+			t.Errorf("got %v in env which isn't allowed", value)
+		}
+	})
+
+	t.Run("no equals", func(t *testing.T) {
+		value, fail := CreateEnv("foobar")
+
+		if nil == fail {
+			t.Errorf("got %v in env which isn't allowed", value)
 		}
 	})
 }

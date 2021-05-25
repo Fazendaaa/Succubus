@@ -9,8 +9,8 @@ import (
 
 // checkProject looks for the config file
 // It returns the file or an error
-func checkProject(succPath string) (data []byte, fail error) {
-	file, fail := readFileOrDir(succPath)
+func checkProject(projectPath string) (data []byte, fail error) {
+	file, fail := readFileOrDir(projectPath)
 
 	if nil != fail {
 		return nil, fail
@@ -26,27 +26,33 @@ func checkProject(succPath string) (data []byte, fail error) {
 }
 
 //
+func interfaceToImage(origin interface{}) (image Image, fail error) {
+	return image, fail
+}
+
+//
+func interfaceToDockerfile(origin interface{}) (dockerfile Dockerfile, fail error) {
+	return dockerfile, fail
+}
+
+//
 func stringToRules(origin string) (rules []Command, fail error) {
-	return
+	return rules, fail
 }
 
 //
 func interfaceToCommands(origin interface{}) (rules []Command, fail error) {
-	values, ok := origin.(map[string]interface{})
+	// values, ok := origin.(map[string]interface{})
+	_, ok := origin.(map[string]interface{})
 
 	if !ok {
 		return rules, fmt.Errorf("malformed command declaration")
 	}
 
-	return []Command{
-		{
-			command: values,
-			env:     []string{""},
-		},
-	}
+	return rules, fail
 }
 
-// commandsToRules handles cases when rules as explicid with or without
+// commandsToRules handles cases when rules as explicit with or without
 // environments variables presents.
 // It returns the equivalent
 func commandsToRules(origin interface{}) (rules []Command, fail error) {
@@ -82,7 +88,7 @@ func interfaceToRules(origin interface{}) (task Task, fail error) {
 	task.rules = rules
 
 	if _, ok = values["env"]; ok {
-		task.env = values["env"]
+		// task.env = values["env"]
 	}
 
 	return task, fail
@@ -92,18 +98,19 @@ func interfaceToRules(origin interface{}) (task Task, fail error) {
 // string.
 // It returns a Task object.
 func stringToTasks(origin interface{}) (task Task, fail error) {
-	command, ok := origin.(string)
+	// command, ok := origin.(string)
+	_, ok := origin.(string)
 
 	if !ok {
 		return task, fmt.Errorf("could not convert command")
 	}
 
-	task.rules = []Command{
-		{
-			env:     []string{""},
-			command: command,
-		},
-	}
+	// task.rules = []Command{
+	// 	{
+	// 		env:     []string{""},
+	// 		command: command,
+	// 	},
+	// }
 
 	return task, fail
 }
@@ -123,21 +130,17 @@ func interfaceToTask(origin interface{}) (task Task, fail error) {
 // mapToBase just handles the base tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToBase(read map[interface{}]interface{}, succ *Project) (fail error) {
-	if _, ok := read["base"]; !ok {
-		return fmt.Errorf("missing base tag")
-	}
-
-	tasks, ok := read["base"].(map[interface{}]interface{})
+func mapToBase(base map[interface{}]interface{}, project *Project) (fail error) {
+	run, ok := base["run"]
 
 	if !ok {
-		return fmt.Errorf("%w;\n missing base run tag", fail)
+		return fmt.Errorf("%w;\nmissing base 'run' rules", fail)
 	}
 
-	succ.base.run, fail = interfaceToTask(tasks["run"])
+	project.base.run, fail = interfaceToTask(run)
 
 	if nil != fail {
-		return fmt.Errorf("%w;\n missing base run tag", fail)
+		return fmt.Errorf("%w;\nmalformed base 'run' rules", fail)
 	}
 
 	return fail
@@ -146,10 +149,7 @@ func mapToBase(read map[interface{}]interface{}, succ *Project) (fail error) {
 // mapToDev just handles the dev tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToDev(read map[interface{}]interface{}, succ *Project) (fail error) {
-	if _, ok := read["dev"]; !ok {
-		return fmt.Errorf("missing dev tag")
-	}
+func mapToDev(dev map[interface{}]interface{}, project *Project) (fail error) {
 
 	return fail
 }
@@ -157,60 +157,106 @@ func mapToDev(read map[interface{}]interface{}, succ *Project) (fail error) {
 // mapToExtended just handles the extended tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToExtended(read map[interface{}]interface{}, succ *Project) (fail error) {
+func mapToExtended(read map[interface{}]interface{}, project *Project) (fail error) {
 
 	return fail
 }
 
-// fromFileToProject as many use cases might not need Succubus full power, but to
+// interfaceToObjectives
+func interfaceToObjectives(read map[interface{}]interface{}, project *Project) (fail error) {
+	if _, ok := read["base"]; !ok {
+		return fmt.Errorf("missing 'base' objective")
+	}
+	if _, ok := read["dev"]; !ok {
+		return fmt.Errorf("missing 'dev' objective")
+	}
+
+	base, ok := read["base"].(map[interface{}]interface{})
+	if !ok {
+		return fmt.Errorf("malformed 'base' objective")
+	}
+
+	dev, ok := read["dev"].(map[interface{}]interface{})
+	if !ok {
+		return fmt.Errorf("malformed 'dev' objective")
+	}
+
+	if fail = mapToBase(base, project); nil != fail {
+		return fail
+	}
+	if fail = mapToDev(dev, project); nil != fail {
+		return fail
+	}
+
+	if _, ok := read["extended"]; ok {
+		extended, ok := read["extended"].(map[interface{}]interface{})
+
+		if !ok {
+			return fmt.Errorf("malformed 'extended' objective")
+		}
+		if fail = mapToExtended(extended, project); nil != fail {
+			return fail
+		}
+	}
+
+	return fail
+}
+
+// interfaceToProject as many use cases might not need Succubus full power, but to
 // handle code base is easy always to handle the "worst case scenario", this
 // function does that, translate the user specific configuration to a more
 // generic one.
 // It returns the config file as full blown Succubus standard
-func fromFileToProject(read map[interface{}]interface{}) (succ Project, fail error) {
-	if image, ok := read["image"]; ok {
-		succ.image = fmt.Sprintf("%v", image)
-	} else {
-		succ.image = ""
+func interfaceToProject(read map[interface{}]interface{}) (project Project, fail error) {
+	if _, ok := read["image"]; ok {
+		project.image, fail = interfaceToImage(read["image"])
+
+		if nil != fail {
+			return project, fmt.Errorf("%w;\n 'image' tag presented and malformed", fail)
+		}
 	}
 
-	if dockerfile, ok := read["dockerfile"]; ok {
-		succ.dockerfile = fmt.Sprintf("%v", dockerfile)
-	} else {
-		succ.dockerfile = ""
+	if _, ok := read["dockerfile"]; ok {
+		project.dockerfile, fail = interfaceToDockerfile(read["dockerfile"])
+
+		if nil != fail {
+			return project, fmt.Errorf("%w;\n 'dockerfile' tag presented and malformed", fail)
+		}
 	}
 
-	if fail = mapToBase(read, &succ); nil != fail {
-		return succ, fmt.Errorf("%w;\n error while mapping base tag", fail)
+	if _, ok := read["objectives"]; !ok {
+		return project, fmt.Errorf("missing 'objectives' tag")
 	}
 
-	if fail = mapToDev(read, &succ); nil != fail {
-		return succ, fmt.Errorf("%w;\n error while mapping dev tag", fail)
+	objectives, ok := read["objectives"].(map[interface{}]interface{})
+
+	if !ok {
+		return project, fmt.Errorf("malformed 'objectives' tag")
 	}
 
-	if fail = mapToExtended(read, &succ); nil != fail {
-		return succ, fmt.Errorf("%w;\n error while mapping extended tag", fail)
+	if fail = interfaceToObjectives(objectives, &project); nil != fail {
+		return project, fmt.Errorf("%w;\n 'objectives' tag presented and malformed", fail)
 	}
 
-	return succ, fail
+	return project, fail
 }
 
 // ParseProject just reads the given Succubus config file and checks it whether
 // or not it's a valid one.
 // It returns whether or not the config file is valid and any error encountered.
-func ParseProject(succPath string) (succ Project, fail error) {
-	read, fail := checkProject(succPath)
+func ParseProject(projectPath string) (project Project, fail error) {
+	data, fail := checkProject(projectPath)
 
 	if nil != fail {
-		return succ, fail
+		return project, fail
 	}
 
-	fromFile := make(map[interface{}]interface{})
-	fail = yaml.Unmarshal([]byte(read), &fromFile)
+	read := make(map[interface{}]interface{})
+	fail = yaml.Unmarshal([]byte(data), &read)
 
 	if nil != fail {
-		return succ, fail
+		return project, fail
 	}
 
-	return fromFileToProject(fromFile)
+	return interfaceToProject(read)
 }

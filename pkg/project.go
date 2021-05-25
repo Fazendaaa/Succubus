@@ -2,8 +2,8 @@ package succubus
 
 type Project struct {
 	name       string
-	image      string
-	dockerfile string
+	image      Image
+	dockerfile Dockerfile
 	env_file   string
 	context    string
 	base       Base

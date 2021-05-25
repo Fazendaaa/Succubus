@@ -1,6 +1,6 @@
 package succubus
 
-// checkEnv looks for the environement variables is declared in the same was
+// checkEnv looks for the environment variables is declared in the same was
 // docker-compose does, besides checks the source one is declared to avoid any
 // runtimes issues.
 // It returns wether or not everything is ok
@@ -10,6 +10,7 @@ func checkEnv(env string) (ok bool) {
 
 //
 func checkTask(task Task) (ok bool) {
+
 	return false
 }
 
@@ -41,11 +42,11 @@ func checkImage(image string) (ok bool) {
 // this function doesn't perform this kind of pre-processing due to the runtime
 // nature of those tasks.
 // It returns the processed config file
-func LexerProject(parsed Project) (succ Project, err error) {
+func LexerProject(parsed Project) (project Project, fail error) {
 
 	if !checkBase(parsed.base) {
 
 	}
 
-	return succ, nil
+	return project, fail
 }
