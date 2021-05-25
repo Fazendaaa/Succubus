@@ -23,6 +23,8 @@
 ```yaml
 [optional] image:
 [optional] dockerfile:
+[optional] context:
+[optional] env_file:
 
 [required] base:
 ...
@@ -41,6 +43,7 @@
 ```yaml
 ...
 [required] base:
+[optional]     env_file:
 [required]     run: ...
 [required]     add: ...
 [required]     rm: ...
@@ -52,6 +55,7 @@
 ```yaml
 ...
 [required] dev:
+[optional]     env_file:
 [required]     anal: ...
 [required]     linter: ...
 [required]     doc: ...
@@ -62,6 +66,7 @@
 ```yaml
 ...
 [optional] extended:
+[optional]     env_file:
 [optional]     <anyname>: ...
 ...
 ```
@@ -107,6 +112,19 @@ base:
   run:
     env:
       TEST="foo"
+    rules:
+      hello:
+        env: TEST="Hello"
+        command: echo "${TEST}, World"
+      echo "${TEST} bar"
+...
+```
+
+```yaml
+...
+base:
+  run:
+    env_file: /home/user/.config/test
     rules:
       hello:
         env: TEST="Hello"
