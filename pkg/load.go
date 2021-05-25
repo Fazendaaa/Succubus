@@ -5,18 +5,18 @@ package succubus
 // 2. is there a Dockerfile listed in the config?
 // 3. is there a Dockerfile presented in the project directory?
 // It returns whether or not the config file is ok
-func Load(succPath string) (succ Project, err error) {
-	parsed, fail := ParseProject(succPath)
+func Load(projectPath string) (project Project, fail error) {
+	lexed, fail := LexProject(projectPath)
 
 	if nil != fail {
-		return succ, err
+		return project, fail
 	}
 
-	succ, fail = LexerProject(parsed)
+	parsed, fail := ParseProject(lexed)
 
 	if nil != fail {
-		return succ, fail
+		return parsed, fail
 	}
 
-	return succ, fail
+	return project, fail
 }

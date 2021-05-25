@@ -1,61 +1,147 @@
 package succubus
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
-func TestParse(t *testing.T) {
-	t.Run("default", func(t *testing.T) {
-		value, fail := ParseProject("../test/default/")
+func TestLexer(t *testing.T) {
+	t.Run("identity", func(t *testing.T) {
+		src := Project{
+			image: Image{
+				registry: "",
+				owner:    "some-user",
+				name:     "some-image",
+				digest:   "",
+			},
+			base: Base{
+				run: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					rules: []Command{
+						{
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
+							command: "",
+						},
+					},
+				},
+				add: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					rules: []Command{
+						{
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
+							command: "",
+						},
+					},
+				},
+				rm: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					rules: []Command{
+						{
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
+							command: "",
+						},
+					},
+				},
+			},
+			dev: Dev{
+				doc: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					rules: []Command{
+						{
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
+							command: "",
+						},
+					},
+				},
+				anal: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					rules: []Command{
+						{
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
+							command: "",
+						},
+					},
+				},
+				linter: Task{
+					env: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					rules: []Command{
+						{
+							env: []Env{
+								{
+									source:  "",
+									destiny: "",
+								},
+							},
+							command: "",
+						},
+					},
+				},
+			},
+			extended: nil,
+		}
+		value, fail := ParseProject(src)
 
 		if nil != fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
+			t.Errorf("got %v and the given error condition is: %s", value, fail)
 		}
-	})
 
-	t.Run("extended", func(t *testing.T) {
-		value, fail := ParseProject("../test/extended/")
-
-		if nil != fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
-		}
-	})
-
-	t.Run("missing", func(t *testing.T) {
-		value, fail := ParseProject("../test/missing/")
-
-		if nil == fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
-		}
-	})
-
-	t.Run("named", func(t *testing.T) {
-		value, fail := ParseProject("../test/named/foo.yaml")
-
-		if nil != fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
-		}
-	})
-
-	t.Run("yml", func(t *testing.T) {
-		value, fail := ParseProject("../test/yml/")
-
-		if nil != fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
-		}
-	})
-
-	t.Run("many commands", func(t *testing.T) {
-		value, fail := ParseProject("../test/manyCommands/")
-
-		if nil != fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
-		}
-	})
-
-	t.Run("nested env", func(t *testing.T) {
-		value, fail := ParseProject("../test/nestedEnv/")
-
-		if nil != fail {
-			t.Errorf("got %v and the given error condition: %s", value, fail)
+		if !reflect.DeepEqual(src, value) {
+			t.Errorf("got mismatching configurations: %v,  %v", src, value)
 		}
 	})
 }
