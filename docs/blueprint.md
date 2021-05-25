@@ -152,6 +152,7 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 ### Repositories
 
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+- [devspace/awesome-github-templates](https://github.com/devspace/awesome-github-templates)
 
 ### Blogposts
 

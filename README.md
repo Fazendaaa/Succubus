@@ -161,7 +161,8 @@ You can see the
    1. system
    2. everything in between
    3. runner
-2.
+2. Clarity first:
+   1. explicit usage of env vars -- isn't inheritance/overload if you don't know what are you doing
 -->
 
 
@@ -202,6 +203,7 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 ### Repositories
 
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+- [devspace/awesome-github-templates](https://github.com/devspace/awesome-github-templates)
 
 ### Blogposts
 
