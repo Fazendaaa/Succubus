@@ -1,25 +1,26 @@
 image: golang
 
-base:
-  run: |
-    echo "here"
-    exit 0
-  test:
-    go test --verbose
-  add:
-    env:
-      ENV=${ENV}
-    rules:
-      foo:
-        env:
-          ENV="bar"
-        rules:
-          go get $ARGV[0]
+objectives:
+  base:
+    run: |
+      echo "here"
+      exit 0
+    test:
+      go test --verbose
+    add:
+      env:
+        ENV=${ENV}
+      rules:
+        foo:
+          env:
+            ENV="bar"
+          rules:
+            go get $ARGV[0]
 
-dev:
-  anal:
-    gosec -fmt=sonarqujbe -out report.json ./..
-  linter:
-    golangci-lint run
-  doc:
-    go doc .
+  dev:
+    anal:
+      gosec -fmt=sonarqujbe -out report.json ./..
+    linter:
+      golangci-lint run
+    doc:
+      go doc .

@@ -18,21 +18,30 @@
 |--------------------------|
 ```
 
-### Obejctives
+### Project
 
 ```yaml
+[optional] name:
 [optional] image:
 [optional] dockerfile:
 [optional] context:
 [optional] env_file:
 
-[required] base:
+[required] objectives:
+...
+```
+
+### Obejctives
+
+```yaml
+[required] objectives:
+[required]    base:
 ...
 
-[required] dev:
+[required]    dev:
 ...
 
-[optional] extended:
+[optional]    extended:
 ...
 ```
 
@@ -42,32 +51,32 @@
 
 ```yaml
 ...
-[required] base:
-[optional]     env_file:
-[required]     run: ...
-[required]     add: ...
-[required]     rm: ...
-[required]     test: ...
+[required]    base:
+[optional]        env_file:
+[required]        run: ...
+[required]        add: ...
+[required]        rm: ...
+[required]        test: ...
 ```
 
 #### Development
 
 ```yaml
 ...
-[required] dev:
-[optional]     env_file:
-[required]     anal: ...
-[required]     linter: ...
-[required]     doc: ...
+[required]    dev:
+[optional]        env_file:
+[required]        anal: ...
+[required]        linter: ...
+[required]        doc: ...
 ```
 
 #### Extended
 
 ```yaml
 ...
-[optional] extended:
-[optional]     env_file:
-[optional]     <anyname>: ...
+[optional]    extended:
+[optional]        env_file:
+[optional]        <anyname>: ...
 ...
 ```
 

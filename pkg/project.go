@@ -1,6 +1,7 @@
 package succubus
 
 type Project struct {
+	name       string
 	image      string
 	dockerfile string
 	env_file   string
