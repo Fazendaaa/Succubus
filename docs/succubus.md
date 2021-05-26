@@ -31,7 +31,7 @@
 ...
 ```
 
-### Obejctives
+### Objectives
 
 ```yaml
 [required] objectives:

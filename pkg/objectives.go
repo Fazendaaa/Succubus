@@ -13,8 +13,12 @@ type Dev struct {
 	linter Task
 }
 
+type Extended struct {
+	tasks []Task
+}
+
 type Objectives struct {
 	base     Base
 	dev      Dev
-	extended interface{}
+	extended []Extended
 }
