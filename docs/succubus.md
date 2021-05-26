@@ -155,11 +155,11 @@ base:
 ### Multi-staged
 
 <!-- Explain:
-1. System tag
+1. Base tag
 2. Runner tag
 3. Everything in between
 -->
 
-#### System
+#### Base
 
 #### Runner
