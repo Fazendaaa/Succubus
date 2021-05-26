@@ -12,3 +12,9 @@ type Dev struct {
 	anal   Task
 	linter Task
 }
+
+type Objectives struct {
+	base     Base
+	dev      Dev
+	extended interface{}
+}

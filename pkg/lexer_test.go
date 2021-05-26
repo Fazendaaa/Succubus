@@ -4,7 +4,7 @@ import "testing"
 
 func TestLex(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
-		value, fail := LexProject("../test/default/")
+		value, fail := LexProject("../test/config/default/")
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)
@@ -12,7 +12,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("extended", func(t *testing.T) {
-		value, fail := LexProject("../test/extended/")
+		value, fail := LexProject("../test/config/extended/")
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)
@@ -20,7 +20,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("missing", func(t *testing.T) {
-		value, fail := LexProject("../test/missing/")
+		value, fail := LexProject("../test/config/missing/")
 
 		if nil == fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)
@@ -28,7 +28,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("named", func(t *testing.T) {
-		value, fail := LexProject("../test/named/foo.yaml")
+		value, fail := LexProject("../test/config/named/foo.yaml")
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)
@@ -36,7 +36,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("yml", func(t *testing.T) {
-		value, fail := LexProject("../test/yml/")
+		value, fail := LexProject("../test/config/yml/")
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)
@@ -44,7 +44,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("many commands", func(t *testing.T) {
-		value, fail := LexProject("../test/manyCommands/")
+		value, fail := LexProject("../test/config/manyCommands/")
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)
@@ -52,7 +52,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("nested env", func(t *testing.T) {
-		value, fail := LexProject("../test/nestedEnv/")
+		value, fail := LexProject("../test/config/nestedEnv/")
 
 		if nil != fail {
 			t.Errorf("got %v and the given error condition: %s", value, fail)

@@ -6,7 +6,5 @@ type Project struct {
 	dockerfile Dockerfile
 	env_file   string
 	context    string
-	base       Base
-	dev        Dev
-	extended   interface{}
+	objectives Objectives
 }

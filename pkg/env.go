@@ -55,11 +55,11 @@ func CreateEnv(origin string) (env Env, fail error) {
 	}
 
 	if ok, fail := env.parseDestiny(splitted[0]); !ok {
-		return env, fmt.Errorf("%w;\n error while destiny source environment variable", fail)
+		return env, fmt.Errorf("%w;\nerror while destiny source environment variable", fail)
 	}
 
 	if ok, fail := env.parseSource(splitted[1 : len(splitted)-1]); !ok {
-		return env, fmt.Errorf("%w;\n error while parsing source environment variable", fail)
+		return env, fmt.Errorf("%w;\nerror while parsing source environment variable", fail)
 	}
 
 	return env, fail

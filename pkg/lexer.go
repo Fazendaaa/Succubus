@@ -137,7 +137,7 @@ func mapToBase(base map[interface{}]interface{}, project *Project) (fail error) 
 		return fmt.Errorf("%w;\nmissing base 'run' rules", fail)
 	}
 
-	project.base.run, fail = interfaceToTask(run)
+	project.objectives.base.run, fail = interfaceToTask(run)
 
 	if nil != fail {
 		return fmt.Errorf("%w;\nmalformed base 'run' rules", fail)
@@ -212,7 +212,7 @@ func interfaceToProject(read map[interface{}]interface{}) (project Project, fail
 		project.image, fail = interfaceToImage(read["image"])
 
 		if nil != fail {
-			return project, fmt.Errorf("%w;\n 'image' tag presented and malformed", fail)
+			return project, fmt.Errorf("%w;\n'image' tag presented and malformed", fail)
 		}
 	}
 
@@ -220,7 +220,7 @@ func interfaceToProject(read map[interface{}]interface{}) (project Project, fail
 		project.dockerfile, fail = interfaceToDockerfile(read["dockerfile"])
 
 		if nil != fail {
-			return project, fmt.Errorf("%w;\n 'dockerfile' tag presented and malformed", fail)
+			return project, fmt.Errorf("%w;\n'dockerfile' tag presented and malformed", fail)
 		}
 	}
 
@@ -235,7 +235,7 @@ func interfaceToProject(read map[interface{}]interface{}) (project Project, fail
 	}
 
 	if fail = interfaceToObjectives(objectives, &project); nil != fail {
-		return project, fmt.Errorf("%w;\n 'objectives' tag presented and malformed", fail)
+		return project, fmt.Errorf("%w;\n'objectives' tag presented and malformed", fail)
 	}
 
 	return project, fail

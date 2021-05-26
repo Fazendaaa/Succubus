@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestLexer(t *testing.T) {
+func TestParser(t *testing.T) {
 	t.Run("identity", func(t *testing.T) {
 		src := Project{
 			image: Image{
@@ -14,125 +14,127 @@ func TestLexer(t *testing.T) {
 				name:     "some-image",
 				digest:   "",
 			},
-			base: Base{
-				run: Task{
-					env: []Env{
-						{
-							source:  "",
-							destiny: "",
+			objectives: Objectives{
+				base: Base{
+					run: Task{
+						env: []Env{
+							{
+								source:  "",
+								destiny: "",
+							},
+						},
+						rules: []Command{
+							{
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								command: "",
+							},
 						},
 					},
-					rules: []Command{
-						{
-							env: []Env{
-								{
-									source:  "",
-									destiny: "",
-								},
+					add: Task{
+						env: []Env{
+							{
+								source:  "",
+								destiny: "",
 							},
-							command: "",
+						},
+						rules: []Command{
+							{
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								command: "",
+							},
+						},
+					},
+					rm: Task{
+						env: []Env{
+							{
+								source:  "",
+								destiny: "",
+							},
+						},
+						rules: []Command{
+							{
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								command: "",
+							},
 						},
 					},
 				},
-				add: Task{
-					env: []Env{
-						{
-							source:  "",
-							destiny: "",
+				dev: Dev{
+					doc: Task{
+						env: []Env{
+							{
+								source:  "",
+								destiny: "",
+							},
+						},
+						rules: []Command{
+							{
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								command: "",
+							},
 						},
 					},
-					rules: []Command{
-						{
-							env: []Env{
-								{
-									source:  "",
-									destiny: "",
-								},
+					anal: Task{
+						env: []Env{
+							{
+								source:  "",
+								destiny: "",
 							},
-							command: "",
+						},
+						rules: []Command{
+							{
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								command: "",
+							},
+						},
+					},
+					linter: Task{
+						env: []Env{
+							{
+								source:  "",
+								destiny: "",
+							},
+						},
+						rules: []Command{
+							{
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								command: "",
+							},
 						},
 					},
 				},
-				rm: Task{
-					env: []Env{
-						{
-							source:  "",
-							destiny: "",
-						},
-					},
-					rules: []Command{
-						{
-							env: []Env{
-								{
-									source:  "",
-									destiny: "",
-								},
-							},
-							command: "",
-						},
-					},
-				},
+				extended: nil,
 			},
-			dev: Dev{
-				doc: Task{
-					env: []Env{
-						{
-							source:  "",
-							destiny: "",
-						},
-					},
-					rules: []Command{
-						{
-							env: []Env{
-								{
-									source:  "",
-									destiny: "",
-								},
-							},
-							command: "",
-						},
-					},
-				},
-				anal: Task{
-					env: []Env{
-						{
-							source:  "",
-							destiny: "",
-						},
-					},
-					rules: []Command{
-						{
-							env: []Env{
-								{
-									source:  "",
-									destiny: "",
-								},
-							},
-							command: "",
-						},
-					},
-				},
-				linter: Task{
-					env: []Env{
-						{
-							source:  "",
-							destiny: "",
-						},
-					},
-					rules: []Command{
-						{
-							env: []Env{
-								{
-									source:  "",
-									destiny: "",
-								},
-							},
-							command: "",
-						},
-					},
-				},
-			},
-			extended: nil,
 		}
 		value, fail := ParseProject(src)
 

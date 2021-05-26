@@ -1,0 +1,21 @@
+image: golang
+
+objectives:
+  base:
+    run: exit 0
+    test:
+      go test --verbose
+    add:
+      rules: go get $ARGV[0]
+      env:
+        - ENV=${ENV}
+    rm:
+      go mod tidy
+
+  dev:
+    anal:
+      gosec -fmt=sonarqujbe -out report.json ./..
+    linter:
+      golangci-lint run
+    doc:
+      go doc .

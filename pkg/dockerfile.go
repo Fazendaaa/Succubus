@@ -1,6 +1,9 @@
 package succubus
 
 type Dockerfile struct {
-	context string
-	image   Image
+	path        string
+	context     string
+	base        Image
+	multistages []string
+	labels      []string
 }
