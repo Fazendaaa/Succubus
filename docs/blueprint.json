@@ -21,34 +21,19 @@
       "img": "https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge"
     },
     {
-      "alt": "",
-      "url": "",
-      "img": ""
+      "alt": "Made With Go",
+      "url": "https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square",
+      "img": "https://golang.org/"
     },
     {
-      "alt": "",
-      "url": "",
-      "img": ""
+      "alt": "Made With Docker",
+      "url": "https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square",
+      "img": "https://www.docker.com"
     },
     {
-      "alt": "",
-      "url": "",
-      "img": ""
-    },
-    {
-      "alt": "",
-      "url": "",
-      "img": ""
-    },
-    {
-      "alt": "",
-      "url": "",
-      "img": ""
-    },
-    {
-      "alt": "",
-      "url": "",
-      "img": ""
+      "alt": "Made With VSCode",
+      "url": "https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square",
+      "img": "https://code.visualstudio.com/"
     }
   ]
 }

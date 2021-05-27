@@ -7,12 +7,9 @@
 <p align="center">
 		<a href="https://github.com/badges/shields"><img alt="Custom badge" src="https://img.shields.io/badge/custom-badge-f39f37.svg" height="20"/></a>
 <a href="https://saythanks.io/to/lucas.carotta%40outlook.com"><img alt="Say Thanks!" src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge" height="20"/></a>
-<a href=""><img alt="" src="" height="20"/></a>
-<a href=""><img alt="" src="" height="20"/></a>
-<a href=""><img alt="" src="" height="20"/></a>
-<a href=""><img alt="" src="" height="20"/></a>
-<a href=""><img alt="" src="" height="20"/></a>
-<a href=""><img alt="" src="" height="20"/></a>
+<a href="https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square"><img alt="Made With Go" src="https://golang.org/" height="20"/></a>
+<a href="https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square"><img alt="Made With Docker" src="https://www.docker.com" height="20"/></a>
+<a href="https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square"><img alt="Made With VSCode" src="https://code.visualstudio.com/" height="20"/></a>
 	</p>
 
 
@@ -25,18 +22,13 @@
 
 
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#what-is-npm-had-a-baby-with-docker-compose)
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#what-if-npm-had-a-baby-with-docker-compose)
 
-# ➤ What is NPM had a baby with Docker-Compose?
+# ➤ What if NPM had a baby with Docker-Compose?
 
 > or just a Makefile with steroids
 
 Welcome to Fazendaaa's Succubus. This is version 0.0.0!
-
-Made with:
-
-- [Go](https://golang.org/)
-- [Docker](https://www.docker.com/)
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#ideia)
@@ -76,10 +68,10 @@ objectives:
 
   dev:
     anal: |
-      python -m mccabe --min 5 ./src
-      python -m bandit -r ./src
-    linter: python -m  mypy ./src
-    doc: sphinx-apidoc -o source ../
+      python3 -m mccabe --min 5 ./src
+      python3 -m bandit -r ./src
+    linter: python3 -m mypy ./src
+    doc: python3 -m sphinx-apidoc -o source ../
 ```
 
 Then just open your terminal and type:
@@ -88,7 +80,33 @@ Then just open your terminal and type:
 succ run
 ```
 
-To see your website running in your localhost.
+To see your website running in your `http://localhost`.
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#advantages)
+
+## ➤ Advantages
+
+- Using many languages and frameworks without needing to install and maintain any of it
+- Running any project without need to configure your OS to properly run it
+- Maintainability:
+  - Low entrance bar helps a lot; helping a "one project" person to avoid conflicts during releases and deploys and in many people projects can reduce the time to a person to familiarize with the new language/framework because the Project usage interface is the same
+  - 
+- Time to Market:
+  - 
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#why-not-docker-compose)
+
+## ➤ Why not Docker-Compose?
+
+- Compose is more tailored to provide a "System Defined" experience trough a manifest which is more suited to accommodate other projects besides the one you are currently working on, as a Data Base, Reverse-Proxy, Memory Cache and etc.
+- Compose is not suited to perform many tasks, just "run" one which is defined to allow a whole system to work, not a project
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#usage)
+
+## ➤ Usage
 
 ### init
 
@@ -123,9 +141,9 @@ succ test
 ```
 
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#usage)
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#running)
 
-## ➤ Usage
+## ➤ Running
 
 You don't need to install Go to run this tool, just Docker. And to do so to give it a try, you can do it just by running the following line in your terminal:
 
@@ -164,7 +182,7 @@ You can see the
 2. Cloud native
 3. Docker-compose
 4. K8s
-5. Making CI/CD assessible and the standard
+5. Making CI/CD accessible and the standard
 -->
 
 ### Advanced
