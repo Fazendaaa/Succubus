@@ -22,18 +22,18 @@
     },
     {
       "alt": "Made With Go",
-      "url": "https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square",
-      "img": "https://golang.org/"
+      "url": "https://golang.org/",
+      "img": "https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square"
     },
     {
       "alt": "Made With Docker",
-      "url": "https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square",
-      "img": "https://www.docker.com"
+      "url": "https://www.docker.com",
+      "img": "https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square"
     },
     {
       "alt": "Made With VSCode",
-      "url": "https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square",
-      "img": "https://code.visualstudio.com/"
+      "url": "https://code.visualstudio.com/",
+      "img": "https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square"
     }
   ]
 }
