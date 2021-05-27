@@ -1,7 +1,7 @@
 {
   "name": "Succubus",
   "version": "0.0.0",
-  "description": "A universal package manager based on cloud-native",
+  "description": "A universal project manager based on cloud-native",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,7 @@
   "keywords": [
     "docker",
     "go",
-    "package",
+    "project",
     "manager"
   ],
   "author": "https://github.com/Fazendaaa/",

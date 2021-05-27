@@ -6,6 +6,10 @@
 
 {{ template:description }}
 
+# What is NPM had a baby with Docker-Compose?
+
+> or just a Makefile with steroids
+
 Welcome to Fazendaaa's {{ pkg.name }}. This is version {{ pkg.version }}!
 
 Made with:
@@ -15,60 +19,50 @@ Made with:
 
 ## Ideia
 
-Currently, in the company that I work for we have a CLI (Command Line Interface) made in [Python](https://www.python.org/) called `estat` that works like the following:
+Currently, in the company that I work for we have a CLI (Command Line Interface) made in [Python](https://www.python.org/) called `estat` and you can read more about it [here](https://github.com/Fazendaaa/CFD).
 
-```shell
-estat add ggplot2 Yang-Tang/shinyjqui VGAM jbryer/DTedit
-```
+## What is Succubus?
 
-This works in a [R](https://www.r-project.org/); if you know [Node.js](https://nodejs.org/en/) you may find it similar as [npm](https://www.npmjs.com/) which this tool is heavily based on. The CLI will fetch the given packages and add them to the current DESCRIPTION file -- which is the equivalent `package.json`, listing the packages added to the project.
+- Succubus is a language/framework agnostic project manager manifest
+- It works by declaring objectives inside the given project
+- Each objective is a sequence of tasks
+- And a task is formed by determined rules
 
-So far, so good. But the turning point is the following: **I DON'T HAVE R INSTALLED IN MY MACHINE**
-
-All the company projects have a `Dockefile` in it; so the CLI does the following:
-
-1. Build the current Dockerfile as a helper container
-2. Bind the current project to the helper container, installs the mentioned packages in it
-3. Adds the packages to the DESCRIPTION file truncating its version
-
-The main advantage of this approach is to help avoid errors during development, especially because in any project you might find yourself using:
-
-1. A different language version
-2. Different Operational Systems (OSes)
-3. Forgetting to list all packages used in the project
-4. Also forgetting to list OS-based dependencies
-5. And also forgetting to list environment variables
-6. etc.
-
-The idea is for the development process to be *frictionless*; as all the developers can switch branches and projects and start to work on them without having to worry to install any dependency or figuring out what the other developer did to that project to work.
-
-Besides this, for that matter, this will work as well for other projects based in:
-
-- Python
-- Julia
-- npm/yarn -- Node.js, Vue, React, etc.
-- etc.
-
-As the main ideia is to work as a abstraction layer to handle projects the language, its version, and OS related packages should not matter only the what is described in the Dockerfile.
-
-And as npm allows us to run the project and test it so `estat` does it as well. Each project that contains a `docker-compose.yml` file is executed when running a simple `estat run`, avoiding that developers no familizired with [docker-compose](https://docs.docker.com/compose/) forget to add the `--build` flag to it and, besides that, the tool also goes trough the process of checking each listed image in it for updates as also checking the base image for updates before running it -- sometimes developers forget to check them for updates that might fix their problems.
-
-As `estat` have grown so much and making it available as FOSS (Free and open-source software) was always the idea but the project still in development and not having a properly defined scope, I decided to break its main features in other projects:
-
-- [Succubus](https://github.com/Fazendaaa/Succubus): universal package manager based on cloud-native
-- [Jinn](https://github.com/Fazendaaa/Jinn): universal project manager built to expand Succubus capabilities
-- [Baba Yaga](https://github.com/Fazendaaa/BabaYaga): universal cloud-native manager built to expand Jinn and Succubus capabilities
-- [Wendigo](https://github.com/Fazendaaa/Wendigo): universal project translator from cloud-native projects to other infra technologies
-- [Shōjō](https://github.com/Fazendaaa/Shojo): LaTex package manager
-- [Hellhound](github.com/Fazendaaa/Hellhound): VSCode extension to integrate Jinn recipes
-- [Crocotta](github.com/Fazendaaa/Crocotta): SOC assisted guider
-- [Changeling](https://github.com/Fazendaaa/Changeling): Recipes for Succubus and Baba Yaga
+Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./succ.yaml) presented here. And the best part to start using it is that you don't even need to install it to run and maintain all of your projects made using a plethora of languages/frameworks and theirs respective versions.
 
 ## Components
 
-Succubus goes trough the `succ.yaml` file looking for the commands to run when doing one of the following tasks, working as a "manifesto". If they are not described or the file it's not presented the program will follow default steps to each language based on Jinn workflow.
+An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project would look something like it:
+
+```yaml
+image: python
+
+objectives:
+  base:
+    run: python3 manage.py runserver
+    test: python3 -m pytest .
+    add: pip3 install $ARGV
+    rm: pip3 uninstall $ARGV
+
+  dev:
+    anal: |
+      python -m mccabe --min 5 ./src
+      python -m bandit -r ./src
+    linter: python -m  mypy ./src
+    doc: sphinx-apidoc -o source ../
+```
+
+Then just open your terminal and type:
+
+```shell
+succ run
+```
+
+To see your website running in your localhost.
 
 ### init
+
+Shows already made made manifestos for you to choose from and use in your project allowing you to maintain an already project using something that would better fit your need:
 
 ```shell
 succ init
@@ -77,7 +71,13 @@ succ init
 ### add
 
 ```shell
-succ add [ pkg01 pkg02 pkg03=1.3 githubUser/pkg ... ]
+succ add [ pkg01 pkg02 pkg03=1.3 ... ]
+```
+
+### rm
+
+```shell
+succ add [ pkg01 pkg02 pkg03=1.3  ... ]
 ```
 
 ### run
@@ -92,7 +92,7 @@ succ run
 succ test
 ```
 
-## Installing
+## Usage
 
 You don't need to install Go to run this tool, just Docker. And to do so to give it a try, you can do it just by running the following line in your terminal:
 
@@ -105,6 +105,10 @@ And then running the following to check whether or not is working properly:
 ```shell
 succ --help
 ```
+
+This approach has some limitations but is a great way to tip your toes and start right way using the tool; if your needs aren't meet by it, you can always [install](#installing) the tool.
+
+## Installing
 
 ## How does it work?
 
