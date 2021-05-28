@@ -8,11 +8,15 @@ import (
 func TestParser(t *testing.T) {
 	t.Run("identity", func(t *testing.T) {
 		src := Project{
-			image: Image{
-				registry: "",
-				owner:    "some-user",
-				name:     "some-image",
-				digest:   "",
+			container: Container{
+				dockerfile: Dockerfile{
+					base: Image{
+						registry: "",
+						owner:    "some-user",
+						name:     "some-image",
+						digest:   "",
+					},
+				},
 			},
 			objectives: Objectives{
 				base: Base{

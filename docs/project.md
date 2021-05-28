@@ -1,4 +1,4 @@
-# Succubus
+# Project
 
 ## Configuration Description
 

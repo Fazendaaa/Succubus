@@ -39,17 +39,17 @@ func checkExtended(origin interface{}) (extended []Extended, fail error) {
 	return extended, fail
 }
 
-// checkImage
-func checkImage(origin Image) (image Image, fail error) {
-	if "" == origin.name {
-		return image, fail
+// checkContainer
+func checkContainer(origin Container) (container Container, fail error) {
+	if "" == origin.dockerfile.base.name {
+		return container, fail
 	}
 
-	if !IsLower(origin.name) {
-		return image, fmt.Errorf("wrong image format name: '%s'", image.name)
+	if !IsLower(origin.dockerfile.base.name) {
+		return container, fmt.Errorf("wrong image format name: '%s'", origin.dockerfile.base.name)
 	}
 
-	return Image(origin), fail
+	return Container(origin), fail
 }
 
 // checkForDockerfile
@@ -108,13 +108,12 @@ func checkObjetives(origin Objectives) (objectives Objectives, fail error) {
 // nature of those tasks.
 // It returns the processed config file
 func ParseProject(origin Project) (project Project, fail error) {
-	image, fail := checkImage(origin.image)
+	// container, fail := checkContainer(origin.container)
 
 	if nil != fail {
 		return project, fmt.Errorf("%w;\n'image' malformed in project", fail)
 	}
 
-	project.image = image
 	// objective, fail := checkObjetives(origin.objectives)
 
 	if nil != fail {

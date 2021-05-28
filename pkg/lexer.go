@@ -36,7 +36,7 @@ func interfaceToDockerfile(origin interface{}) (dockerfile Dockerfile, fail erro
 }
 
 //
-func stringToRules(origin string) (rules []Command, fail error) {
+func simpleCommandsToRules(origin string) (rules []Command, fail error) {
 	return rules, fail
 }
 
@@ -46,15 +46,24 @@ func interfaceToContainer(origin interface{}) (container Container, fail error) 
 }
 
 //
-func interfaceToCommands(origin interface{}) (rules []Command, fail error) {
-	// values, ok := origin.(map[string]interface{})
-	_, ok := origin.(map[string]interface{})
+func complexCommandsToRules(origin interface{}) (commands []Command, fail error) {
+	values, ok := origin.(map[interface{}]interface{})
 
 	if !ok {
-		return rules, fmt.Errorf("malformed command declaration")
+		return commands, fmt.Errorf("malformed command declaration")
 	}
 
-	return rules, fail
+	rules, ok := values["rules"]
+
+	if !ok {
+		return commands, fmt.Errorf("malformed rules declaration")
+	}
+
+	if env, ok := values["env"]; ok {
+		return commands, fmt.Errorf("malformed rules declaration")
+	}
+
+	return commands, fail
 }
 
 // commandsToRules handles cases when rules as explicit with or without
@@ -62,10 +71,10 @@ func interfaceToCommands(origin interface{}) (rules []Command, fail error) {
 // It returns the equivalent
 func commandsToRules(origin interface{}) (rules []Command, fail error) {
 	if values, ok := origin.(string); ok {
-		return stringToRules(values)
+		return simpleCommandsToRules(values)
 	}
 
-	return interfaceToCommands(origin)
+	return complexCommandsToRules(origin)
 }
 
 // interfaceToRules handles the case when the a Command is:
@@ -74,7 +83,7 @@ func commandsToRules(origin interface{}) (rules []Command, fail error) {
 // - a sequence of both previous
 // It returns an error when the task is not a valid one
 func interfaceToRules(origin interface{}) (task Task, fail error) {
-	values, ok := origin.(map[string][]string)
+	values, ok := origin.(map[interface{}]interface{})
 
 	if !ok {
 		return task, fmt.Errorf("command malformed")
@@ -132,76 +141,105 @@ func interfaceToTask(origin interface{}) (task Task, fail error) {
 	return task, fail
 }
 
-// mapToBase just handles the base tag conversion.
+// baseToObjective just handles the base tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToBase(base map[interface{}]interface{}) (fail error) {
-	run, ok := base["run"]
+func baseToObjective(origin map[interface{}]interface{}) (base Base, fail error) {
+	run, ok := origin["run"]
 
 	if !ok {
-		return fmt.Errorf("%w;\nmissing base 'run' rules", fail)
+		return base, fmt.Errorf("%w;\nmissing 'run' rules", fail)
 	}
 
-	project.objectives.base.run, fail = interfaceToTask(run)
+	base.run, fail = interfaceToTask(run)
 
 	if nil != fail {
-		return fmt.Errorf("%w;\nmalformed base 'run' rules", fail)
+		return base, fmt.Errorf("%w;\nmalformed 'run' rules", fail)
 	}
 
-	return fail
+	add, ok := origin["add"]
+
+	if !ok {
+		return base, fmt.Errorf("%w;\nmissing 'add' rules", fail)
+	}
+
+	base.run, fail = interfaceToTask(add)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\nmalformed 'add' rules", fail)
+	}
+
+	rm, ok := origin["rm"]
+
+	if !ok {
+		return base, fmt.Errorf("%w;\nmissing 'rm' rules", fail)
+	}
+
+	base.run, fail = interfaceToTask(rm)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\nmalformed 'rm' rules", fail)
+	}
+
+	test, ok := origin["test"]
+
+	if !ok {
+		return base, fmt.Errorf("%w;\nmissing 'test' rules", fail)
+	}
+
+	base.run, fail = interfaceToTask(test)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\nmalformed 'test' rules", fail)
+	}
+
+	return base, fail
 }
 
-// mapToDev just handles the dev tag conversion.
+// devToObjective just handles the dev tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToDev(dev map[interface{}]interface{}) (fail error) {
-
-	return fail
+func devToObjective(origin map[interface{}]interface{}) (dev Dev, fail error) {
+	return dev, fail
 }
 
-// mapToExtended just handles the extended tag conversion.
+// extendedToObjective just handles the extended tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToExtended(read map[interface{}]interface{}) (fail error) {
-
-	return fail
+func extendedToObjective(origin map[interface{}]interface{}) (extendeds []Extended, fail error) {
+	return extendeds, fail
 }
 
 // tasksToObjectives
-func tasksToObjectives(read map[interface{}]interface{}) (objectives Objectives, fail error) {
-	if _, ok := read["base"]; !ok {
+// It return
+func tasksToObjectives(origin map[interface{}]interface{}) (objectives Objectives, fail error) {
+	if _, ok := origin["base"]; !ok {
 		return objectives, fmt.Errorf("missing 'base' objective")
 	}
-	if _, ok := read["dev"]; !ok {
+	if _, ok := origin["dev"]; !ok {
 		return objectives, fmt.Errorf("missing 'dev' objective")
 	}
 
-	base, ok := read["base"].(map[interface{}]interface{})
+	base, ok := origin["base"].(map[interface{}]interface{})
+
 	if !ok {
 		return objectives, fmt.Errorf("malformed 'base' objective")
 	}
 
-	dev, ok := read["dev"].(map[interface{}]interface{})
+	dev, ok := origin["dev"].(map[interface{}]interface{})
+
 	if !ok {
 		return objectives, fmt.Errorf("malformed 'dev' objective")
 	}
 
-	if fail = mapToBase(base); nil != fail {
+	if objectives.base, fail = baseToObjective(base); nil != fail {
 		return objectives, fail
 	}
-	if fail = mapToDev(dev); nil != fail {
+	if objectives.dev, fail = devToObjective(dev); nil != fail {
 		return objectives, fail
 	}
-
-	if _, ok := read["extended"]; ok {
-		extended, ok := read["extended"].(map[interface{}]interface{})
-
-		if !ok {
-			return objectives, fmt.Errorf("malformed 'extended' objective")
-		}
-		if fail = mapToExtended(extended); nil != fail {
-			return objectives, fail
-		}
+	if objectives.extended, fail = extendedToObjective(origin); nil != fail {
+		return objectives, fail
 	}
 
 	return objectives, fail
@@ -229,6 +267,7 @@ func containerToProject(origin map[interface{}]interface{}) (container Container
 }
 
 // objetivesToProject
+// It returns all the declared objectives in the project
 func objetivesToProject(origin map[interface{}]interface{}) (objectives Objectives, fail error) {
 	if _, ok := origin["objectives"]; !ok {
 		return objectives, fmt.Errorf("missing objectives")
