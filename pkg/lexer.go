@@ -40,6 +40,11 @@ func stringToRules(origin string) (rules []Command, fail error) {
 	return rules, fail
 }
 
+// interfaceToContainer
+func interfaceToContainer(origin interface{}) (container Container, fail error) {
+	return container, fail
+}
+
 //
 func interfaceToCommands(origin interface{}) (rules []Command, fail error) {
 	// values, ok := origin.(map[string]interface{})
@@ -130,7 +135,7 @@ func interfaceToTask(origin interface{}) (task Task, fail error) {
 // mapToBase just handles the base tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToBase(base map[interface{}]interface{}, project *Project) (fail error) {
+func mapToBase(base map[interface{}]interface{}) (fail error) {
 	run, ok := base["run"]
 
 	if !ok {
@@ -149,7 +154,7 @@ func mapToBase(base map[interface{}]interface{}, project *Project) (fail error) 
 // mapToDev just handles the dev tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToDev(dev map[interface{}]interface{}, project *Project) (fail error) {
+func mapToDev(dev map[interface{}]interface{}) (fail error) {
 
 	return fail
 }
@@ -157,49 +162,106 @@ func mapToDev(dev map[interface{}]interface{}, project *Project) (fail error) {
 // mapToExtended just handles the extended tag conversion.
 // It returns a error if anything is wrong, like a nested structure or something
 // like it.
-func mapToExtended(read map[interface{}]interface{}, project *Project) (fail error) {
+func mapToExtended(read map[interface{}]interface{}) (fail error) {
 
 	return fail
 }
 
-// interfaceToObjectives
-func interfaceToObjectives(read map[interface{}]interface{}, project *Project) (fail error) {
+// tasksToObjectives
+func tasksToObjectives(read map[interface{}]interface{}) (objectives Objectives, fail error) {
 	if _, ok := read["base"]; !ok {
-		return fmt.Errorf("missing 'base' objective")
+		return objectives, fmt.Errorf("missing 'base' objective")
 	}
 	if _, ok := read["dev"]; !ok {
-		return fmt.Errorf("missing 'dev' objective")
+		return objectives, fmt.Errorf("missing 'dev' objective")
 	}
 
 	base, ok := read["base"].(map[interface{}]interface{})
 	if !ok {
-		return fmt.Errorf("malformed 'base' objective")
+		return objectives, fmt.Errorf("malformed 'base' objective")
 	}
 
 	dev, ok := read["dev"].(map[interface{}]interface{})
 	if !ok {
-		return fmt.Errorf("malformed 'dev' objective")
+		return objectives, fmt.Errorf("malformed 'dev' objective")
 	}
 
-	if fail = mapToBase(base, project); nil != fail {
-		return fail
+	if fail = mapToBase(base); nil != fail {
+		return objectives, fail
 	}
-	if fail = mapToDev(dev, project); nil != fail {
-		return fail
+	if fail = mapToDev(dev); nil != fail {
+		return objectives, fail
 	}
 
 	if _, ok := read["extended"]; ok {
 		extended, ok := read["extended"].(map[interface{}]interface{})
 
 		if !ok {
-			return fmt.Errorf("malformed 'extended' objective")
+			return objectives, fmt.Errorf("malformed 'extended' objective")
 		}
-		if fail = mapToExtended(extended, project); nil != fail {
-			return fail
+		if fail = mapToExtended(extended); nil != fail {
+			return objectives, fail
 		}
 	}
 
-	return fail
+	return objectives, fail
+}
+
+// containerToProject
+func containerToProject(origin map[interface{}]interface{}) (container Container, fail error) {
+	if _, ok := origin["image"]; ok {
+		container, fail = interfaceToContainer(origin["image"])
+
+		if nil != fail {
+			return container, fmt.Errorf("%w;\nimage presented and malformed", fail)
+		}
+	}
+
+	if _, ok := origin["dockerfile"]; ok {
+		container, fail = interfaceToContainer(origin["dockerfile"])
+
+		if nil != fail {
+			return container, fmt.Errorf("%w;\ndockerfile presented and malformed", fail)
+		}
+	}
+
+	return container, fail
+}
+
+// objetivesToProject
+func objetivesToProject(origin map[interface{}]interface{}) (objectives Objectives, fail error) {
+	if _, ok := origin["objectives"]; !ok {
+		return objectives, fmt.Errorf("missing objectives")
+	}
+
+	read, ok := origin["objectives"].(map[interface{}]interface{})
+
+	if !ok {
+		return objectives, fmt.Errorf("malformed objectives")
+	}
+
+	objectives, fail = tasksToObjectives(read)
+
+	if nil != fail {
+		return objectives, fmt.Errorf("%w;\nobjectives presented and malformed", fail)
+	}
+
+	return objectives, fail
+}
+
+// versionToProject
+func versionToProject(read map[interface{}]interface{}) (value string, fail error) {
+	return value, fail
+}
+
+// tagToProject
+func tagToProject(read map[interface{}]interface{}) (value string, fail error) {
+	return value, fail
+}
+
+// nameToProject
+func nameToProject(read map[interface{}]interface{}) (value string, fail error) {
+	return value, fail
 }
 
 // interfaceToProject as many use cases might not need Succubus full power, but to
@@ -208,34 +270,34 @@ func interfaceToObjectives(read map[interface{}]interface{}, project *Project) (
 // generic one.
 // It returns the config file as full blown Succubus standard
 func interfaceToProject(read map[interface{}]interface{}) (project Project, fail error) {
-	if _, ok := read["image"]; ok {
-		project.image, fail = interfaceToImage(read["image"])
+	project.container, fail = containerToProject(read)
 
-		if nil != fail {
-			return project, fmt.Errorf("%w;\n'image' tag presented and malformed", fail)
-		}
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed project container", fail)
 	}
 
-	if _, ok := read["dockerfile"]; ok {
-		project.dockerfile, fail = interfaceToDockerfile(read["dockerfile"])
+	project.objectives, fail = objetivesToProject(read)
 
-		if nil != fail {
-			return project, fmt.Errorf("%w;\n'dockerfile' tag presented and malformed", fail)
-		}
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed project objectives", fail)
 	}
 
-	if _, ok := read["objectives"]; !ok {
-		return project, fmt.Errorf("missing 'objectives' tag")
+	project.version, fail = versionToProject(read)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed project version", fail)
 	}
 
-	objectives, ok := read["objectives"].(map[interface{}]interface{})
+	project.tag, fail = tagToProject(read)
 
-	if !ok {
-		return project, fmt.Errorf("malformed 'objectives' tag")
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed project tag", fail)
 	}
 
-	if fail = interfaceToObjectives(objectives, &project); nil != fail {
-		return project, fmt.Errorf("%w;\n'objectives' tag presented and malformed", fail)
+	project.name, fail = nameToProject(read)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed project name", fail)
 	}
 
 	return project, fail
