@@ -10,11 +10,18 @@ func checkEnv(env string) (ok bool, fail error) {
 	return false, fail
 }
 
+// checkRules
+func checkRules(origin Rules) (rules Rules, fail error) {
+	return rules, fail
+}
+
 // checkTask check for a Task corectness
 // It returns a fixed Task or an error
 func checkTask(origin Task) (task Task, fail error) {
-	if 0 == len(origin.rules) {
-		return task, fmt.Errorf("")
+	_, fail = checkRules(origin.rules)
+
+	if nil != fail {
+		return task, fmt.Errorf("%w;\n", fail)
 	}
 
 	return task, fail

@@ -8,7 +8,8 @@ objectives:
     add:
       env:
         - ENV=${ENV}
-      rules: go get $ARGV[0]
+      commands: go get $ARGV[0]
+    rm: go mod tidy
 
   dev:
     anal:

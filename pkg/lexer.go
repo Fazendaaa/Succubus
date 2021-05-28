@@ -35,41 +35,45 @@ func interfaceToDockerfile(origin interface{}) (dockerfile Dockerfile, fail erro
 	return dockerfile, fail
 }
 
-//
-func simpleCommandsToRules(origin string) (rules []Command, fail error) {
-	return rules, fail
-}
-
 // interfaceToContainer
 func interfaceToContainer(origin interface{}) (container Container, fail error) {
 	return container, fail
 }
 
 //
-func complexCommandsToRules(origin interface{}) (commands []Command, fail error) {
+func simpleCommandsToRules(origin string) (rules Rules, fail error) {
+	return rules, fail
+}
+
+//
+func complexCommandsToRules(origin interface{}) (rules Rules, fail error) {
 	values, ok := origin.(map[interface{}]interface{})
 
 	if !ok {
-		return commands, fmt.Errorf("malformed command declaration")
+		return rules, fmt.Errorf("malformed command declaration")
 	}
 
-	rules, ok := values["rules"]
+	_, ok = values["commands"]
 
 	if !ok {
-		return commands, fmt.Errorf("malformed rules declaration")
+		return rules, fmt.Errorf("malformed rules declaration")
 	}
 
-	if env, ok := values["env"]; ok {
-		return commands, fmt.Errorf("malformed rules declaration")
+	if _, ok := values["env"]; ok {
+		return rules, fmt.Errorf("malformed rules declaration")
 	}
 
-	return commands, fail
+	if _, ok := values["env_file"]; ok {
+		return rules, fmt.Errorf("malformed rules declaration")
+	}
+
+	return rules, fail
 }
 
 // commandsToRules handles cases when rules as explicit with or without
 // environments variables presents.
 // It returns the equivalent
-func commandsToRules(origin interface{}) (rules []Command, fail error) {
+func commandsToRules(origin interface{}) (rules Rules, fail error) {
 	if values, ok := origin.(string); ok {
 		return simpleCommandsToRules(values)
 	}
@@ -77,29 +81,29 @@ func commandsToRules(origin interface{}) (rules []Command, fail error) {
 	return complexCommandsToRules(origin)
 }
 
-// interfaceToRules handles the case when the a Command is:
+// rulesToTask handles the case when the a Command is:
 // - just a command
 // - a command and/or env
 // - a sequence of both previous
 // It returns an error when the task is not a valid one
-func interfaceToRules(origin interface{}) (task Task, fail error) {
+func rulesToTask(origin interface{}) (task Task, fail error) {
 	values, ok := origin.(map[interface{}]interface{})
 
 	if !ok {
 		return task, fmt.Errorf("command malformed")
 	}
 
-	if _, ok = values["rules"]; !ok {
-		return task, fmt.Errorf("rules malformed, missing 'rules' definition")
+	if _, ok = values["commands"]; !ok {
+		return task, fmt.Errorf("rules malformed, missing 'commands' definition")
 	}
 
-	rules, fail := commandsToRules(values["rules"])
+	commands, fail := commandsToRules(values["commands"])
 
 	if nil != fail {
 		return task, fmt.Errorf("%w;", fail)
 	}
 
-	task.rules = rules
+	task.rules = commands
 
 	if _, ok = values["env"]; ok {
 		// task.env = values["env"]
@@ -129,13 +133,13 @@ func stringToTasks(origin interface{}) (task Task, fail error) {
 	return task, fail
 }
 
-// interfaceToTask handles the interface to Task conversion.
+// taskToObjective handles the interface to Task conversion.
 // It returns a sequence of Task structures.
-func interfaceToTask(origin interface{}) (task Task, fail error) {
+func taskToObjective(origin interface{}) (task Task, fail error) {
 	task, fail = stringToTasks(origin)
 
 	if nil != fail {
-		return interfaceToRules(origin)
+		return rulesToTask(origin)
 	}
 
 	return task, fail
@@ -151,7 +155,7 @@ func baseToObjective(origin map[interface{}]interface{}) (base Base, fail error)
 		return base, fmt.Errorf("%w;\nmissing 'run' rules", fail)
 	}
 
-	base.run, fail = interfaceToTask(run)
+	base.run, fail = taskToObjective(run)
 
 	if nil != fail {
 		return base, fmt.Errorf("%w;\nmalformed 'run' rules", fail)
@@ -163,7 +167,7 @@ func baseToObjective(origin map[interface{}]interface{}) (base Base, fail error)
 		return base, fmt.Errorf("%w;\nmissing 'add' rules", fail)
 	}
 
-	base.run, fail = interfaceToTask(add)
+	base.add, fail = taskToObjective(add)
 
 	if nil != fail {
 		return base, fmt.Errorf("%w;\nmalformed 'add' rules", fail)
@@ -175,7 +179,7 @@ func baseToObjective(origin map[interface{}]interface{}) (base Base, fail error)
 		return base, fmt.Errorf("%w;\nmissing 'rm' rules", fail)
 	}
 
-	base.run, fail = interfaceToTask(rm)
+	base.rm, fail = taskToObjective(rm)
 
 	if nil != fail {
 		return base, fmt.Errorf("%w;\nmalformed 'rm' rules", fail)
@@ -187,7 +191,7 @@ func baseToObjective(origin map[interface{}]interface{}) (base Base, fail error)
 		return base, fmt.Errorf("%w;\nmissing 'test' rules", fail)
 	}
 
-	base.run, fail = interfaceToTask(test)
+	base.test, fail = taskToObjective(test)
 
 	if nil != fail {
 		return base, fmt.Errorf("%w;\nmalformed 'test' rules", fail)

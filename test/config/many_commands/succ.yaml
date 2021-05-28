@@ -8,14 +8,11 @@ objectives:
     test:
       go test --verbose
     add:
+      commands:
+        go get $ARGV[0]
       env:
         ENV=${ENV}
-      rules:
-        foo:
-          env:
-            ENV="bar"
-          rules:
-            go get $ARGV[0]
+    rm: go mod tidy
 
   dev:
     anal:

@@ -109,7 +109,7 @@ base:
   run:
     env:
       TEST="foo"
-    rules: |
+    commands: |
       echo "Hello, World"
       echo "${TEST} bar"
 ...
@@ -121,7 +121,7 @@ base:
   run:
     env:
       TEST="foo"
-    rules:
+    commands:
       hello:
         env: TEST="Hello"
         command: echo "${TEST}, World"
@@ -134,7 +134,7 @@ base:
 base:
   run:
     env_file: /home/user/.config/test
-    rules:
+    commands:
       hello:
         env: TEST="Hello"
         command: echo "${TEST}, World"

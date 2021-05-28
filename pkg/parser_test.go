@@ -27,15 +27,17 @@ func TestParser(t *testing.T) {
 								destiny: "",
 							},
 						},
-						rules: []Command{
-							{
-								env: []Env{
-									{
-										source:  "",
-										destiny: "",
+						rules: Rules{
+							commands: []Command{
+								{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
 									},
+									command: "",
 								},
-								command: "",
 							},
 						},
 					},
@@ -46,15 +48,17 @@ func TestParser(t *testing.T) {
 								destiny: "",
 							},
 						},
-						rules: []Command{
-							{
-								env: []Env{
-									{
-										source:  "",
-										destiny: "",
+						rules: Rules{
+							commands: []Command{
+								{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
 									},
+									command: "",
 								},
-								command: "",
 							},
 						},
 					},
@@ -65,15 +69,17 @@ func TestParser(t *testing.T) {
 								destiny: "",
 							},
 						},
-						rules: []Command{
-							{
-								env: []Env{
-									{
-										source:  "",
-										destiny: "",
+						rules: Rules{
+							commands: []Command{
+								{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
 									},
+									command: "",
 								},
-								command: "",
 							},
 						},
 					},
@@ -86,15 +92,17 @@ func TestParser(t *testing.T) {
 								destiny: "",
 							},
 						},
-						rules: []Command{
-							{
-								env: []Env{
-									{
-										source:  "",
-										destiny: "",
+						rules: Rules{
+							commands: []Command{
+								{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
 									},
+									command: "",
 								},
-								command: "",
 							},
 						},
 					},
@@ -105,15 +113,17 @@ func TestParser(t *testing.T) {
 								destiny: "",
 							},
 						},
-						rules: []Command{
-							{
-								env: []Env{
-									{
-										source:  "",
-										destiny: "",
+						rules: Rules{
+							commands: []Command{
+								{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
 									},
+									command: "",
 								},
-								command: "",
 							},
 						},
 					},
@@ -124,15 +134,17 @@ func TestParser(t *testing.T) {
 								destiny: "",
 							},
 						},
-						rules: []Command{
-							{
-								env: []Env{
-									{
-										source:  "",
-										destiny: "",
+						rules: Rules{
+							commands: []Command{
+								{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
 									},
+									command: "",
 								},
-								command: "",
 							},
 						},
 					},

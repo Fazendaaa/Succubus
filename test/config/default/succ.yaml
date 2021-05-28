@@ -6,7 +6,7 @@ objectives:
     test:
       go test --verbose
     add:
-      rules: go get $ARGV[0]
+      commands: go get $ARGV[0]
       env:
         - ENV=${ENV}
     rm:
