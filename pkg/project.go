@@ -1,11 +1,9 @@
 package succubus
 
 type Project struct {
-	vertion    string
+	version    string
+	tag        string
 	name       string
-	image      Image
-	dockerfile Dockerfile
-	env_file   string
-	context    string
+	container  Container
 	objectives Objectives
 }

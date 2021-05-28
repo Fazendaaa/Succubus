@@ -27,7 +27,7 @@ Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./su
 
 ## Components
 
-An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project would look something like it:
+An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project -- just take a look at the [examples](./examples) paste -- would look something like it:
 
 ```yaml
 image: python
@@ -114,7 +114,7 @@ succ add [ pkg01 pkg02 pkg03=1.3 ... ]
 ### rm
 
 ```shell
-succ add [ pkg01 pkg02 pkg03=1.3  ... ]
+succ rm [ pkg01 pkg02 pkg03 ... ]
 ```
 
 ### run

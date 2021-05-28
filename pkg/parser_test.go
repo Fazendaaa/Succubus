@@ -143,7 +143,7 @@ func TestParser(t *testing.T) {
 		}
 
 		if !reflect.DeepEqual(src, value) {
-			t.Errorf("got mismatching configurations: %v,  %v", src, value)
+			t.Errorf("got mismatching configurations:\n%v\n%v", src, value)
 		}
 	})
 }

@@ -1,20 +1,23 @@
 package succubus
 
 type Base struct {
-	run  Task
-	test Task
-	add  Task
-	rm   Task
+	container Container
+	run       Task
+	test      Task
+	add       Task
+	rm        Task
 }
 
 type Dev struct {
-	doc    Task
-	anal   Task
-	linter Task
+	container Container
+	doc       Task
+	anal      Task
+	linter    Task
 }
 
 type Extended struct {
-	tasks []Task
+	container Container
+	tasks     []Task
 }
 
 type Objectives struct {

@@ -158,7 +158,7 @@ succ add [ pkg01 pkg02 pkg03=1.3 ... ]
 ### rm
 
 ```shell
-succ add [ pkg01 pkg02 pkg03=1.3  ... ]
+succ rm [ pkg01 pkg02 pkg03 ... ]
 ```
 
 ### run

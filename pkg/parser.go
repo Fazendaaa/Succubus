@@ -35,7 +35,7 @@ func checkDev(origin Dev) (dev Dev, fail error) {
 }
 
 // checkExtended
-func checkExtended(origin interface{}) (extended interface{}, fail error) {
+func checkExtended(origin interface{}) (extended []Extended, fail error) {
 	return extended, fail
 }
 
