@@ -8,7 +8,7 @@
 
 # What if NPM had a baby with Docker-Compose?
 
-> you can also see it as a "Makefile with steroids" or just as an "augmented layer" to your language/framework
+> you can also see it as a "Makefile with steroids" or just as an "augmented layer" to your language/framework... Or simply: "the effortless way to do things right"
 
 Welcome to Fazendaaa's {{ pkg.name }}. This is version {{ pkg.version }}!
 

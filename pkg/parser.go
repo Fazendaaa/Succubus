@@ -139,14 +139,14 @@ func checkObjective(origin interface{}) (objective map[interface{}]interface{}, 
 	converted, ok := origin.(map[interface{}]interface{})
 
 	if !ok {
-		return objective, fmt.Errorf("invalid rule in the task")
+		return objective, fmt.Errorf("invalid objective declaration")
 	}
 
 	for key, element := range converted {
 		objective[key], fail = taskToObjective(element)
 
 		if nil != fail {
-			return objective, fmt.Errorf("invalid rule in the task")
+			return objective, fmt.Errorf("%w;\ninvalid task -- '%s' -- in the objective", fail, key)
 		}
 	}
 
@@ -163,7 +163,7 @@ func checkExtended(origin []Extended) (extended []Extended, fail error) {
 			return extended, fmt.Errorf("%w;\n", fail)
 		}
 
-		converted, ok := element.(Extended)
+		converted, ok := element.(map[string]Extended)
 
 		if !ok {
 			return extended, fmt.Errorf("")

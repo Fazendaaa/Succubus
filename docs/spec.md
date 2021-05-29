@@ -33,7 +33,12 @@
 
 ```yaml
 ...
-[optional] system: /path/to/docker-compose.yml
+[optional] system:
+              <system_name>:
+                path: /path/to/docker-compose.yml
+                objectives:
+                - objetive_name_one
+                - objetive_name_two
 ...
 ```
 

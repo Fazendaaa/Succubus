@@ -16,12 +16,13 @@ type Dev struct {
 }
 
 type Extended struct {
+	name      string
 	container Container
-	tasks     []Task
+	tasks     map[string]Task
 }
 
 type Objectives struct {
 	base     Base
 	dev      Dev
-	extended []Extended
+	extended map[string]Extended
 }
