@@ -10,11 +10,35 @@ func checkEnv(origin []Env) (env []Env, fail error) {
 	return env, fail
 }
 
+// checkEnvFile
+//
+func checkEnvFile(origin string) (env_file string, fail error) {
+	return env_file, fail
+}
+
+// checkDockerfile
+//
+func checkDockerfile(origin Dockerfile) (dockerfile Dockerfile, fail error) {
+	if "" != origin.base.name && !isLower(origin.base.name) {
+		return dockerfile, fmt.Errorf("wrong image format name: '%s'", origin.base.name)
+	}
+
+	return dockerfile, fail
+}
+
 // checkContainer
 // It returns the project container or the error presented with it
 func checkContainer(origin Container) (container Container, fail error) {
-	if "" != origin.dockerfile.base.name && !isLower(origin.dockerfile.base.name) {
-		return container, fmt.Errorf("wrong image format name: '%s'", origin.dockerfile.base.name)
+	container.dockerfile, fail = checkDockerfile(origin.dockerfile)
+
+	if nil != fail {
+		return container, fmt.Errorf("%w;\nwrong container configuration", fail)
+	}
+
+	container.env_file, fail = checkEnvFile(origin.env_file)
+
+	if nil != fail {
+		return container, fmt.Errorf("%w;\nwrong container env_file configuration", fail)
 	}
 
 	return Container(origin), fail
@@ -109,19 +133,51 @@ func checkDev(origin Dev) (dev Dev, fail error) {
 	return dev, fail
 }
 
+// checkObjective
+// It returns the Objective or the error associated with it
+func checkObjective(origin interface{}) (objective map[interface{}]interface{}, fail error) {
+	converted, ok := origin.(map[interface{}]interface{})
+
+	if !ok {
+		return objective, fmt.Errorf("invalid rule in the task")
+	}
+
+	for key, element := range converted {
+		objective[key], fail = taskToObjective(element)
+
+		if nil != fail {
+			return objective, fmt.Errorf("invalid rule in the task")
+		}
+	}
+
+	return objective, fail
+}
+
 // checkExtended
 // It returns the Extendeds objective or the error associated with it
 func checkExtended(origin []Extended) (extended []Extended, fail error) {
+	for userDefined := range origin {
+		element, fail := checkObjective(userDefined)
+
+		if nil != fail {
+			return extended, fmt.Errorf("%w;\n", fail)
+		}
+
+		converted, ok := element.(Extended)
+
+		if !ok {
+			return extended, fmt.Errorf("")
+		}
+
+		extended = append(extended, converted)
+	}
+
 	return extended, fail
 }
 
-// checkEnvFile
-func checkEnvFile(origin string) (env_file string, fail error) {
-	return env_file, fail
-}
-
-// checkObjetives
-func checkObjetives(origin Objectives) (objectives Objectives, fail error) {
+// checkObjectives
+// It returns all Objectives or the error associated with it
+func checkObjectives(origin Objectives) (objectives Objectives, fail error) {
 	objectives.base, fail = checkBase(origin.base)
 
 	if nil != fail {
@@ -144,7 +200,7 @@ func checkObjetives(origin Objectives) (objectives Objectives, fail error) {
 }
 
 // checkProjectName
-// Returns the project name or whether and what is not allowed
+// Returns the project name or why is not allowed
 func checkProjectName(origin string) (name string, fail error) {
 	if "" != origin && isUpper(origin) {
 		return name, fmt.Errorf("project name -- '%s' -- has a upper case name which is not allowed", origin)
@@ -154,6 +210,7 @@ func checkProjectName(origin string) (name string, fail error) {
 }
 
 // checkProjectTag
+// Returns the project tag or why is not allowed
 func checkProjectTag(origin string) (tag string, fail error) {
 	if "" == origin {
 		return tag, fail
@@ -163,6 +220,7 @@ func checkProjectTag(origin string) (tag string, fail error) {
 }
 
 // checkProjectVersion
+// Returns the project version or why is not allowed
 func checkProjectVersion(origin string) (version string, fail error) {
 	if "" == origin {
 		return version, fail
@@ -204,7 +262,7 @@ func ParseProject(origin Project) (project Project, fail error) {
 		return project, fmt.Errorf("%w;\nmalformed container  in project", fail)
 	}
 
-	project.objectives, fail = checkObjetives(origin.objectives)
+	project.objectives, fail = checkObjectives(origin.objectives)
 
 	if nil != fail {
 		return project, fmt.Errorf("%w;\nmalformed objectives in project", fail)
