@@ -27,7 +27,7 @@ Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./su
 
 ## Components
 
-An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project -- just take a look at the [examples](./examples) paste -- would look something like it:
+An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project -- just take a look at the [examples](./examples) folder -- would look something like it:
 
 ```yaml
 image: python
@@ -60,6 +60,8 @@ To see your website running in your `http://localhost`.
 - Python
 - Django
 - Or even Succubus for that matter
+
+You can read more about the Project segmentation idea right [here](https://fazendaaa.github.io/Succubus/).
 
 ## Advantages
 
@@ -168,35 +170,6 @@ This approach has some limitations but is a great way to tip your toes and start
 I know that Docker Inc is kinda of a "hot topic" in some circles, that's why this tool tries to maintain itself behind an *Engine* abstraction layer, allowing a east swap in replacement if need to do so
 
 ## Installing
-
-## How does it work?
-
-### Basics
-
-Let me paint a picture for you: *"When you access a remote desktop all the things you did stay there, right?"*... **YES**
-
-You can see the
-
-### Intermediate
-
-<!--
-1. Multiarch
-2. Cloud native
-3. Docker-compose
-4. K8s
-5. Making CI/CD accessible and the standard
--->
-
-### Advanced
-
-<!--
-1. Multistage-build as cache:
-   1. system
-   2. everything in between
-   3. runner
-2. Clarity first:
-   1. explicit usage of env vars -- isn't inheritance/overload if you don't know what are you doing
--->
 
 ## Author
 
