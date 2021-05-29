@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mysql:
+    image: mariadb
+
+  reverse-proxy:
+    image: traefik
+
+networks:
+  proxy:
+    external: true

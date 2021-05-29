@@ -8,5 +8,5 @@ doc:
 	@docker run --rm \
 		--volume $(shell pwd)/docs:/home/node/app \
 		--workdir /home/node/app appnest
-	@cp docs/README.md .
-	@rm docs/README.md
+	@cp docs/render.md README.md
+	@rm docs/render.md

@@ -81,6 +81,12 @@ succ run
 
 To see your website running in your `http://localhost`.
 
+**And you can do all all of this without needing to install:**
+
+- Python
+- Django
+- Or even Succubus for that matter
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#advantages)
 
@@ -94,6 +100,21 @@ To see your website running in your `http://localhost`.
   - Even though you might not be running the latest Node LTS version, in a few years that might not be the case anymore; so help your future self or even a coworker understand what you are doing it today in that awesome project that you are currently working on
 - Time to Market:
   - Cloud-native approach helps not only to deploy a project down the line to a cloud provider but also helps a client to receive the technology transfer later on
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#use-cases)
+
+## ➤ Use Cases
+
+You can always check the more how the concept behind breaking a Project and defining a project works in the [description](./docs/README.md) of it; but just to name a few Objectives that you can define in your project besides the `base` and `dev` ones:
+
+- security
+- homologation
+- benchmark
+- [chaos gorilla](https://www.gremlin.com/chaos-monkey/the-simian-army/)
+- etc.
+
+Once you get comfortable with the idea of breaking things apart and making your thought process easier to reproduce, it also makes it easier for others to understand and help you out with it; making the engine run without any problems.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#why-not-docker-compose)

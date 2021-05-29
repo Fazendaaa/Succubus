@@ -9,4 +9,5 @@ type Project struct {
 	// file like dockerfile or even image, as a container is formed in the by
 	// the system
 	objectives Objectives
+	system     DockerCompose
 }

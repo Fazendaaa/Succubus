@@ -6,4 +6,4 @@ USER node
 
 WORKDIR /home/node/app
 
-ENTRYPOINT [ "npx", "@appnest/readme", "generate" ]
+ENTRYPOINT [ "npx", "@appnest/readme", "generate", "-o", "render.md" ]

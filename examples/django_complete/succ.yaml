@@ -1,0 +1,18 @@
+objectives:
+  base:
+    run: python3 manage.py runserver
+    test: python3 -m pytest .
+    add: pip3 install $ARGV
+    rm: pip3 uninstall $ARGV
+
+  dev:
+    anal: |
+      python3 -m mccabe --min 5 ./src
+      python3 -m bandit -r ./src
+    linter: python3 -m mypy ./src
+    doc: python3 -m sphinx-apidoc -o source ../
+
+  security:
+    
+
+system: ./docker-compose.dev.yml
