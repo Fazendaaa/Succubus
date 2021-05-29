@@ -8,25 +8,34 @@ import (
 func TestParser(t *testing.T) {
 	t.Run("identity", func(t *testing.T) {
 		src := Project{
+			tag:     "",
+			name:    "",
+			version: "",
 			container: Container{
+				env_file: "",
 				dockerfile: Dockerfile{
+					path:    "",
+					context: "",
+					args: []Env{
+						{
+							source:  "",
+							destiny: "",
+						},
+					},
+					multistages: []string{
+						"",
+					},
 					base: Image{
-						registry: "",
+						registry: "some-registry",
 						owner:    "some-user",
 						name:     "some-image",
-						digest:   "",
+						digest:   "some-digest",
 					},
 				},
 			},
 			objectives: Objectives{
 				base: Base{
 					run: Task{
-						env: []Env{
-							{
-								source:  "",
-								destiny: "",
-							},
-						},
 						rules: Rules{
 							commands: []Command{
 								{
@@ -42,12 +51,6 @@ func TestParser(t *testing.T) {
 						},
 					},
 					add: Task{
-						env: []Env{
-							{
-								source:  "",
-								destiny: "",
-							},
-						},
 						rules: Rules{
 							commands: []Command{
 								{
@@ -63,12 +66,6 @@ func TestParser(t *testing.T) {
 						},
 					},
 					rm: Task{
-						env: []Env{
-							{
-								source:  "",
-								destiny: "",
-							},
-						},
 						rules: Rules{
 							commands: []Command{
 								{
@@ -86,12 +83,6 @@ func TestParser(t *testing.T) {
 				},
 				dev: Dev{
 					doc: Task{
-						env: []Env{
-							{
-								source:  "",
-								destiny: "",
-							},
-						},
 						rules: Rules{
 							commands: []Command{
 								{
@@ -107,12 +98,6 @@ func TestParser(t *testing.T) {
 						},
 					},
 					anal: Task{
-						env: []Env{
-							{
-								source:  "",
-								destiny: "",
-							},
-						},
 						rules: Rules{
 							commands: []Command{
 								{
@@ -128,12 +113,6 @@ func TestParser(t *testing.T) {
 						},
 					},
 					linter: Task{
-						env: []Env{
-							{
-								source:  "",
-								destiny: "",
-							},
-						},
 						rules: Rules{
 							commands: []Command{
 								{

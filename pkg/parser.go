@@ -6,8 +6,18 @@ import "fmt"
 // docker-compose does, besides checks the source one is declared to avoid any
 // runtimes issues.
 // It returns wether or not everything is ok
-func checkEnv(env string) (ok bool, fail error) {
-	return false, fail
+func checkEnv(origin []Env) (env []Env, fail error) {
+	return env, fail
+}
+
+// checkContainer
+// It returns the project container or the error presented with it
+func checkContainer(origin Container) (container Container, fail error) {
+	if "" != origin.dockerfile.base.name && !isLower(origin.dockerfile.base.name) {
+		return container, fmt.Errorf("wrong image format name: '%s'", origin.dockerfile.base.name)
+	}
+
+	return Container(origin), fail
 }
 
 // checkRules
@@ -18,59 +28,91 @@ func checkRules(origin Rules) (rules Rules, fail error) {
 // checkTask check for a Task corectness
 // It returns a fixed Task or an error
 func checkTask(origin Task) (task Task, fail error) {
-	_, fail = checkRules(origin.rules)
+	task.container, fail = checkContainer(origin.container)
 
 	if nil != fail {
-		return task, fmt.Errorf("%w;\n", fail)
+		return task, fmt.Errorf("%w;\ncontainer malformed in the task", fail)
+	}
+
+	task.env_file, fail = checkEnvFile(origin.env_file)
+
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nenv_file malformed in the task", fail)
+	}
+
+	task.env, fail = checkEnv(origin.env)
+
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nenv malformed in the task", fail)
+	}
+
+	task.rules, fail = checkRules(origin.rules)
+
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nrules malformed in the task", fail)
 	}
 
 	return task, fail
 }
 
 // checkBase
+// It returns the Base objective or the error associated with it
 func checkBase(origin Base) (base Base, fail error) {
-	// if !checkTask(origin.add) {
-	// 	return base, fail
-	// }
+	base.add, fail = checkTask(origin.add)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\nadd rule presented in base task", fail)
+	}
+
+	base.rm, fail = checkTask(origin.rm)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\nrm rule presented in base task", fail)
+	}
+
+	base.test, fail = checkTask(origin.test)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\ntest rule presented in base task", fail)
+	}
+
+	base.test, fail = checkTask(origin.test)
+
+	if nil != fail {
+		return base, fmt.Errorf("%w;\ntest rule presented in base task", fail)
+	}
 
 	return base, fail
 }
 
 // checkDev
+// It returns the Dev objective or the error associated with it
 func checkDev(origin Dev) (dev Dev, fail error) {
+	dev.doc, fail = checkTask(origin.doc)
+
+	if nil != fail {
+		return dev, fmt.Errorf("%w;\ndoc rule presented in base task", fail)
+	}
+
+	dev.anal, fail = checkTask(origin.anal)
+
+	if nil != fail {
+		return dev, fmt.Errorf("%w;\nanal rule presented in base task", fail)
+	}
+
+	dev.linter, fail = checkTask(origin.linter)
+
+	if nil != fail {
+		return dev, fmt.Errorf("%w;\nlinter rule presented in base task", fail)
+	}
+
 	return dev, fail
 }
 
 // checkExtended
-func checkExtended(origin interface{}) (extended []Extended, fail error) {
+// It returns the Extendeds objective or the error associated with it
+func checkExtended(origin []Extended) (extended []Extended, fail error) {
 	return extended, fail
-}
-
-// checkContainer
-func checkContainer(origin Container) (container Container, fail error) {
-	if "" == origin.dockerfile.base.name {
-		return container, fail
-	}
-
-	if !IsLower(origin.dockerfile.base.name) {
-		return container, fmt.Errorf("wrong image format name: '%s'", origin.dockerfile.base.name)
-	}
-
-	return Container(origin), fail
-}
-
-// checkForDockerfile
-func checkForDockerfile(dockerfile Dockerfile) (ok bool, fail error) {
-	if "" == dockerfile.path {
-		return true, fail
-	}
-
-	return true, fail
-}
-
-// checkContext
-func checkContext(origin string) (context string, fail error) {
-	return context, fail
 }
 
 // checkEnvFile
@@ -80,30 +122,53 @@ func checkEnvFile(origin string) (env_file string, fail error) {
 
 // checkObjetives
 func checkObjetives(origin Objectives) (objectives Objectives, fail error) {
-	base, fail := checkBase(origin.base)
+	objectives.base, fail = checkBase(origin.base)
 
 	if nil != fail {
-		return objectives, fmt.Errorf("%w;\n'base' objective malformed", fail)
+		return objectives, fmt.Errorf("%w;\nbase objective malformed", fail)
 	}
 
-	objectives.base = base
-	dev, fail := checkDev(origin.dev)
+	objectives.dev, fail = checkDev(origin.dev)
 
 	if nil != fail {
-		return objectives, fmt.Errorf("%w;\n'dev' objective malformed", fail)
+		return objectives, fmt.Errorf("%w;\ndev objective malformed", fail)
 	}
 
-	objectives.dev = dev
-
-	extended, fail := checkExtended(origin.extended)
+	objectives.extended, fail = checkExtended(origin.extended)
 
 	if nil != fail {
-		return objectives, fmt.Errorf("%w;\n'extended' objective malformed", fail)
+		return objectives, fmt.Errorf("%w;\nextended objective malformed", fail)
 	}
-
-	objectives.extended = extended
 
 	return objectives, fail
+}
+
+// checkProjectName
+// Returns the project name or whether and what is not allowed
+func checkProjectName(origin string) (name string, fail error) {
+	if "" != origin && isUpper(origin) {
+		return name, fmt.Errorf("project name -- '%s' -- has a upper case name which is not allowed", origin)
+	}
+
+	return origin, fail
+}
+
+// checkProjectTag
+func checkProjectTag(origin string) (tag string, fail error) {
+	if "" == origin {
+		return tag, fail
+	}
+
+	return origin, fail
+}
+
+// checkProjectVersion
+func checkProjectVersion(origin string) (version string, fail error) {
+	if "" == origin {
+		return version, fail
+	}
+
+	return origin, fail
 }
 
 // ParseProject goes trough the "logic" behind a Succubus' configuration file.
@@ -115,16 +180,34 @@ func checkObjetives(origin Objectives) (objectives Objectives, fail error) {
 // nature of those tasks.
 // It returns the processed config file
 func ParseProject(origin Project) (project Project, fail error) {
-	// container, fail := checkContainer(origin.container)
+	project.name, fail = checkProjectName(origin.name)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\n'image' malformed in project", fail)
+		return project, fmt.Errorf("%w;\nmalformed name in project", fail)
 	}
 
-	// objective, fail := checkObjetives(origin.objectives)
+	project.tag, fail = checkProjectTag(origin.tag)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\n'objectives' malformed in project", fail)
+		return project, fmt.Errorf("%w;\nmalformed tag in project", fail)
+	}
+
+	project.version, fail = checkProjectVersion(origin.version)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed version in project", fail)
+	}
+
+	project.container, fail = checkContainer(origin.container)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed container  in project", fail)
+	}
+
+	project.objectives, fail = checkObjetives(origin.objectives)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed objectives in project", fail)
 	}
 
 	return project, fail
