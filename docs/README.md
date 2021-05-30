@@ -11,7 +11,7 @@
 
 ### Basics
 
-![basics](../assets/img/basics.jpg)
+![basics](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/basics.jpg)
 
 Just to better explain it to you:
 
