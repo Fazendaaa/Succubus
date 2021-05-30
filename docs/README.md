@@ -96,3 +96,16 @@ The concept behind the whole "manifest" idea is to make it easier to deploy a ne
 | |----------------------| |
 |--------------------------|
 ```
+
+The idea is to develop a project based in a set of rules:
+
+1. A Project is formed by Objectives
+2. Those Objectives are formed by Tasks
+3. Those Tasks are a set of Rules
+4. And each Rule is a sequence of Commands
+
+You can look at this like a [docker-compose](https://docs.docker.com/compose/) joining forces with [npm](https://www.npmjs.com/) to help maintain healthy a project.
+
+## TODO
+
+If you read this far, please take a look at the [repo](https://github.com/Fazendaaa/Succubus) and maybe to drop a star in the project, give me some feedback or even dropping some of your code in it :)
