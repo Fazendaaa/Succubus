@@ -64,7 +64,16 @@ The whole idea is a effortless software development experience while providing s
 
 ## Possibilities
 
+The main idea behind this project is to open possibilities to encapsulate that projects that you are working on just like we are doing at the company that I work on -- you can take a look at this right [here](https://github.com/Fazendaaa/CFD) --; but, besides that, you can ask yourself:
 
+- Would you like to run your project in 20 years like you run it today?
+- Would you like to avoid that one project "intoxicate" another?
+- Would you like to run the project in Windows, Mac and Linux without any issue?
+- Would you like to make your work more accessible?
+
+If you said *"aye"* to any of the previous of the questions you want Succubus. But, besides this, the idea is create a platform to easily, securely and fast patterns development and testing so you can use it yourself in a project or share with others -- maybe even landing a hand and help others understand better how to make a awesome project.
+
+And you can use it in any language, cross-compile to any architecture afterwards because you will be running running containers under the hood; so if you are rocking that last M1 Mac you can easily share your work with your coworkers or even deploy it to the cloud.
 
 ## Project
 
