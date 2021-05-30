@@ -28,6 +28,44 @@ As you saw you can think in Succubus as a "broker" to your project:
 
 You can develop your own patterns inside the manifest standard and share them across projects; or just use one provided by a third party.
 
+A example of this manifest is the following:
+
+```yaml
+image: python
+
+objectives:
+  base:
+    run: python3 manage.py runserver
+    test: python3 -m pytest .
+    add: pip3 install $ARGV
+    rm: pip3 uninstall $ARGV
+
+  dev:
+    anal: |
+      python3 -m mccabe --min 5 ./src
+      python3 -m bandit -r ./src
+    linter: python3 -m mypy ./src
+    doc: python3 -m sphinx-apidoc -o source ../
+```
+
+Which can be accessed by just running the following command:
+
+```shell
+succ run
+```
+
+In your terminal in a Python + Django project to open a website running and start using containers:
+
+- No Dockerfile required
+- No Docker-compose required
+- Not even Succubus installed if you want to
+
+The whole idea is a effortless software development experience while providing safety and speed of development.
+
+## Possibilities
+
+
+
 ## Project
 
 The concept behind the whole "manifest" idea is to make it easier to deploy a new project trough a familiar interface so the programmer can work on it.
