@@ -1,10 +1,24 @@
-{{ template:title }}
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.pt.md" ⚠️--><h1 align="center">Succubus</h1>
 
-{{ template:logo }}
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/logo.svg" alt="Logo" width="150" height="150" />
+</p>
 
-{{ template:badges }}
+<p align="center">
+		<a href="https://saythanks.io/to/lucas.carotta%40outlook.com"><img alt="Say Thanks!" src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge" height="20"/></a>
+<a href="https://golang.org/"><img alt="Made With Go" src="https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square" height="20"/></a>
+<a href="https://www.docker.com"><img alt="Made With Docker" src="https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square" height="20"/></a>
+<a href="https://code.visualstudio.com/"><img alt="Made With VSCode" src="https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square" height="20"/></a>
+	</p>
 
-{{ template:description }}
+
+<p align="center">
+  <b>A universal project manager based on cloud-native</b></br>
+  <sub><sub>
+</p>
+
+<br />
+
 
 <div align = "center">
 
@@ -13,17 +27,27 @@
 
 </div>
 
-# What if NPM had a baby with Docker-Compose?
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#what-if-npm-had-a-baby-with-docker-compose)
+
+# ➤ What if NPM had a baby with Docker-Compose?
 
 > you can also see it as a "Makefile with steroids" or just as an "augmented layer" to your language/framework... Or simply: "the effortless way to do things right"
 
-Welcome to Fazendaaa's {{ pkg.name }}. This is version {{ pkg.version }}!
+Welcome to Fazendaaa's Succubus. This is version 0.0.0!
 
-## Idea
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#idea)
+
+## ➤ Idea
 
 Currently, in the company that I work for we have a CLI (Command Line Interface) made in [Python](https://www.python.org/) called `estat` and you can read more about it [here](https://github.com/Fazendaaa/CFD).
 
-## What is Succubus?
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#what-is-succubus)
+
+## ➤ What is Succubus?
 
 - Succubus is a language/framework agnostic project manager manifest
 - It works by declaring objectives inside the given project
@@ -32,7 +56,10 @@ Currently, in the company that I work for we have a CLI (Command Line Interface)
 
 Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./succ.yaml) presented here. And the best part to start using it is that you don't even need to install it to run and maintain all of your projects made using a plethora of languages/frameworks and theirs respective versions.
 
-## Components
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#components)
+
+## ➤ Components
 
 An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project -- just take a look at the [examples](./examples) folder -- would look something like it:
 
@@ -70,7 +97,10 @@ To see your website running in your `http://localhost`.
 
 You can read more about the Project segmentation idea right [here](https://fazendaaa.github.io/Succubus/).
 
-## Advantages
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#advantages)
+
+## ➤ Advantages
 
 - Using many languages and frameworks without needing to install and maintain any of it.
 - Running any project without need to configure your OS to properly run it.
@@ -81,7 +111,10 @@ You can read more about the Project segmentation idea right [here](https://fazen
 - Time to Market:
   - Cloud-native approach helps not only to deploy a project down the line to a cloud provider but also helps a client to receive the technology transfer later on
 
-## Use Cases
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#use-cases)
+
+## ➤ Use Cases
 
 You can always check the more how the concept behind breaking a Project and defining a project works in the [description](./docs/README.md) of it; but just to name a few Objectives that you can define in your project besides the `base` and `dev` ones:
 
@@ -93,24 +126,36 @@ You can always check the more how the concept behind breaking a Project and defi
 
 Once you get comfortable with the idea of breaking things apart and making your thought process easier to reproduce, it also makes it easier for others to understand and help you out with it; making the engine run without any problems.
 
-## Why not Docker-Compose?
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#why-not-docker-compose)
+
+## ➤ Why not Docker-Compose?
 
 - Compose is more tailored to provide a "System Defined" experience trough a manifest which is more suited to accommodate other projects besides the one you are currently working on, as a Data Base, Reverse-Proxy, Memory Cache and etc.
 - Compose is not suited to perform many tasks, just "run" one which is defined to allow a whole system to work, not a project.
 
-## Why "NPM like"?
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#why-npm-like)
+
+## ➤ Why "NPM like"?
 
 - A few years ago every project that I did was in [Node](https://nodejs.org/en/) + [TS](https://www.typescriptlang.org/). When I moved to another languages like Python, [Julia](https://julialang.org/) and [R](https://www.r-project.org/), missing some CLI "sugar" features like those provided by [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/) was a big wake up call that I was in a *no man's land*.
 - Those missing features help a project development and maintainability to become almost effortless when compared to the current available way; when you start a Node/NPM project you are just one *yay/apt/apk/brew/or any other system package manager* away from starting to code and just like Go or even Haskell, the code you write is loosely coupled to the OS/Distro that you wrote in it, this helps to avoid any project breaking after systems updates. That's a far fetch dream to other languages which are heavily coupled to the ambient that they are running on; this lack of cohesion and conciseness was the seed to start Succubus.
 
-## Goals
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#goals)
+
+## ➤ Goals
 
 - The idea of this project is to create an OS/language/framework independent flow of project development.
 - At the same time the tool allows the users to implement their own patterns inside the standard flow.
 - The mantra behind all of this is: *"help yourself by helping other to achieve greatness"*.
 - As previously pointed out, ambients end up screwing development flow and as someone bearing a unfinished Computer Science (CS) degree usually I can handle myself during this kind of situation but my coworkers running their code in a Mac, Windows or some other Linux environment usually have lost multiple hours during a project trying to make their code run in each others machines to debug it, slowing the pace and projects deadlines.
 
-## Do more doing less
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#do-more-doing-less)
+
+## ➤ Do more doing less
 
 - The usa of container under the hood speeds up every development cycle that I've been part of; specially if you are looking to deploy it later to [AWS](https://aws.amazon.com/), [Heroku](https://www.heroku.com/), [Azure](https://azure.microsoft.com/en-us/), [Linode](https://www.linode.com/), [GCP](https://cloud.google.com/) and many others; briding the gap between serverless and non-serverless environments.
 - Don't fight against making your project accessible to others therefore also making it more reproducible also to others; your cloud provider doesn't know that you are rocking the latest M1 Mac, but they will understand the same "packaging" technology that hey are used to use it internally as many others industry whales work on.
@@ -122,7 +167,10 @@ Once you get comfortable with the idea of breaking things apart and making your 
 
 More than a *Jake of all Trades* platform this project has as its core the purpose of sharing knowledge/learning uses case as its main virtue -- learn from your mistakes then share it as this might help others rather then just yourself
 
-## Usage
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#usage)
+
+## ➤ Usage
 
 ### init
 
@@ -156,7 +204,10 @@ succ run
 succ test
 ```
 
-## Running
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#running)
+
+## ➤ Running
 
 You don't need to install Go to run this tool, just Docker. And to do so to give it a try, you can do it just by running the following line in your terminal:
 
@@ -172,25 +223,52 @@ succ --help
 
 This approach has some limitations but is a great way to tip your toes and start right way using the tool; if your needs aren't meet by it, you can always [install](#installing) the tool.
 
-## Engines
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#engines)
+
+## ➤ Engines
 
 I know that Docker Inc is kinda of a "hot topic" in some circles, that's why this tool tries to maintain itself behind an *Engine* abstraction layer, allowing a east swap in replacement if need to do so
 
-## Installing
 
-## Author
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#installing)
+
+## ➤ Installing
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#author)
+
+## ➤ Author
 
 Only [me](https://github.com/Fazendaaa) because the aforementioned project was implemented by yours only. By knowing each line of that code wrote doing the port would be more easily done this way.
 
-## Contributing
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#contributing)
+
+## ➤ Contributing
 
 Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list of some of our contributors:
 
-{{ template:contributors }}
 
-## TODO
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#contributors)
 
-## References
+## ➤ Contributors
+	
+
+| [<img alt="Fazendaaa" src="https://avatars2.githubusercontent.com/u/12137236?s=460&u=75ec76d6f0c577de2ebfa4eae77cc4c4ad17ec06&v=4" width="100">](https://twitter.com/the_fznd) | [<img alt="You?" src="https://joeschmoe.io/api/v1/random" width="100">](https://github.com/andreasbm/web-config/blob/master/CONTRIBUTING.md) |
+|:--------------------------------------------------:|:--------------------------------------------------:|
+| [Fazendaaa](https://twitter.com/the_fznd)        | [You?](https://github.com/andreasbm/web-config/blob/master/CONTRIBUTING.md) |
+
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#todo)
+
+## ➤ TODO
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#references)
+
+## ➤ References
 
 ### Repositories
 
@@ -208,4 +286,9 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 
 - [Shell Grammar Rules](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_10_02)
 
-{{ template:license }}
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#license)
+
+## ➤ License
+	
+Licensed under [AGPL-3.0](https://opensource.org/licenses/AGPL-3.0).
