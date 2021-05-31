@@ -16,7 +16,9 @@
 
 ![basics](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/basics.jpg)
 
-Apenas para deixar mais claro -- *Eu sei, é um desenho bem feio*:
+> Eu sei, é um desenho bem feio
+
+Apenas para deixar mais claro:
 
 1. Escreva um programa -- em qualquer linguagem, framework, versão
 2. Você chama Succubus para manusear qualquer requisição que fizer
@@ -45,74 +47,74 @@ objectives:
     doc: python3 -m sphinx-apidoc -o source ../
 ```
 
-Which can be accessed by just running the following command:
+O qual os comandos podem ser acessados rodando o seguinte comando:
 
 ```shell
 succ run
 ```
 
-In your terminal in a Python + Django project to open a website running and start using containers:
+No seu terminal verá a mensagem do projeto de Python + Django rodando e acessível pelo seu navegador; rodando containers desta maneira:
 
-- No Dockerfile required
-- No Docker-compose required
-- Not even Succubus installed if you want to
+- Sem precisar instalar o Python
+- Sem precisar instalar o Django
+- Sem precisar de Dockerfile
+- Sem precisar de Docker-Compose
+- Sem até mesmo precisar do Succubus instalado se quiser
 
-The whole idea is a effortless software development experience while providing safety and speed of development.
+A ideia toda por trás de desenvolvimento de software sem dores de cabeça é melhorar a experiência do progamador e prover segurança com velocidade.
 
-## Possibilities
+## Possibilidades
 
-The main idea behind this project is to open possibilities to encapsulate that projects that you are working on just like we are doing at the company that I work on -- you can take a look at this right [here](https://github.com/Fazendaaa/CFD) --; but, besides that, you can ask yourself:
+A principal ideia por trás deste projeto é abrir possibilidades para encapsulamento de projetos que você já está trabalhando assim como foi feito na empresa que trabalho -- você pode saeber mais [aqui](https://github.com/Fazendaaa/CFD) --; mas, além disso, você pode se perguntar algumas coisas:
 
-- Would you like to run your project in 20 years like you run it today?
-- Would you like to avoid that one project "intoxicate" another?
-- Would you like to run the project in Windows, Mac and Linux without any issue?
-- Would you like to make your work more accessible?
+- *Você gostaria de rodar em 20 anos os projetos como roda agora?*
+- *Você gostaria de evitar que um projeto "intoxicasse" outro?*
+- *Você gostaria de rodar seu proeto no Windows, Mac e Linux sem problemas?*
+- *Você gostaria de deixar seu trabalho mais acessível?*
 
-If you said *"aye"* to any of the previous of the questions you want Succubus. But, besides this, the idea is create a platform to easily, securely and fast patterns development and testing so you can use it yourself in a project or share with others -- maybe even landing a hand and help others understand better how to make a awesome project.
+Se você diss *"sim"* para alguma das perguntas anteriores, você quer o Succubus. E, além disso, a ideia de criar de é de criar uma plataforma de fácil, seguro e rápido acesso para desenvolvimento desses "sotaques" de projeto para você poder evoluir de maneria rápida através de cada tentativa no projeto e/ou compartilhar com outros o que fez -- *ou até mesmo dando uma "mão amiga" e ajudar outros a entender melhor como fazer um projeto de estourar a boca do balão*
 
-And you can use it in any language, cross-compile to any architecture afterwards because you will be running running containers under the hood; so if you are rocking that last M1 Mac you can easily share your work with your coworkers or even deploy it to the cloud.
+E o melhor é que você pode usar em qualquer linguagem, compilar para toda arquitetura depois porque você vai estar rodando containers debaixo do capô; se você estiver o M1 Mac você pode facilmente compartilhar o seu trabalho com outros colaboradores e até mesmo publicar ele na nuvem.
 
-## Project
+## Projeto
 
-The concept behind the whole "manifest" idea is to make it easier to deploy a new project trough a familiar interface so the programmer can work on it.
+O conceito por trás de toda a ideia de "manifesto" é de facilitar a publicação de um novo projeto através de uma interface familiar para qual o programador consegue trabalhar com.
 
 ### Overview
 
 ```shell
-          Project
+          Projeto
 |--------------------------|
-|        Objectives        |
+|        Objetivos         |
 | |----------------------| |
-| |        Tasks         | |
+| |       Tarefas        | |
 | | |------------------| | |
-| | |      Rules       | | |
+| | |     Regras       | | |
 | | | |--------------| | | |
-| | | |   Commands   | | | |
+| | | |   Comandos   | | | |
 | | | |--------------| | | |
 | | |------------------| | |
 | |----------------------| |
 |--------------------------|
 ```
 
-The idea is to develop a project based in a set of rules:
+O core da idea é desenvolver um projeto baseado no conceito de:
 
-1. A Project is formed by Objectives
-2. Those Objectives are formed by Tasks
-3. Those Tasks are a set of Rules
-4. And each Rule is a sequence of Commands
+1. Um Projeto é formado por Objetivos
+2. Esses Objetivos são formados por Tarefas
+3. Essas Tarefas são um conjunto de Regras
+4. E cada uma dessas Regras são uma sequência de Comandos
 
-You can look at this like a [docker-compose](https://docs.docker.com/compose/) joining forces with [npm](https://www.npmjs.com/) to help maintain healthy a project.
+Você pode ver isso como se olha para um [docker-compose](https://docs.docker.com/compose/) juntando forças com o [npm](https://www.npmjs.com/) para manter um projeto saúdavel.
 
 ## Modelo de Corretor
 
-Sotaques de código
+Como você viu, o Succubus pode ser visto como um "Corretor" para o seu projeto:
 
-As you saw you can think in Succubus as a "broker" to your project:
+- Dá conta dos detalhes enquanto você só tem que se preocupar com fazer pedidos para ele
+- Supervisiona os padrões definidos
+- Reduz as variabilidades no desenvolvimento de software porque a indústria segue containers como um padrão
 
-- It handles all the project details while you only worry to issue requests to it
-- It manages to follow appropriate defaults
-- Reduces variabilities in software development because the container is a industry standard technology
+## A Fazer
 
-## TODO
-
-If you read this far, please take a look at the [repo](https://github.com/Fazendaaa/Succubus) and maybe to drop a star in the project, give me some feedback or even dropping some of your code in it :)
+Se você chegou até aqui, por favor dê uma olhada no [repositório](https://github.com/Fazendaaa/Succubus) do projeto e talvez dê um like, feedback ou até mesmo melhoria de código nele :)
