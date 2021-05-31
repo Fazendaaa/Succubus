@@ -1,37 +1,31 @@
 # Succubus
 
-> The cloud-native way to code
+> A maneira cloud-native de codar
 
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/docs/README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/docs/README.pt.md)
 
-## How does it work?
+## Como funciona?
 
-- Succubus uses a project driven approach to handle software development, making it clear and enforcing the rules to each and every project that it handles it.
-- Succubus is expansible, so that you can add your own "taste" to it
-- Works across many different OSes and their respective versions
-- Reduces the time to develop projects and deploy them by running it the code inside a control environment during development
+- Succubus usa uma abordagem de desenvolvimento de software baseada em projetos através de um "Modelo de Corretor", o tornando claro e enforçando as regras para cada projeto que gerencia
+- Succubu é expansível, para que você possa adicionar suas próprias premissas nele
+- Funciona através de vários SOs e suas respectivas versões
+- Reduz o tempo de desenvolvimento de projetos e entregas por rodar todo o código dentro de um ambiente controlado durante desenvolvimento
 
-### Basics
+### Fundamentos
 
 ![basics](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/basics.jpg)
 
-Just to better explain it to you:
+Apenas para deixar mais claro -- *Eu sei, é um desenho bem feio*:
 
-1. You write a program -- any language, any framework, any version
-2. You call Succubus to handle any request that you issued
-3. Succubus looks up this request in the provided manifest then reads up the code
-4. Executes the invoked command in a container
+1. Escreva um programa -- em qualquer linguagem, framework, versão
+2. Você chama Succubus para manusear qualquer requisição que fizer
+3. Succubus procura tal requisição no manifesto proveniente no projeto e lê o código dele
+4. Executa tal requisição dentro do container
 
-As you saw you can think in Succubus as a "broker" to your project:
+Você pode desenvolver seus próprios "sotaques" dentro do manifesto e padronizar eles para poder compartilhar-los entre projetos; ou até mesmo utilizar um já feito por outros.
 
-- It handles all the project details while you only worry to issue requests to it
-- It manages to follow appropriate defaults
-- Reduces variabilities in software development because the container is a industry standard technology
-
-You can develop your own patterns inside the manifest standard and share them across projects; or just use one provided by a third party.
-
-A example of this manifest is the following:
+Um exemplo disso seria o seguinte manifesto:
 
 ```yaml
 image: python
@@ -108,6 +102,16 @@ The idea is to develop a project based in a set of rules:
 4. And each Rule is a sequence of Commands
 
 You can look at this like a [docker-compose](https://docs.docker.com/compose/) joining forces with [npm](https://www.npmjs.com/) to help maintain healthy a project.
+
+## Modelo de Corretor
+
+Sotaques de código
+
+As you saw you can think in Succubus as a "broker" to your project:
+
+- It handles all the project details while you only worry to issue requests to it
+- It manages to follow appropriate defaults
+- Reduces variabilities in software development because the container is a industry standard technology
 
 ## TODO
 
