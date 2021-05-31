@@ -2,14 +2,8 @@
 
 > The cloud-native way to code
 
-<div align = "center">
-<br>
-
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/docs/README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/docs/README.pt.md)
-
-<br>
-</div>
 
 ## How does it work?
 
