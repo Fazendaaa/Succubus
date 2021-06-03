@@ -64,6 +64,7 @@ An example to [Python](https://www.python.org/) + [Django](https://www.djangopro
 
 ```yaml
 image: python
+interact: python3
 
 objectives:
   base:
@@ -177,6 +178,12 @@ Shows already made made manifestos for you to choose from and use in your projec
 
 ```shell
 succ init
+```
+
+### repl
+
+```shell
+succ repl
 ```
 
 ### add

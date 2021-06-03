@@ -5,7 +5,7 @@
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.pt.md)
 
-## Como funciona?
+## O que é?
 
 - Succubus usa uma abordagem de desenvolvimento de software baseada em projetos através de um "Modelo de Corretor", o tornando claro e enforçando as regras para cada projeto que gerencia
 - Succubu é expansível, para que você possa adicionar suas próprias premissas nele
@@ -31,6 +31,7 @@ Um exemplo disso seria o seguinte manifesto:
 
 ```yaml
 image: python
+interact: python3
 
 objectives:
   base:
@@ -63,6 +64,76 @@ No seu terminal verá a mensagem do projeto de Python + Django rodando e acessí
 
 A ideia toda por trás de desenvolvimento de software sem dores de cabeça é melhorar a experiência do progamador e prover segurança com velocidade.
 
+E se você precisar iteragir com alguma coisa, apenas para ver se vai funcionar ou não, basta:
+
+```shell
+succ interact
+```
+
+Uma tela similar a seguinte irá aparecerce:
+
+```shell
+Python 3.9.5 (default, May  9 2021, 14:00:28)
+[GCC 10.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+E aí você terá uma experiencia de REPL (Read-Evaluate-Print-Loop) sem precisar instalar o Python, e, a melhor parte disso, é que depois este será o mesmo ambiente entregue para o sistema de produção.
+
+# Índice
+
+- [Succubus](#succubus)
+  - [O que é?](#o-que-é)
+    - [Fundamentos](#fundamentos)
+- [Índice](#índice)
+  - [Security and Reliability](#security-and-reliability)
+  - [Universe](#universe)
+  - [Possibilidades](#possibilidades)
+  - [Manifesto de Projeto](#manifesto-de-projeto)
+    - [Overview](#overview)
+  - [Modelo de Corretor](#modelo-de-corretor)
+    - [Por que Corretor?](#por-que-corretor)
+  - [Pipe Production Environment](#pipe-production-environment)
+  - [A Fazer](#a-fazer)
+  - [Apêndice](#apêndice)
+    - [DevOps](#devops)
+    - [Cloud-Native](#cloud-native)
+    - [JIT](#jit)
+
+## Security and Reliability
+
+- Succubus avoids that any OS related variable make your project bound to it
+- At the same time Succubus avoids that any Project related configuration ends up breaking your OS
+- Easy to start any current or new Project without having to worry about prior knowledge about any system requirements -- **as long you can run containers in it**
+- [Least-Privilege](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models) by default in any working Project
+- As David Patterson once said that he didn't believed in [security by obscurity](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext) all the variables are made clear and the process easily reproducible
+- No-locking and easy of usage to debug, change platforms, reproduce environments and replace vendors being compilers, packages or even Project technology itself when refactoring
+
+## Universe
+
+And the best part is that this works as well in projects based in:
+
+- [Node](https://hub.docker.com/_/node)
+- [Go](https://hub.docker.com/_/golang)
+- [Ruby](https://hub.docker.com/_/ruby)
+- [PHP](https://hub.docker.com/_/php)
+- [Java](https://hub.docker.com/_/openjdk)
+- [Perl](https://hub.docker.com/_/perl)
+- [Erlang](https://hub.docker.com/_/erlang)
+- [Rust](https://hub.docker.com/_/rust)
+- [Clojure](https://hub.docker.com/_/clojure)
+- [Swift](https://hub.docker.com/_/swift)
+- [C](https://hub.docker.com/_/gcc)
+- [Haskell](https://hub.docker.com/_/haskell)
+- [R](https://hub.docker.com/_/r-base)
+- [Dart](https://hub.docker.com/_/dart)
+- And many, many, others
+
+The possibilities are endless, you can take a look at [Docker Hub](https://hub.docker.com/search?type=image) to look at more community driven options or you can even roll up your sleeves and make your own language more accessible to other trough this -- *or even use a non public available technology just fine because Succubus works the best to help you out, even in a protective corporative environment*
+
+And making the [Project Manifest](#project-manifest) a many-to-one way of development, you can rise your productiveness without having to worry about the context-switching overhead related to
+
 ## Possibilidades
 
 A principal ideia por trás deste projeto é abrir possibilidades para encapsulamento de projetos que você já está trabalhando assim como foi feito na empresa que trabalho -- você pode saeber mais [aqui](https://github.com/Fazendaaa/CFD) --; mas, além disso, você pode se perguntar algumas coisas:
@@ -76,7 +147,7 @@ Se você diss *"sim"* para alguma das perguntas anteriores, você quer o Succubu
 
 E o melhor é que você pode usar em qualquer linguagem, compilar para toda arquitetura depois porque você vai estar rodando containers debaixo do capô; se você estiver o M1 Mac você pode facilmente compartilhar o seu trabalho com outros colaboradores e até mesmo publicar ele na nuvem.
 
-## Projeto
+## Manifesto de Projeto
 
 O conceito por trás de toda a ideia de "manifesto" é de facilitar a publicação de um novo projeto através de uma interface familiar para qual o programador consegue trabalhar com.
 
@@ -115,6 +186,52 @@ Como você viu, o Succubus pode ser visto como um "Corretor" para o seu projeto:
 - Supervisiona os padrões definidos
 - Reduz as variabilidades no desenvolvimento de software porque a indústria segue containers como um padrão
 
+### Por que Corretor?
+
+Um [corretor](https://dictionary.cambridge.org/dictionary/english/broker) segundo o Dicionário de Cambridge:
+
+> uma pessoa que compra e vende moeda estrangeira, ações em companias, etc. [...]:
+> "Eu liguei pro meu corretor buscando conselhos para investir no mercado de ações"
+
+Dito isso, Succubus age como tal [corretor](https://www.betterteam.com/broker-job-description) para um programador:
+
+- Fica responsável por detalhes que um programador comum normalmente não está ciente mas isso não significa que não deveriam ser seguidos
+- Processa todos as transações requisitadas seguindo a regra
+- Process all the required transactions by the rule
+- Shows great knowledge about the market and how it behaves
+- Helps you grow and understand better the discussed subject
+- Allows some tweaks to proper fit the matter at hand to your best interest
+
+That definition put together with the whole [Project Manifest](#project-manifest) concept, allow the broker -- Succubus -- to proper operate by the given guidelines.
+
+## Pipe Production Environment
+
+Bringing the whole [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) production philosophy to the "code development" environment -- please don't mistake the whole [JIT](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) used in compilers with this one --; making the whole pipe process more efficient by default by avoiding late binding or some late checks down the process. This also allows to easily reproduce the whole "production" environment in your machine but looking only at a part of a service, a project; this allows us to better understand and made a translation of some sorts of the microservices idea but in looking even deeper in in your machine, kinda like a *behavior-service* approach.
+
+This approach is a tool to enforce some well-know software developments like:
+
+- [Domain Driven Development](https://en.wikipedia.org/wiki/Domain-driven_design)
+- [Test Drive Development](https://en.wikipedia.org/wiki/Test-driven_development)
+- [Service Oriented Delivery](https://www.enterprise-architecture.com/docs/deliverSOARealiseEA.pdf)
+- And many others
+
+And you can see this without fear of having a too fine-grained control that overweights your whole process; a one person project cannot handle the complexity of a 500 employers company software development pipe process; but both of them can increase or decrease the granularity measuring during the process whether or not they will provide a measurable **return of investment** to you, reduce your **total cost of owning** this process or even trying many workflows without having to changing any code to check a **hypothesis test**.
+
 ## A Fazer
 
 Se você chegou até aqui, por favor dê uma olhada no [repositório](https://github.com/Fazendaaa/Succubus) do projeto e talvez dê um like, feedback ou até mesmo melhoria de código nele :)
+
+## Apêndice
+
+
+### DevOps
+
+- [Addressing The Detrimental Effects of Context Switching With DevOps](https://insights.sei.cmu.edu/blog/addressing-the-detrimental-effects-of-context-switching-with-devops/)
+
+### Cloud-Native
+
+- [O Inferno de Dante do Cloud Native](https://fazenda.hashnode.dev/o-inferno-de-dante-do-cloud-native)
+
+### JIT
+
+- [Sennheiser Factory Tour - Hanover, Germany](https://youtu.be/5es8zggYM7A)
