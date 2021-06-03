@@ -228,7 +228,7 @@ Este processo todo também ajuda automatizar algumas tarefas posteriores como:
 
 Isso tudo porque você controla as regras do jogo, isso gera uma crescente reproducibilidade por uma margem significativa como consequência. Você pode olhar tal processo como o de uma FAB (Planta de Fabricar Semicondutores) na qual, por funcionar 24h durante sete dias por semana, muitos times são necessários para fazer com que tal processo funcione sem nenhum contra-tempos; FABs normalmente tem [95% do seu processo automatizado](https://www.youtube.com/watch?v=FP_g-as29x0&feature=youtu.be) o que permite que muitos times diferentes trabalhem no mesmo produto durante diferentes etapas da cadeia. Em um ambiente de desenvolvimento de software isso significaria que alguém pode tomar conta do processo onde o time/pessoa anterior parou sem se preocupar em ter que configurar nada, apenas continuaria trabalhando logo onde o processo anterior a chegada dele parou.
 
-![factory](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/factory.jpg)
+![jit](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/jit.jpg)
 
 E isso em termos de desenvolvimento de software significa que a pessoa atual não terá com lidar com nenhuma "batata quente" nas mãos dela devido há alguma coisa feita pelo procedimento anterior da cadeia, assim como tal segurança também protege o processo que vem logo em seguida de ter que lidar com alguma coisa do tipo, seja ele um processo automatico, uma pessoa ou um time; não ter que ficar modificando as coisas e torcer que elas deem certo é uma ótima segurança de desenvolvimento por reduzir a margem de erro.
 

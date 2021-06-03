@@ -227,7 +227,7 @@ This whole process also helps you to automate tasks later on down de line like:
 
 That's because you are controling the environment rules, that's improve reproducibility by a lot as a side effect. You can see this as a FAB (Semiconductor fabrication plant) factory in which, by running 24/7, many teams are needed so that whole process can easily occurs without any hiccup; so FABs usually have [95% of its fabrication process automate](https://www.youtube.com/watch?v=FP_g-as29x0&feature=youtu.be) so many teams can work upon the same product during different steps of its fabrication. In a development environment this would mean that someone can take upon the work of the previous team without having to worry about having to configuring anything, just continue to work right after where the previous team/person stopped.
 
-![factory](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/factory.jpg)
+![jit](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/jit.jpg)
 
 And this in software terms means that also the current person won't have to handle any "hot-potato" in their hands due to previous work done in the pipe as also this ensures that the next step down the line, being a automate step or a person, won't have to fiddle with the current step mistakes.
 
