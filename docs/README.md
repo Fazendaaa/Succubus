@@ -7,7 +7,7 @@
 
 ## What is it?
 
-- Succubus uses a project driven approach to handle software development trough a "Broker Model", making it clear and enforcing the rules to each and every project that it handles it.
+- Succubus uses a project driven approach to handle software development through a "Broker Model", making it clear and enforcing the rules to each and every project that it handles it.
 - Succubus is expansible, so that you can add your own "flavor" to it
 - Works across many different OSes and their respective versions
 - Reduces the time to develop projects and deploy them by running it the code inside a control environment during development
