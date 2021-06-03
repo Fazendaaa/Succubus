@@ -206,16 +206,33 @@ That definition put together with the whole [Project Manifest](#project-manifest
 
 ## Pipe Production Environment
 
-Bringing the whole [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) production philosophy to the "code development" environment -- please don't mistake the whole [JIT](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) used in compilers with this one --; making the whole pipe process more efficient by default by avoiding late binding or some late checks down the process. This also allows to easily reproduce the whole "production" environment in your machine but looking only at a part of a service, a project; this allows us to better understand and made a translation of some sorts of the microservices idea but in looking even deeper in in your machine, kinda like a *behavior-service* approach.
+Trazendo todo o conceito da filosofia de produção [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) -- por favor não confunda com o [JIT](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) utilizado em compiladores --; fazendo com que o processo de produção se torne mais eficiente por padrão por evitar processos de validação ou de configurações tardios. Isso também permite fácil reprodução de toda a cadeia de processo na sua máquina apenas olhando para a parte do serviço que te importa, o Projeto; isso também nos permite melhor enteder e fazer translações de alguns tipos dos conceitos de microsserviços mas em um olhar mais profundo na sua máquina e apenas olhando o que te importa, quase como uma abordagem baseada em *comportamento do serviço*.
 
-This approach is a tool to enforce some well-know software developments like:
+Essa abordagem é uma ferramente para enforçar alguns conceitos bem aclamados de desenvolvimento de software como:
 
 - [Domain Driven Development](https://en.wikipedia.org/wiki/Domain-driven_design)
 - [Test Drive Development](https://en.wikipedia.org/wiki/Test-driven_development)
 - [Service Oriented Delivery](https://www.enterprise-architecture.com/docs/deliverSOARealiseEA.pdf)
-- And many others
+- E muitos outros
 
-And you can see this without fear of having a too fine-grained control that overweights your whole process; a one person project cannot handle the complexity of a 500 employers company software development pipe process; but both of them can increase or decrease the granularity measuring during the process whether or not they will provide a measurable **return of investment** to you, reduce your **total cost of owning** this process or even trying many workflows without having to changing any code to check a **hypothesis test**.
+E você pode ver isso sem medo de ter uma granularidade muito fina que acabe sobrecarregando seu processo todo de desenvolvimento; uma pessoa não pode dar conta de uma complexidade de uma empresa de desenvolvimento de software de 500 funcionários durante o processo de desenvolvimento de software; porém em ambos os cenários eles podem aumentar ou reduzir a mensurabilidade de granularidade durante o processo de desenvolvimento para ver se vai te trazer ou não um **retorno de investimento** para você, você também poderá reduzir seu **custo de propriedade**, além de maximizar modificação de workflows e a utilização de **testes de hipóteses**.
+
+Este processo todo também ajuda automatizar algumas tarefas posteriores como:
+
+- Automação de builds
+- Automação de distribuição de software
+- Análise de código
+- Validações de segurança
+- Coleta de métricas
+- e muitas outras
+
+Isso tudo porque você controla as regras do jogo, isso gera uma crescente reproducibilidade por uma margem significativa como consequência. Você pode olhar tal processo como o de uma FAB (Planta de Fabricar Semicondutores) na qual, por funcionar 24h durante sete dias por semana, muitos times são necessários para fazer com que tal processo funcione sem nenhum contra-tempos; FABs normalmente tem [95% do seu processo automatizado](https://www.youtube.com/watch?v=FP_g-as29x0&feature=youtu.be) o que permite que muitos times diferentes trabalhem no mesmo produto durante diferentes etapas da cadeia. Em um ambiente de desenvolvimento de software isso significaria que alguém pode tomar conta do processo onde o time/pessoa anterior parou sem se preocupar em ter que configurar nada, apenas continuaria trabalhando logo onde o processo anterior a chegada dele parou.
+
+![factory](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/factory.jpg)
+
+E isso em termos de desenvolvimento de software significa que a pessoa atual não terá com lidar com nenhuma "batata quente" nas mãos dela devido há alguma coisa feita pelo procedimento anterior da cadeia, assim como tal segurança também protege o processo que vem logo em seguida de ter que lidar com alguma coisa do tipo, seja ele um processo automatico, uma pessoa ou um time; não ter que ficar modificando as coisas e torcer que elas deem certo é uma ótima segurança de desenvolvimento por reduzir a margem de erro.
+
+E a cereja no topo do bolo é que tudo isso é feito com uma mistura de várias tecnologias atuais que já foram testadas em batalhas e são abertas para todos poderem melhorar o processo como um todo, melhorando a experiência de desenvolvimento fazendo tornando uma tecnologia "testada em guerra"; isso significa que um passo na cadeia pode fazer uma modificação que, na próxima iteração, acabe facilitando a cadeia como um todo.
 
 ## A Fazer
 

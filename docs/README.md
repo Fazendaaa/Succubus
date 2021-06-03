@@ -216,6 +216,23 @@ This approach is a tool to enforce some well-know software developments like:
 
 And you can see this without fear of having a too fine-grained control that overweights your whole process; a one person project cannot handle the complexity of a 500 employers company software development pipe process; but both of them can increase or decrease the granularity measuring during the process whether or not they will provide a measurable **return of investment** to you, reduce your **total cost of owning** this process or even trying many workflows without having to changing any code to check a **hypothesis test**.
 
+This whole process also helps you to automate tasks later on down de line like:
+
+- Automate builds
+- Automate deploys
+- Code analysis
+- Security validation
+- Benchmarks
+- and so on
+
+That's because you are controling the environment rules, that's improve reproducibility by a lot as a side effect. You can see this as a FAB (Semiconductor fabrication plant) factory in which, by running 24/7, many teams are needed so that whole process can easily occurs without any hiccup; so FABs usually have [95% of its fabrication process automate](https://www.youtube.com/watch?v=FP_g-as29x0&feature=youtu.be) so many teams can work upon the same product during different steps of its fabrication. In a development environment this would mean that someone can take upon the work of the previous team without having to worry about having to configuring anything, just continue to work right after where the previous team/person stopped.
+
+![factory](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/factory.jpg)
+
+And this in software terms means that also the current person won't have to handle any "hot-potato" in their hands due to previous work done in the pipe as also this ensures that the next step down the line, being a automate step or a person, won't have to fiddle with the current step mistakes.
+
+The cherry on the top is that as all of this is just a mix of current battle tested technologies open to everyone to improve it and making the whole process a better experience and therefore making it more a "war tested" technology; that means that one step in the process can improve something that in the next iteration can help every step.
+
 ## TODO
 
 If you read this far, please take a look at the [repo](https://github.com/Fazendaaa/Succubus) and maybe to drop a star in the project, give me some feedback or even dropping some of your code in it :)
