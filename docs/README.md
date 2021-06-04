@@ -11,6 +11,7 @@
 - Succubus is expansible, so that you can add your own "flavor" to it
 - Works across many different OSes and their respective versions
 - Reduces the time to develop projects and deploy them by running it the code inside a control environment during development
+- Heavily inspired by the Toyota's philosophy
 
 ### Basics
 
@@ -94,7 +95,7 @@ And then you will have a REPL (Read-Evaluate-Print-Loop) experience without ever
     - [Overview](#overview)
   - [Broker Model](#broker-model)
     - [Why broker?](#why-broker)
-  - [Pipe Production Environment](#pipe-production-environment)
+  - [Lean approach](#lean-approach)
   - [TODO](#todo)
   - [Appendix](#appendix)
     - [DevOps](#devops)
@@ -105,7 +106,7 @@ And then you will have a REPL (Read-Evaluate-Print-Loop) experience without ever
 
 - Succubus avoids that any OS related variable make your project bound to it
 - At the same time Succubus avoids that any Project related configuration ends up breaking your OS
-- Easy to start any current or new Project without having to worry about prior knowledge about any system requirements -- **as long you can run containers in it**
+- Easy to start any current or new Project without having to worry about prior knowledge about any system requirements -- *as long you can run containers in it*
 - [Least-Privilege](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models) by default in any working Project
 - As David Patterson once said that he didn't believed in [security by obscurity](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext) all the variables are made clear and the process easily reproducible
 - No-locking and easy of usage to debug, change platforms, reproduce environments and replace vendors being compilers, packages or even Project technology itself when refactoring
@@ -132,7 +133,7 @@ And the best part is that this works as well in projects based in:
 
 The possibilities are endless, you can take a look at [Docker Hub](https://hub.docker.com/search?type=image) to look at more community driven options or you can even roll up your sleeves and make your own language more accessible to other trough this -- *or even use a non public available technology just fine because Succubus works the best to help you out, even in a protective corporative environment*
 
-And making the [Project Manifest](#project-manifest) a many-to-one way of development, you can rise your productiveness without having to worry about the context-switching overhead related to
+And making the [Project Manifest](#project-manifest) a many-to-one way of development, you can rise your productiveness without having to worry about the context-switching overhead related to it.
 
 ## Possibilities
 
@@ -203,9 +204,16 @@ That being said, Succubus acts like a [broker](https://www.betterteam.com/broker
 
 That definition put together with the whole [Project Manifest](#project-manifest) concept, allow the broker -- Succubus -- to proper operate by the given guidelines.
 
-## Pipe Production Environment
+## Lean approach
 
-Bringing the whole [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) production philosophy to the "code development" environment -- please don't mistake the whole [JIT](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) used in compilers with this one --; making the whole pipe process more efficient by default by avoiding late binding or some late checks down the process. This also allows to easily reproduce the whole "production" environment in your machine but looking only at a part of a service, a project; this allows us to better understand and made a translation of some sorts of the microservices idea but in looking even deeper in in your machine, kinda like a *behavior-service* approach.
+Bringing the whole [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) production philosophy to the "code development" environment -- kinda like the one used in [compilers](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) --; making the whole pipe process more efficient by default by avoiding late binding or some late checks down the process. This also allows to easily reproduce the whole "production" environment in your machine but looking only at a part of a service, a project; this allows us to better understand and made a translation of some sorts of the microservices idea but in looking even deeper in in your machine, kinda like a *behavior-service* approach:
+
+- Lean product development
+- Autonomation
+- Short-cycle experimentation
+- Prototyping
+- Set-based design
+- Development of re-usable knowledge
 
 This approach is a tool to enforce some well-know software developments like:
 
@@ -250,3 +258,4 @@ If you read this far, please take a look at the [repo](https://github.com/Fazend
 ### JIT
 
 - [Sennheiser Factory Tour - Hanover, Germany](https://youtu.be/5es8zggYM7A)
+- [Lean Product Development](https://en.wikipedia.org/wiki/Lean_product_development)

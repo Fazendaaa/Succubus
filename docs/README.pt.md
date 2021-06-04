@@ -11,6 +11,7 @@
 - Succubu é expansível, para que você possa adicionar suas próprias premissas nele
 - Funciona através de vários SOs e suas respectivas versões
 - Reduz o tempo de desenvolvimento de projetos e entregas por rodar todo o código dentro de um ambiente controlado durante desenvolvimento
+- Altamente inspirado pela filosofia da Toyota
 
 ### Fundamentos
 
@@ -87,32 +88,32 @@ E aí você terá uma experiencia de REPL (Read-Evaluate-Print-Loop) sem precisa
   - [O que é?](#o-que-é)
     - [Fundamentos](#fundamentos)
 - [Índice](#índice)
-  - [Security and Reliability](#security-and-reliability)
-  - [Universe](#universe)
+  - [Segurança e Confiança](#segurança-e-confiança)
+  - [Universo](#universo)
   - [Possibilidades](#possibilidades)
   - [Manifesto de Projeto](#manifesto-de-projeto)
     - [Overview](#overview)
   - [Modelo de Corretor](#modelo-de-corretor)
     - [Por que Corretor?](#por-que-corretor)
-  - [Pipe Production Environment](#pipe-production-environment)
+  - [Abordagem Lean](#abordagem-lean)
   - [A Fazer](#a-fazer)
   - [Apêndice](#apêndice)
     - [DevOps](#devops)
     - [Cloud-Native](#cloud-native)
     - [JIT](#jit)
 
-## Security and Reliability
+## Segurança e Confiança
 
-- Succubus avoids that any OS related variable make your project bound to it
-- At the same time Succubus avoids that any Project related configuration ends up breaking your OS
-- Easy to start any current or new Project without having to worry about prior knowledge about any system requirements -- **as long you can run containers in it**
-- [Least-Privilege](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models) by default in any working Project
-- As David Patterson once said that he didn't believed in [security by obscurity](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext) all the variables are made clear and the process easily reproducible
-- No-locking and easy of usage to debug, change platforms, reproduce environments and replace vendors being compilers, packages or even Project technology itself when refactoring
+- Succubus evita que qualquer variável relacionada ao Sistema Operacional (SO) o prenda à ele
+- Ao mesmo tempo Succubus evita que qualquer configuração de Projeto polua seu SO
+- Fácil de começar qualquer Projeto sem precisar se preocupar com qualquer requisito de sistema -- *contanto que suporte containers*
+- [Least-Privilege](https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/implementing-least-privilege-administrative-models) por padrão em qualquer Projeto
+- Como o próprio David Patterson uma vez disse que não acreditava em [segurança por obscuridade](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext) todas as variáveis são abertas para fazer todo o processo aberto e de fácil reprodução
+- Sem travas e facilidade de depuração, mudança de plataformas, ambientes e provedores, sejam eles compiladores/interpretadores, pacotes ou até mesmo a tecnologia por trás de toda a cadeia do Projeto durante uma refatoração
 
-## Universe
+## Universo
 
-And the best part is that this works as well in projects based in:
+A melhor parte é que isso funciona com projetos baseados em:
 
 - [Node](https://hub.docker.com/_/node)
 - [Go](https://hub.docker.com/_/golang)
@@ -128,11 +129,11 @@ And the best part is that this works as well in projects based in:
 - [Haskell](https://hub.docker.com/_/haskell)
 - [R](https://hub.docker.com/_/r-base)
 - [Dart](https://hub.docker.com/_/dart)
-- And many, many, others
+- E vários, vários, outros mesmo
 
-The possibilities are endless, you can take a look at [Docker Hub](https://hub.docker.com/search?type=image) to look at more community driven options or you can even roll up your sleeves and make your own language more accessible to other trough this -- *or even use a non public available technology just fine because Succubus works the best to help you out, even in a protective corporative environment*
+As possibilidades beiram o infinito, você pode dar uma olhada mais profunda em projetos do [Docker Hub](https://hub.docker.com/search?type=image) para ter uma noção e acesso melhor de coisas já disponíveis pela comunidade, ou pode até mesmo dobrar as mangas e fazer a sua própria linguagem mais acessível através desta abordagem -- *ou até mesmo utilizar tecnologias não disponíveis ao público comum sem problemas porque Succubus funciona da melhor maneira para te ajudar, até mesmo em um ambiente empresarial controlado*.
 
-And making the [Project Manifest](#project-manifest) a many-to-one way of development, you can rise your productiveness without having to worry about the context-switching overhead related to
+Ao fazer o [Manifesto de Projeto](#manifesto-de-projeto) uma conexão de "vários para um" maneira de desenvolvimento, você pode subir a sua produtividade sem ter que se preocupar com as consequências de se sobrecarregar com a mudança de contexto.
 
 ## Possibilidades
 
@@ -204,9 +205,16 @@ Dito isso, Succubus age como tal [corretor](https://www.betterteam.com/broker-jo
 
 That definition put together with the whole [Project Manifest](#project-manifest) concept, allow the broker -- Succubus -- to proper operate by the given guidelines.
 
-## Pipe Production Environment
+## Abordagem Lean
 
-Trazendo todo o conceito da filosofia de produção [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) -- por favor não confunda com o [JIT](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) utilizado em compiladores --; fazendo com que o processo de produção se torne mais eficiente por padrão por evitar processos de validação ou de configurações tardios. Isso também permite fácil reprodução de toda a cadeia de processo na sua máquina apenas olhando para a parte do serviço que te importa, o Projeto; isso também nos permite melhor enteder e fazer translações de alguns tipos dos conceitos de microsserviços mas em um olhar mais profundo na sua máquina e apenas olhando o que te importa, quase como uma abordagem baseada em *comportamento do serviço*.
+Trazendo todo o conceito da filosofia de produção [Just In Time (JIT)](http://people.brunel.ac.uk/~mastjjb/jeb/or/jit.html) -- similar ao utilizado em [compiladoers](https://www.freecodecamp.org/news/just-in-time-compilation-explained/) --; fazendo com que o processo de produção se torne mais eficiente por padrão por evitar processos de validação ou de configurações tardios. Isso também permite fácil reprodução de toda a cadeia de processo na sua máquina apenas olhando para a parte do serviço que te importa, o Projeto; isso também nos permite melhor enteder e fazer translações de alguns tipos dos conceitos de microsserviços mas em um olhar mais profundo na sua máquina e apenas olhando o que te importa, quase como uma abordagem baseada em *comportamento do serviço*:
+
+- Desenvolvimento de produto pelo método Lean
+- Automatismo
+- Curto períodos de experimentação
+- Prototipação
+- Design baseado em caracteristicas
+- Desenvolvimento de conhecimento reaproveitável
 
 Essa abordagem é uma ferramente para enforçar alguns conceitos bem aclamados de desenvolvimento de software como:
 
