@@ -5,6 +5,12 @@
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.pt.md)
 
+- *"Are you tired of breaking projects after some OS update?"*
+- *"Are you pissed of builds breaking due to the lack of listing dependencies?"*
+- *"Are you sleep deprived because someone forgot to tell/document how to configure the project?"*
+
+**Succubus can help you out!!!**
+
 ## What is it?
 
 - Succubus uses a project driven approach to handle software development through a "Broker Model", making it clear and enforcing the rules to each and every project that it handles it.
@@ -98,6 +104,7 @@ And then you will have a REPL (Read-Evaluate-Print-Loop) experience without ever
   - [Lean approach](#lean-approach)
   - [TODO](#todo)
   - [Appendix](#appendix)
+    - [Documentation](#documentation)
     - [DevOps](#devops)
     - [Cloud-Native](#cloud-native)
     - [JIT](#jit)
@@ -246,6 +253,28 @@ The cherry on the top is that as all of this is just a mix of current battle tes
 If you read this far, please take a look at the [repo](https://github.com/Fazendaaa/Succubus) and maybe to drop a star in the project, give me some feedback or even dropping some of your code in it :)
 
 ## Appendix
+
+### Documentation
+
+My college experience and work experience -- inside the company and with ALL of the contractors -- showed me that standardization is a troublesome task, even tho being "simple" to do and to implement and execute in some cases, it's sometimes difficult to enforce it because the ones who were supposed to follow usually tries to avoid it, this ends up in a paradox: *"if everyone has their standards there's no standard"*.
+
+After helping out in some FOSS (Free and Open Source Systems) projects a feeling came to me that even tho many people contribute with some code to the project there's a lack of documentation contribution specially because usually only few seniors contributors fell comfortable to do so and many of my contributions at least were something that I did only once. But in a work environment this sometimes is even worse, sometimes not even a Makefile is present in the project to point a direction to follow.
+
+Containers are a great tool to deploy, homologate and test projects; but they are also a great tool to develop upon. I say this due to:
+
+- No need to install anything Project related -- *even if you are not using Succubus you can do all the things that Succubus does just by adding some aliases in your .bashrc or similar*
+- "Time capsule" approach to development that avoids problems related to version/build related to languages/frameworks/systems -- *I had some issues with a coworker's project because a dependency that he added one day was updated in the next and he didn't listed the used version*
+- A Dockerfile is something that surprises me how many CS students don't get how it works which, to me, shows that even tho many people say that know how to code I cannot grasp how many of them know **WHAT THEY ARE DOING!**
+
+Unfortunately even tho I do love a well written, well thought and well delivered documentation, I think that makes me one in a million -- *many times I had to throw the famous RTFM (Read The Fucking Manual) because I was pissed that somebody asked about something that they did asked many times before and still didn't give a chance and go read the project docs*.
+
+All of that being said, I do think that to avoid any problem related to doc or even dependency/setup the best thing is to bypass of that; that's why the Project Manifest works in a way that if something ain't working right now probably it never did worked at all. This also helps to reduce any overhead to a rookie, which to me are the most affected in any scenario.
+
+There's a phrase which really sunk into me and that always helped me think in which way I can better solve a problem:
+
+> The test of our progress is not whether we add more to the abundance of those who have much; it is whether we provide enough for those who have too little…
+
+*Franklin D. Roosevelt, January 20, 1937*
 
 ### DevOps
 

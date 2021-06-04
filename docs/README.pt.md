@@ -5,6 +5,12 @@
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.pt.md)
 
+- *"Está cansado de projetos quebrarem após alguma atualização de sistema?"*
+- *"Está pistola de builds não funcionarem porque esqueceram de listar uma dependência?"*
+- *"Está com falta de dormir porque alguém esqueceu de te dizer/documentar como configurar o projeto?"*
+
+**Succubus pode te ajudar!!!**
+
 ## O que é?
 
 - Succubus usa uma abordagem de desenvolvimento de software baseada em projetos através de um "Modelo de Corretor", o tornando claro e enforçando as regras para cada projeto que gerencia
@@ -98,6 +104,7 @@ E aí você terá uma experiencia de REPL (Read-Evaluate-Print-Loop) sem precisa
   - [Abordagem Lean](#abordagem-lean)
   - [A Fazer](#a-fazer)
   - [Apêndice](#apêndice)
+    - [Documentação](#documentação)
     - [DevOps](#devops)
     - [Cloud-Native](#cloud-native)
     - [JIT](#jit)
@@ -248,6 +255,27 @@ Se você chegou até aqui, por favor dê uma olhada no [repositório](https://gi
 
 ## Apêndice
 
+### Documentação
+
+Minha experiência na faculdade e trabalho -- dentro da empresa e com TODOS os tercerizados -- mostrou que padrões são uma tarefa problemática, mesmo sendo "simples" de fazer e de se implementar, a dificuldade reside no fato de serem enforcados e executados; isso porque as pessoas que deveriam seguir eles tentam evitá-los, isso acaba gerando um paradoxo de: *se todo mundo tem o seu padrão, não existe padrão*
+
+Após contribuir em alguns projetos FOSS (Free and Open Source Systems) um sentimento de falta de contribuições de documentação é perceptivel especialmente porque apenas alguns dos seniors do projeto se sentem confortavel de se fazer e muitas das contribuições são coisas pontuais. Mas isso é algumas vezes pior em projetos empresariais, isso porque não há muitas vezes um Makefile para te ajudar a seguir alguma direção.
+
+Containers são uma grande ferramenta quando o assunto é deploy, homologação e teste; mas eles também são ótimos para desenvolvimento. E digo isso porque:
+
+- Não há necessidade de se instalar nada relacionado ao Projeto -- *mesmo se você não estiver utilizando Succubus vai poder fazer tudo o que a ferramenta faz apenas por adicionando alguns aliases em seu .bashrc ou similar*
+- A abordagem de "capsula do tempo" para desenvolviment que evita problemas relacionados com versões/builds de linguages/frameworks/sistemas -- *uma vez tive problema com um projeto de um colaborador porque da noite pro dia a versão do pacote que ele utilizou tinha sido atualizada e ele não listou nada relacionado a isso*
+- Um arquivo Dockerfile é algo que me supreende o quanto estudantes de Ciências da Computação não entendem como funciona, mostra que mesmo que muitas pessoas dizem que sabem codar não dá para se ter uma noção de que elas **SABEM O QUE ESTÃO FAZENDO!**
+
+Infelizmente mesmo eu adorando uma documentação bem escrita, e bem apresentada, acabo tendo a sensação que sou um em um milhão -- *muitas vezes tive que soltar o famoso RTFM (Read The Fucking manual) porque estava pistola que alguém perguntou pela n-éssima vez algo que eu já tinha respondido e que estava bem documentado no projeto e eles não tinham lido ou se tivessem não se importavam em ler de novo e simplesmente era mais fácil perguntar*.
+
+Tudo isso sendo dito, acredito que para evitar dores de cabeça relacionados a documentação ou até mesmo dependências/configurações, o melhor caminho vai ser simplesmente superar tais passos; por isso o Manifesto de Projeto funciona de uma maneira que se algo não está funcionando agora, provavelmente nunca funcionou em nenhum ponto. Isso também ajuda a reduzir a sobrecarga nos novatos de ter que aprender os detalhes de tudo, o que para mim é a coisa mais impactante em qualquer cenário.
+
+Tem uma frase que realmente me marcou e que sempre me ajuda a pensar em qual maneira eu posso trabalhar para melhor resolver um problema:
+
+> O teste do nosso progresso não é medido atráves prover mais abudancia para aqueles que já tem muito; mas sim através do que conseguimos prover para aqueles que tem quase nada...
+
+*Franklin D. Roosevelt, 20 de Janeiro de 1937*
 
 ### DevOps
 
