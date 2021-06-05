@@ -18,6 +18,7 @@
 - Works across many different OSes and their respective versions
 - Reduces the time to develop projects and deploy them by running it the code inside a control environment during development
 - Heavily inspired by the Toyota's philosophy
+- A idempotence approach that avoids some unknown factor to break your development flow
 
 ### Basics
 

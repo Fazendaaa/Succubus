@@ -9,6 +9,9 @@
 <a href="https://golang.org/"><img alt="Made With Go" src="https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square" height="20"/></a>
 <a href="https://www.docker.com"><img alt="Made With Docker" src="https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square" height="20"/></a>
 <a href="https://code.visualstudio.com/"><img alt="Made With VSCode" src="https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square" height="20"/></a>
+<a href="https://codeclimate.com/github/Fazendaaa/Succubus/maintainability"><img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/f4f7ed3bf34aa8c570b7/maintainability" height="20"/></a>
+<a href="https://codeclimate.com/github/Fazendaaa/Succubus/test_coverage"><img alt="Test Coverage" src="https://api.codeclimate.com/v1/badges/f4f7ed3bf34aa8c570b7/test_coverage" height="20"/></a>
+<a href="https://www.codacy.com/gh/Fazendaaa/Succubus/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Fazendaaa/Succubus&amp;utm_campaign=Badge_Grade"><img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/0b27f064a67d411a872719802ab140dc" height="20"/></a>
 	</p>
 
 

@@ -18,6 +18,7 @@
 - Funciona através de vários SOs e suas respectivas versões
 - Reduz o tempo de desenvolvimento de projetos e entregas por rodar todo o código dentro de um ambiente controlado durante desenvolvimento
 - Altamente inspirado pela filosofia da Toyota
+- Uma abordagem idempotente que evita fatores desconhecidos de quebrarem o fluxo de desenvolvimento
 
 ### Fundamentos
 
