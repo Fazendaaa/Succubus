@@ -15,7 +15,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0b27f064a67d411a872719802ab140dc)](https://www.codacy.com/gh/Fazendaaa/Succubus/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Fazendaaa/Succubus&amp;utm_campaign=Badge_Grade)
 
 - *"Are you tired of breaking projects after some OS update?"*
-- *"Are you pissed of builds breaking due to the lack of listing dependencies?"*
+- *"Are you pissed off of builds breaking due to the lack of listing dependencies?"*
 - *"Are you sleep deprived because someone forgot to tell/document how to configure the project?"*
 
 **Succubus can help you out!!!**
