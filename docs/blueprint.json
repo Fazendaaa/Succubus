@@ -11,11 +11,6 @@
   },
   "badges": [
     {
-      "alt": "Say Thanks!",
-      "url": "https://saythanks.io/to/lucas.carotta%40outlook.com",
-      "img": "https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge"
-    },
-    {
       "alt": "Made With Go",
       "url": "https://golang.org/",
       "img": "https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square"

@@ -5,8 +5,7 @@
 </p>
 
 <p align="center">
-		<a href="https://saythanks.io/to/lucas.carotta%40outlook.com"><img alt="Say Thanks!" src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge" height="20"/></a>
-<a href="https://golang.org/"><img alt="Made With Go" src="https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square" height="20"/></a>
+		<a href="https://golang.org/"><img alt="Made With Go" src="https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square" height="20"/></a>
 <a href="https://www.docker.com"><img alt="Made With Docker" src="https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square" height="20"/></a>
 <a href="https://code.visualstudio.com/"><img alt="Made With VSCode" src="https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square" height="20"/></a>
 <a href="https://codeclimate.com/github/Fazendaaa/Succubus/maintainability"><img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/f4f7ed3bf34aa8c570b7/maintainability" height="20"/></a>
@@ -24,6 +23,8 @@
 
 
 <div align = "center">
+
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge)](https://saythanks.io/to/lucas.carotta%40outlook.com)
 
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](.README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](.README.pt.md)
