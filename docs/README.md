@@ -2,8 +2,17 @@
 
 > The cloud-native way to code
 
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?longCache=true&style=for-the-badge)](https://saythanks.io/to/lucas.carotta%40outlook.com)
+
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](https://github.com/Fazendaaa/Succubus/blob/master/docs/README.pt.md)
+
+[![Made With Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square)](https://golang.org/)
+[![Made With Docker](https://img.shields.io/badge/Made%20with-Docker-important?style=flat-square)](https://www.docker.com)
+[![Made With VSCode](https://img.shields.io/badge/made%20with-vscode-blueviolet?style=flat-square)](https://code.visualstudio.com/)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f4f7ed3bf34aa8c570b7/maintainability)](https://codeclimate.com/github/Fazendaaa/Succubus/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f4f7ed3bf34aa8c570b7/test_coverage)](https://codeclimate.com/github/Fazendaaa/Succubus/test_coverage)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0b27f064a67d411a872719802ab140dc)](https://www.codacy.com/gh/Fazendaaa/Succubus/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Fazendaaa/Succubus&amp;utm_campaign=Badge_Grade)
 
 - *"Are you tired of breaking projects after some OS update?"*
 - *"Are you pissed of builds breaking due to the lack of listing dependencies?"*
