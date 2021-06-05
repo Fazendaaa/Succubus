@@ -22,6 +22,7 @@
 
 <div align = "center">
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c616a040a34b48bcb1b908fd1b55f525)](https://app.codacy.com/gh/Fazendaaa/Succubus?utm_source=github.com&utm_medium=referral&utm_content=Fazendaaa/Succubus&utm_campaign=Badge_Grade_Settings)
 [![English README](https://img.shields.io/badge/Language-EN-blue.svg?longCache=true&style=for-the-badge)](.README.md)
 [![Portuguese README](https://img.shields.io/badge/Linguagem-PT-green.svg?longCache=true&style=for-the-badge)](.README.pt.md)
 
