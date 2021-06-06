@@ -28,6 +28,7 @@
 - Reduz o tempo de desenvolvimento de projetos e entregas por rodar todo o código dentro de um ambiente controlado durante desenvolvimento
 - Altamente inspirado pela filosofia da Toyota
 - Uma abordagem idempotente que evita fatores desconhecidos de quebrarem o fluxo de desenvolvimento
+- Como Succubus não precisa de nenhum requisito em nível de sistema operacional para cuidar do desenvolvimento do ciclo de um projeto, você não terá que ficar perdendo seu tempo com soluções como howebrew, chocolatey ou qualquer gerenciador de pacotes de Linux
 
 ### Fundamentos
 
@@ -79,7 +80,7 @@ No seu terminal verá a mensagem do projeto de Python + Django rodando e acessí
 - Sem precisar de Docker-Compose
 - Sem até mesmo precisar do Succubus instalado se quiser
 
-A ideia toda por trás de desenvolvimento de software sem dores de cabeça é melhorar a experiência do progamador e prover segurança com velocidade.
+A ideia toda por trás de desenvolvimento de software sem dores de cabeça é melhorar a experiência do progamador e prover segurança com velocidade. E é por isso que você não precisa instalar nada na sua máquina, como Succubus toma conta de tudo sem precisar instalar o Go ou até mesmo ele; você pode ver isso como um corretor na vida real, mesmo ele trabalhando para ti você não precisa de um espaço na sua casa para ele ou até mesmo na sua empresa.
 
 E se você precisar iteragir com alguma coisa, apenas para ver se vai funcionar ou não, basta:
 

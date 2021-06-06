@@ -28,6 +28,7 @@
 - Reduces the time to develop projects and deploy them by running it the code inside a control environment during development
 - Heavily inspired by the Toyota's philosophy
 - A idempotence approach that avoids some unknown factor to break your development flow
+- Since Succubus doesn't required OS level requirements to handle the Project cycle, you won't have to poke around solutions like homebrew, chocolatey or any Linux package manager for that matter
 
 ### Basics
 
@@ -76,10 +77,10 @@ In your terminal in a Python + Django project to open a website running and star
 - No Python required
 - No Django required
 - No Dockerfile required
-- No Docker-compose required
+- No Docker-Compose required
 - Not even Succubus installed if you want to
 
-The whole idea is a effortless software development experience while providing safety and speed of development.
+The whole idea is a effortless software development experience while providing safety and speed of development. That's why you won't need to install anything in your machine, because Succubus handles all and you can run it without having to install Go or even it; you can see this like a real broker in real life, even tho he might work for you, you won't have to have it in your house or a place for him at your company.
 
 And if you need to interact with something just to see whether or not will work, just:
 
