@@ -49,21 +49,21 @@ A example of this manifest is the following:
 
 ```yaml
 image: python
-interact: python3
+interact: python
 
 objectives:
   base:
-    run: python3 manage.py runserver
-    test: python3 -m pytest .
+    run: python manage.py runserver
+    test: python -m pytest .
     add: pip3 install $ARGV
     rm: pip3 uninstall $ARGV
 
   dev:
     anal: |
-      python3 -m mccabe --min 5 ./src
-      python3 -m bandit -r ./src
-    linter: python3 -m mypy ./src
-    doc: python3 -m sphinx-apidoc -o source ../
+      python -m mccabe --min 5 ./src
+      python -m bandit -r ./src
+    linter: python -m mypy ./src
+    doc: python -m sphinx-apidoc -o source ../
 ```
 
 Which can be accessed by just running the following command:

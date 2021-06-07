@@ -69,21 +69,21 @@ An example to [Python](https://www.python.org/) + [Django](https://www.djangopro
 
 ```yaml
 image: python
-interact: python3
+interact: python
 
 objectives:
   base:
-    run: python3 manage.py runserver
-    test: python3 -m pytest .
+    run: python manage.py runserver
+    test: python -m pytest .
     add: pip3 install $ARGV
     rm: pip3 uninstall $ARGV
 
   dev:
     anal: |
-      python3 -m mccabe --min 5 ./src
-      python3 -m bandit -r ./src
-    linter: python3 -m mypy ./src
-    doc: python3 -m sphinx-apidoc -o source ../
+      python -m mccabe --min 5 ./src
+      python -m bandit -r ./src
+    linter: python -m mypy ./src
+    doc: python -m sphinx-apidoc -o source ../
 ```
 
 Then just open your terminal and type:
