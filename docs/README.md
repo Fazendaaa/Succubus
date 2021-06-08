@@ -29,6 +29,7 @@
 - Heavily inspired by the Toyota's philosophy
 - A idempotence approach that avoids some unknown factor to break your development flow
 - Since Succubus doesn't required OS level requirements to handle the Project cycle, you won't have to poke around solutions like homebrew, chocolatey or any Linux package manager for that matter
+- Helps to execute old Projects in newer OSes and to execute new Projects in older OSes -- that sets people free to execute in any OS without having the need to update the Project to a whole new environment or downgrade the OS or even run it in a VM (Virtual Machine) just to execute the Project
 
 ### Basics
 
