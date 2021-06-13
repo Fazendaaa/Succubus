@@ -52,7 +52,7 @@ Currently, in the company that I work for we have a CLI (Command Line Interface)
 
 ## ➤ What is Succubus?
 
-- Succubus is a language/framework agnostic project manager manifest
+- Succubus is a language/framework agnostic project manager and development manifest
 - It works by declaring objectives inside the given project
 - Each objective is a sequence of tasks
 - And a task is formed by determined rules
@@ -109,7 +109,7 @@ You can read more about the Project segmentation idea right [here](https://fazen
 - Using many languages and frameworks without needing to install and maintain any of it.
 - Running any project without need to configure your OS to properly run it.
 - Maintainability:
-  - Low entrance bar helps a lot; helping a "one project" person to avoid conflicts during releases and deploys and in many people projects can reduce the time to a person to familiarize with the new language/framework because the Project usage interface is the same
+  - Low entrance bar helps a lot; helping a "one project" person to avoid conflicts during releases and deploys and in many people projects can reduce the time to a person to familiarize with the new language/framework because the Project uses a common development interface
   - You can run an old project with some old language/framework version without needing to install it in your machine, encapsulating old code and making it easy to run in new scenarios
   - Even though you might not be running the latest Node LTS version, in a few years that might not be the case anymore; so help your future self or even a coworker understand what you are doing it today in that awesome project that you are currently working on
 - Time to Market:
@@ -120,7 +120,7 @@ You can read more about the Project segmentation idea right [here](https://fazen
 
 ## ➤ Use Cases
 
-You can always check the more how the concept behind breaking a Project and defining a project works in the [description](./docs/README.md) of it; but just to name a few Objectives that you can define in your project besides the `base` and `dev` ones:
+You can always check the more how the concept behind breaking a Project and defining a project works in the [description](./docs/spec.md) of it; but just to name a few Objectives that you can define in your project besides the `base` and `dev` ones:
 
 - security
 - homologation
@@ -154,22 +154,22 @@ Once you get comfortable with the idea of breaking things apart and making your 
 - The idea of this project is to create an OS/language/framework independent flow of project development.
 - At the same time the tool allows the users to implement their own patterns inside the standard flow.
 - The mantra behind all of this is: *"help yourself by helping other to achieve greatness"*.
-- As previously pointed out, ambients end up screwing development flow and as someone bearing a unfinished Computer Science (CS) degree usually I can handle myself during this kind of situation but my coworkers running their code in a Mac, Windows or some other Linux environment usually have lost multiple hours during a project trying to make their code run in each others machines to debug it, slowing the pace and projects deadlines.
+- As previously pointed out, ambients end up screwing development flow and as someone bearing a unfinished Computer Science (CS) degree usually I can handle myself during this kind of situation but my coworkers running their code in a Mac, Windows or some other Linux environment usually have lost multiple hours during a project trying to make their code run in each others machines to debug it, slowing the pace and projects deadlines. So the idea is to help avoid all of this mess.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#do-more-doing-less)
 
 ## ➤ Do more doing less
 
-- The usa of container under the hood speeds up every development cycle that I've been part of; specially if you are looking to deploy it later to [AWS](https://aws.amazon.com/), [Heroku](https://www.heroku.com/), [Azure](https://azure.microsoft.com/en-us/), [Linode](https://www.linode.com/), [GCP](https://cloud.google.com/) and many others; briding the gap between serverless and non-serverless environments.
+- The usage of container under the hood speeds up every development cycle that I've been part of; specially if you are looking to deploy it later to [AWS](https://aws.amazon.com/), [Heroku](https://www.heroku.com/), [Azure](https://azure.microsoft.com/en-us/), [Linode](https://www.linode.com/), [GCP](https://cloud.google.com/) and many others; briding the gap between serverless and non-serverless environments.
 - Don't fight against making your project accessible to others therefore also making it more reproducible also to others; your cloud provider doesn't know that you are rocking the latest M1 Mac, but they will understand the same "packaging" technology that hey are used to use it internally as many others industry whales work on.
 - This might sound like a shout to the void, but hear me for a second:
   - *The cloud provider doesn't know how to configure your latest version of the bleeding edge compiler that you are using it*
   - *Your client doesn't care about your well cared 200 steps build process*
-  - *And your internet doesn't have the same years in your back as you do and saw all that you did*
-- If you are just a rookie in the whole **"Programming World"** and this might see a little bit *too much* for you or even scary because your [NumPy](https://numpy.org/) + [Pandas](https://pandas.pydata.org/) never talked about all of this, my message to you is *"give it a try"* -- please take a look at [CFD](https://github.com/Fazendaaa/CFD) and take a look at many other tools that might be of your interesting, specially [Jinn](https://github.com/Fazendaaa/Jinn) if you don't know where or how to start it
+  - *And your intern doesn't have the same years in your back as you do and saw all that you did*
+- If you are just a rookie in the whole **"Programming World"** and this might see a little bit *too much* for you or even scary because your [NumPy](https://numpy.org/) + [Pandas](https://pandas.pydata.org/) tutorial never talked about all of this, my message to you is *"give it a try"* -- please take a look at [CFD](https://github.com/Fazendaaa/CFD) and take a look at many other tools that might be of your interesting, specially [Jinn](https://github.com/Fazendaaa/Jinn) if you don't know where or how to start it
 
-More than a *Jake of all Trades* platform this project has as its core the purpose of sharing knowledge/learning uses case as its main virtue -- learn from your mistakes then share it as this might help others rather then just yourself
+More than a *Jake of all Trades* platform this project has as its core the purpose of sharing knowledge/learning uses case as its main virtue -- learn from your mistakes then share it as this might help others rather then just yourself.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#usage)
@@ -178,16 +178,16 @@ More than a *Jake of all Trades* platform this project has as its core the purpo
 
 ### init
 
-Shows already made made manifestos for you to choose from and use in your project allowing you to maintain an already project using something that would better fit your need:
+Shows already made manifestos for you to choose from and use in your project allowing you to maintain an already project using something that would better fit your need:
 
 ```shell
 succ init
 ```
 
-### repl
+### interactive
 
 ```shell
-succ repl
+succ interactive
 ```
 
 ### add
@@ -238,7 +238,7 @@ This approach has some limitations but is a great way to tip your toes and start
 
 ## ➤ Engines
 
-I know that Docker Inc is kinda of a "hot topic" in some circles, that's why this tool tries to maintain itself behind an *Engine* abstraction layer, allowing a east swap in replacement if need to do so
+I know that Docker Inc is kinda of a "hot topic" in some circles, that's why this tool tries to maintain itself behind an *Engine* abstraction layer, allowing a east swap in replacement if need to do so.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#installing)

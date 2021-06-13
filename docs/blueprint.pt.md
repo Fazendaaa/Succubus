@@ -15,29 +15,28 @@
 
 </div>
 
-# What if NPM had a baby with Docker-Compose?
+# Como seria se o NPM tivesse um bebê com o Docker-Compose?
 
-> you can also see it as a "Makefile with steroids" or just as an "augmented layer" to your language/framework... Or simply: "the effortless way to do things right"
+> você pode também ver como um "Makefile com esteróides" ou apenas uma "camada de expansão" para as suas linguagens/frameworks... Ou simplesmente: "a maneira sem esforço de fazer as coisas certas"
 
-Welcome to Fazendaaa's {{ pkg.name }}. This is version {{ pkg.version }}!
+Bem vindo ao pacote {{ pkg.name }} de Fazendaaa. Esta é a versão {{ pkg.version }}!
 
+## Ideia
 
-## Idea
+Atualmente na empresa que eu trabalho nós possuímos uma CLI (Command Line Interface) feita em [Python](https://www.python.org/) chamada `estat` e você pode ler mais sobre ela [aqui](https://github.com/Fazendaaa/CFD).
 
-Currently, in the company that I work for we have a CLI (Command Line Interface) made in [Python](https://www.python.org/) called `estat` and you can read more about it [here](https://github.com/Fazendaaa/CFD).
+## O que é Succubus?
 
-## What is Succubus?
+- Succubus é um manifesto agnostica de linguagem/frameworks para gerencia e desenvolvimento de projetos
+- Ela funciona por declarar objetivos dentro de um projeto
+- Cada objetivo é uma sequência de tarefas
+- E cada tarefa é formada por determinadas regras
 
-- Succubus is a language/framework agnostic project manager manifest
-- It works by declaring objectives inside the given project
-- Each objective is a sequence of tasks
-- And a task is formed by determined rules
+Succubus é utilizado para manter Succubus, você pode ver no arquivo [succ.yaml](./succ.yaml) aqui declarado. E a melhor parte é que você pode utilizar ele sem precisar instalá-lo e as respectivas linguagens, frameworks e pacotes que irá utilizar.
 
-Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./succ.yaml) presented here. And the best part to start using it is that you don't even need to install it to run and maintain all of your projects made using a plethora of languages/frameworks and theirs respective versions.
+## Componentes
 
-## Components
-
-An example to [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) project -- just take a look at the [examples](./examples) folder -- would look something like it:
+Um exemplo para um projeto [Python](https://www.python.org/) + [Django](https://www.djangoproject.com/) -- dê uma olhada na pasta [examples](./examples) -- seria algo mais ou menos assim:
 
 ```yaml
 image: python
@@ -58,88 +57,88 @@ objectives:
     doc: python -m sphinx-apidoc -o source ../
 ```
 
-Then just open your terminal and type:
+Apenas abra o seu terminal e digite:
 
 ```shell
 succ run
 ```
 
-To see your website running in your `http://localhost`.
+E veja seu site rodando em `http://localhost`.
 
-**And you can do all all of this without needing to install:**
+**O melhor de tudo é que você pode fazer isso sem precisar instalar:**
 
 - Python
 - Django
-- Or even Succubus for that matter
+- Ou até mesmo Succubus
 
-You can read more about the Project segmentation idea right [here](https://fazendaaa.github.io/Succubus/).
+Você pode ler mais sobre toda essa ideia de segmentação [aqui](https://fazendaaa.github.io/Succubus/).
 
-## Advantages
+## Vantagens
 
-- Using many languages and frameworks without needing to install and maintain any of it.
-- Running any project without need to configure your OS to properly run it.
-- Maintainability:
-  - Low entrance bar helps a lot; helping a "one project" person to avoid conflicts during releases and deploys and in many people projects can reduce the time to a person to familiarize with the new language/framework because the Project usage interface is the same
-  - You can run an old project with some old language/framework version without needing to install it in your machine, encapsulating old code and making it easy to run in new scenarios
-  - Even though you might not be running the latest Node LTS version, in a few years that might not be the case anymore; so help your future self or even a coworker understand what you are doing it today in that awesome project that you are currently working on
+- Usar várias linguagens e frameworks sem precisar instalar ou manter elas.
+- Rodar qualquer projeto sem ter que configurar seu Sistema Operacional (SO) para poder rodar ela.
+- Manutenabilidade:
+  - Baixa barreira de entrada ajuda bastante; ajudar em "projetos de uma pessoa" evitar conflitos durante lançamentos e entregas, além de ajudar projetos de várias pessoas ao reduzir o tempo que uma nova pessoa a se familiarizar com a nova linguagem/framework porque o Projeto usa uma interface comum de desenvolvimento
+  - Você pode rodar um projeto antigo em alguma versão antiga da linguagem/framework sem precisar instalar na sua máquina, encapsulando código antigo e facilitando o uso dele em novos cenários
+  - Mesmo se você não tiver utilizando a versão LTS do Node, em alguns anos este não pode ser o mesmo cenário; ajudar o futuro você ou até mesmo um colega de trabalho a entender o que está fazendo hoje neste projeto incrível que está trabalhando
 - Time to Market:
-  - Cloud-native approach helps not only to deploy a project down the line to a cloud provider but also helps a client to receive the technology transfer later on
+  - Abordagem cloud-native ajuda não apenas a entregar um projeto para rodar em produção no seu provedor de nuvem mas também auxilia um cliente que vá rodar ele on-premise
 
-## Use Cases
+## Casos de uso
 
-You can always check the more how the concept behind breaking a Project and defining a project works in the [description](./docs/README.md) of it; but just to name a few Objectives that you can define in your project besides the `base` and `dev` ones:
+Você pode sempre verificar como o conceito por trás de segmentar um Projeto e definir suas características na [descrição](./docs/spec.pt.md); porém para nomear alguns Objetivos que você precisa declarar além dos obrigatórios -- `base` e `dev` -- você poderia fazer alguns para:
 
-- security
-- homologation
+- segurança
+- homologação
 - benchmark
 - [chaos gorilla](https://www.gremlin.com/chaos-monkey/the-simian-army/)
 - etc.
 
-Once you get comfortable with the idea of breaking things apart and making your thought process easier to reproduce, it also makes it easier for others to understand and help you out with it; making the engine run without any problems.
+Uma vez que você ficar confortável com a idea de quebrar as coisas em segmentos, seu processo de pensamento fica claro para outros reproduzirem e te ajudarem com isso; como fazer um motor rodar sem problemas.
 
-## Why not Docker-Compose?
+## Por que não o Docker-Compose?
 
-- Compose is more tailored to provide a "System Defined" experience trough a manifest which is more suited to accommodate other projects besides the one you are currently working on, as a Data Base, Reverse-Proxy, Memory Cache and etc.
-- Compose is not suited to perform many tasks, just "run" one which is defined to allow a whole system to work, not a project.
+- Compose é mais complexo e feito para ser de visão de "Definido por Sistema" experiência com o manifesto que é mais adequado para acomodar outros projetos além do qual está atualmente trabalhando, como Banco de Dados, Proxy Reverso, Cache em Memória e etc.
+- Compose é não foi feito para comportar várias tarefas, apenas fazer uma coisa que bem feita que seria rodar um sistema feito de vários projetos e não rodar várias coisas em um projeto.
 
-## Why "NPM like"?
+## Por que "como NPM"?
 
-- A few years ago every project that I did was in [Node](https://nodejs.org/en/) + [TS](https://www.typescriptlang.org/). When I moved to another languages like Python, [Julia](https://julialang.org/) and [R](https://www.r-project.org/), missing some CLI "sugar" features like those provided by [NPM](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/) was a big wake up call that I was in a *no man's land*.
-- Those missing features help a project development and maintainability to become almost effortless when compared to the current available way; when you start a Node/NPM project you are just one *yay/apt/apk/brew/or any other system package manager* away from starting to code and just like Go or even Haskell, the code you write is loosely coupled to the OS/Distro that you wrote in it, this helps to avoid any project breaking after systems updates. That's a far fetch dream to other languages which are heavily coupled to the ambient that they are running on; this lack of cohesion and conciseness was the seed to start Succubus.
+- Alguns anos atrás cada projeto que trabalhei era feito em [Node](https://nodejs.org/en/) + [TS](https://www.typescriptlang.org/). Quando comecei a mexer com outras linguagens como Python, [Julia](https://julialang.org/) e [R](https://www.r-project.org/), a falta de algumas facilidades de CLI que são providas pelo [NPM](https://www.npmjs.com/) e [Yarn](https://yarnpkg.com/) que foi uma grande "chamada" de que eu me encontrava em uma *terra de ninguém*.
+- Essas facilidades que ajudam o desenvolvimento de um projeto e sua manutenabilidade ao ponto de se tornar quase que sem eforço quando comparado com agumas maneiras atuais de se fazer isso; quando você inicia um projeto Node/NPM você está apenas um passo de um *yay/apt/apk/brew/ou qualquer outro gerenciador de pacotes de sistemas* de começar seu projeto como até mesmo Go ou Haskkel, o código que escreve é pouco acoplado no SO/Distro que você escreve, isso ajuda evitar que o projeto pare de funcionar depois de algum update de SO. Este sonho longínquo para outras linguagens que são altamente acopladas no ambiente que elas são executadas; esta falta de coesão e concisão são a semente por trás do ínicio do Succubus.
 
-## Goals
+## Metas
 
-- The idea of this project is to create an OS/language/framework independent flow of project development.
-- At the same time the tool allows the users to implement their own patterns inside the standard flow.
-- The mantra behind all of this is: *"help yourself by helping other to achieve greatness"*.
-- As previously pointed out, ambients end up screwing development flow and as someone bearing a unfinished Computer Science (CS) degree usually I can handle myself during this kind of situation but my coworkers running their code in a Mac, Windows or some other Linux environment usually have lost multiple hours during a project trying to make their code run in each others machines to debug it, slowing the pace and projects deadlines.
+- A idéia dete projeto é cirar um fluxo de desenvolvimento independente do SO/linguagem/framework.
+- Ao mesmo tempo que a ferramenta permite aos usuários implementarem os próprios "sotaques" dentro do padrão de desenvolvimento.
+- O mantar por trás de tudo isso é: *"ajude você por ajudar os outros a alcançar o melhor"*.
+- Como pontuado anteriormente, o ambiente acabam atrapalhando o fluxo de desenvolvimento e alguém não terminou a graduação dem Ciências da Computação (CC) geralmente eu consigo lidar bem com este tipo de situação mas muitas vezes pessoas que trabalham comigo rodam seu código no Mac, Windows ou qualquer outro ambiente Linux que geralmente levam várias horas durante o desenvolvimento de um projeto tentando fazer com que o código rode na máquina dos outros para debugar, reduzindo o passo de desenvolvimento e apertando os prazos de entregas. Então a ideia é compartilhar maneiras de evitar isso.
 
-## Do more doing less
+## Faça mais fazendo menos
 
-- The usa of container under the hood speeds up every development cycle that I've been part of; specially if you are looking to deploy it later to [AWS](https://aws.amazon.com/), [Heroku](https://www.heroku.com/), [Azure](https://azure.microsoft.com/en-us/), [Linode](https://www.linode.com/), [GCP](https://cloud.google.com/) and many others; briding the gap between serverless and non-serverless environments.
-- Don't fight against making your project accessible to others therefore also making it more reproducible also to others; your cloud provider doesn't know that you are rocking the latest M1 Mac, but they will understand the same "packaging" technology that hey are used to use it internally as many others industry whales work on.
-- This might sound like a shout to the void, but hear me for a second:
-  - *The cloud provider doesn't know how to configure your latest version of the bleeding edge compiler that you are using it*
-  - *Your client doesn't care about your well cared 200 steps build process*
-  - *And your internet doesn't have the same years in your back as you do and saw all that you did*
-- If you are just a rookie in the whole **"Programming World"** and this might see a little bit *too much* for you or even scary because your [NumPy](https://numpy.org/) + [Pandas](https://pandas.pydata.org/) never talked about all of this, my message to you is *"give it a try"* -- please take a look at [CFD](https://github.com/Fazendaaa/CFD) and take a look at many other tools that might be of your interesting, specially [Jinn](https://github.com/Fazendaaa/Jinn) if you don't know where or how to start it
+- O uso de containers por debaixo do capô ajuda acelerar o ciclo de desenvolvimento do qual participei; epecialmente se você está pensando em publicar depois na [AWS](https://aws.amazon.com/), [Heroku](https://www.heroku.com/), [Azure](https://azure.microsoft.com/en-us/), [Linode](https://www.linode.com/), [GCP](https://cloud.google.com/) e vários outros; reduzindo a lacuna entre serverless e não-serverles ambiente.
+- Não lute contra fazer seu projeto mais acessível para outros e por consequência fazer mais reproduzível para outros; seu provedor de nuvem não sabe que você está utilizando o Mac M1 mais recente, mas eles entendem a mesma tecnologia de "enpacotamento" que eles usam internamente para outros projetos que as "baleias" da indústrias trabalham.
+- Isso pode soar como um grito ao vento, mas por favor me ouça:
+  - *Seu provedor de nuvem não sabe como configurar o compilador bleeding edge que você usa*
+  - *Seu cliente não liga sobre a granularidade de 200 passos no processo de build*
+  - *E seu estagiário não possuí nas costas os mesmos anos de experiência que você e as marcas de batalha que você passou*
+- Se você é apenas um novato em todo o **Mundo de Programação** e pode ver tudo isso e pensar que é *um pouco demais* para você e até mesmo estar assustado porque seu curso de [NumPy](https://numpy.org/) + [Pandas](https://pandas.pydata.org/) nunca falou sobre isto, minha mensagem para ti é *"dê uma chance"* -- por favor dê uma olhada em [CFD](https://github.com/Fazendaaa/CFD) e veja  vários outras ferramentas que possam ser interessantes para ti, especialmente [Jinn](https://github.com/Fazendaaa/Jinn) se você não souber onde começar.
 
-More than a *Jake of all Trades* platform this project has as its core the purpose of sharing knowledge/learning uses case as its main virtue -- learn from your mistakes then share it as this might help others rather then just yourself
+Mais do que uma plataforma *"Faz tudo"*, este projeto tem ao seu cerne o propósito de compartilhar conhecimento/aprendizado e casos de uso como sua virtude principal -- aprender com as suas falhas e compartilhar elas pode ajudar os outros além de só você mesmo.
 
-## Usage
+## Uso
 
 ### init
 
-Shows already made made manifestos for you to choose from and use in your project allowing you to maintain an already project using something that would better fit your need:
+Lista manifestos já feitos para você escolher e usar no seu projeto, permitindo que você mantenha um projeto no qual já trabalha usando algo que atenda as suas necessidades:
 
 ```shell
 succ init
 ```
 
-### repl
+### interactive
 
 ```shell
-succ repl
+succ interactive
 ```
 
 ### add
@@ -168,41 +167,41 @@ succ test
 
 ## Running
 
-You don't need to install Go to run this tool, just Docker. And to do so to give it a try, you can do it just by running the following line in your terminal:
+Você não precisa instalar Go para rodar esta ferramenta, apenas o Docker. E para fazer isso e dar um *test-drive*, você pode fazer isso apenas colando a seguinte linha no seu terminal:
 
 ```shell
 alias succ='docker run -it --volume $(pwd):/project --workdir /project fazenda/succubus'
 ```
 
-And then running the following to check whether or not is working properly:
+E só rodar o seguinte comando para ver se tudo está funcionado de acordo ao esperado:
 
 ```shell
 succ --help
 ```
 
-This approach has some limitations but is a great way to tip your toes and start right way using the tool; if your needs aren't meet by it, you can always [install](#installing) the tool.
+Esta abordagem possuí algumas limitações porem é uma grande maneira de molhar seus dedos e iniciar logo a usar a ferramenta; se suas necessidades não forem suportadas por esta maneira você pode sempre procurar [instalar](#instalar) ela.
 
-## Engines
+## Motores
 
-I know that Docker Inc is kinda of a "hot topic" in some circles, that's why this tool tries to maintain itself behind an *Engine* abstraction layer, allowing a east swap in replacement if need to do so
+Eu sei que a empresa Docker é meio que um "B.O." em alguns circulos, por isso que a ideia desta ferramenta é procurar se manter atrás de uma camada de *Motor* de abstração, permitindo uma troca se necessária.
 
-## Installing
+## Instalar
 
-## Author
+## Autor
 
-Only [me](https://github.com/Fazendaaa) because the aforementioned project was implemented by yours only. By knowing each line of that code wrote doing the port would be more easily done this way.
+Apenas [eu](https://github.com/Fazendaaa) porque o projeto já mencionado foi implementado por mim mesmo. Por conhecer cada linha daquele código, fazer o port seria mais fácil dessa maneira.
 
-## Contributing
+## Contribuindo
 
-Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list of some of our contributors:
+Veja mais sobre como contribuir [aqui](CONTRIBUTING.md). Aqui temos uma lista dos contribuidores:
 
 {{ template:contributors }}
 
-## TODO
+## A fazer
 
-## References
+## Referências
 
-### Repositories
+### Repositórios
 
 - [golang-standards/project-layout](https://github.com/golang-standards/project-layout)
 - [devspace/awesome-github-templates](https://github.com/devspace/awesome-github-templates)
@@ -214,7 +213,7 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 - [THE BASICS: 7 Alternatives to Docker: All-in-One Solutions and Standalone Container Tools](https://jfrog.com/knowledge-base/the-basics-7-alternatives-to-docker-all-in-one-solutions-and-standalone-container-tools/)
 - [I'll take pkg over internal](https://travisjeffery.com/b/2019/11/i-ll-take-pkg-over-internal/)
 
-### Norms
+### Normas
 
 - [Shell Grammar Rules](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_10_02)
 
