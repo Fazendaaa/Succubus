@@ -298,6 +298,10 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 
 - [Shell Grammar Rules](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_10_02)
 
+### Forums
+
+- [Why do I get a “cannot assign” error when setting value to a struct as a value in a map? [duplicate]](https://stackoverflow.com/a/32751792/7092954)
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#license)
 

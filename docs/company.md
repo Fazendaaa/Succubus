@@ -5,8 +5,8 @@ This doc shows some of the benefits of using Succubus as a Project tool in your 
 Some of the benefits are related to:
 
 - No need to install any compiler/interpreter in your team machines
-- You can remove the `Dockerfile` from the repo -- avoiding someone messing with it just to go through some CI/CD stage --
-- Avoids some compiler updates breaking the operational system and vice-versa
+- You can remove the `Dockerfile` from the repo -- avoiding someone messing with it just to go through some CI/CD stage
+- Avoids some compiler updates breaking the operational system and the other way around
 - Your team can use a plethora of Operational Systems (OSes) in their more different versions and architectures -- it won't break the Project development cycle
 - You can upgrade your whole Project framework/compiler version by just changing one line
 - etc.
@@ -23,12 +23,15 @@ Besides that, you won't need to know Go or even anything related to Docker or ev
 
 - You have a current running Project in which many developers are having issues in CI/CD because they missed some dependency just by adding it to their machines
 - You cannot easily test many different package/languages versions without having headaches when everything fails
+- You want to enjoy the "container way of life" benefits without having to training your whole team to do so
+- Run your whole Project in a different CPU architecture? No problem, *"the king is dead, long live the king"*
+- Want to try [GraalVM](https://www.graalvm.org/) without having to install it? Or even removing after you decided to stay the way things are? No problems
 
 ## Due diligence
 
 > This code is Free and Open Source Software (FOSS) and always will be!
 
-The whole idea behind this project is to allow many people to better understand the container technology and better fit it to their needs, in every single imaginable project that there's out there. That's why a solid implementation is needed and that's also one of the reasons that this project uses
+The whole idea behind this project is to allow many people to better understand the container technology and better fit it to their needs, in every single imaginable project that there's out there. That's why a solid implementation is needed and that's also one of the reasons that Succubus uses Succubus to maintain itself.
 
 ## Zero Trust
 
