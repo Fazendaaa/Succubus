@@ -48,3 +48,17 @@ func copyMap(origin map[string][]string) (dest map[string][]string, fail error) 
 
 	return dest, fail
 }
+
+// keysOf
+// It returns
+func keysOf(origin map[string]*Task) (keys []string, fail error) {
+	keys = make([]string, len(origin))
+	index := 0
+
+	for key, _ := range origin {
+		keys[index] = key
+		index += 1
+	}
+
+	return keys, fail
+}

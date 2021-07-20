@@ -83,9 +83,9 @@ func checkTask(origin Task) (task *Task, fail error) {
 	return task, fail
 }
 
-// checkRequired
-// It returns the required Objective or the error associated with it
-func checkRequired(origin Objective, values []string) (objective *Objective, fail error) {
+// checkObjective
+// It returns the read Objective or the error associated with it
+func checkObjective(origin Objective, values []string) (objective *Objective, fail error) {
 	objective = &Objective{}
 	objective.name = origin.name
 	objective.container = origin.container
@@ -96,27 +96,6 @@ func checkRequired(origin Objective, values []string) (objective *Objective, fai
 
 		if nil != fail {
 			return objective, fmt.Errorf("%w;\n'%s' rule presented task", fail, task)
-		}
-	}
-
-	// Check for more than pre-defined values
-
-	return objective, fail
-}
-
-// checkExtended
-// It returns the Objective or the error associated with it
-func checkExtended(origin Objective) (objective *Objective, fail error) {
-	objective = &Objective{}
-	objective.name = origin.name
-	objective.container = origin.container
-	objective.tasks = make(map[string]*Task)
-
-	for key, value := range origin.tasks {
-		objective.tasks[key], fail = checkTask(*(value))
-
-		if nil != fail {
-			return objective, fmt.Errorf("%w;\n'%s' rule presented task", fail, key)
 		}
 	}
 
@@ -134,7 +113,7 @@ func checkObjectives(origin Objectives) (objectives Objectives, fail error) {
 	}
 
 	for key, value := range origin.required {
-		objectives.objectives[key], fail = checkRequired(*(origin.objectives[key]), value)
+		objectives.objectives[key], fail = checkObjective(*(origin.objectives[key]), value)
 
 		if nil != fail {
 			return objectives, fmt.Errorf("%w;\nrequire '%s' objective is malformed", fail, key)
@@ -147,7 +126,13 @@ func checkObjectives(origin Objectives) (objectives Objectives, fail error) {
 			continue
 		}
 
-		objectives.objectives[key], fail = checkExtended(*value)
+		values, fail := keysOf(value.tasks)
+
+		if nil != fail {
+			return objectives, fmt.Errorf("%w;\nrequire '%s' objective is malformed", fail, key)
+		}
+
+		objectives.objectives[key], fail = checkObjective(*value, values)
 
 		if nil != fail {
 			return objectives, fmt.Errorf("%w;\nextended objective malformed", fail)
