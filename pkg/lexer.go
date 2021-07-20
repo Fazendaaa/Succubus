@@ -107,8 +107,6 @@ func tasksToObjective(origin map[interface{}]interface{}) (tasks map[string]*Tas
 		}
 
 		tasks[name].name = name
-
-		fmt.Printf("%#v\n", tasks[name])
 	}
 
 	return tasks, fail

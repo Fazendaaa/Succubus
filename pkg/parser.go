@@ -55,6 +55,7 @@ func checkCommands(origin Commands) (commands Commands, fail error) {
 // checkTask check for a Task corectness
 // It returns a fixed Task or an error
 func checkTask(origin Task) (task *Task, fail error) {
+	task = &Task{}
 	task.container, fail = checkContainer(origin.container)
 
 	if nil != fail {
@@ -85,6 +86,11 @@ func checkTask(origin Task) (task *Task, fail error) {
 // checkRequired
 // It returns the required Objective or the error associated with it
 func checkRequired(origin Objective, values []string) (objective *Objective, fail error) {
+	objective = &Objective{}
+	objective.name = origin.name
+	objective.container = origin.container
+	objective.tasks = make(map[string]*Task)
+
 	for _, task := range values {
 		objective.tasks[task], fail = checkTask(*(origin.tasks[task]))
 
@@ -101,6 +107,11 @@ func checkRequired(origin Objective, values []string) (objective *Objective, fai
 // checkExtended
 // It returns the Objective or the error associated with it
 func checkExtended(origin Objective) (objective *Objective, fail error) {
+	objective = &Objective{}
+	objective.name = origin.name
+	objective.container = origin.container
+	objective.tasks = make(map[string]*Task)
+
 	for key, value := range origin.tasks {
 		objective.tasks[key], fail = checkTask(*(value))
 
@@ -115,6 +126,13 @@ func checkExtended(origin Objective) (objective *Objective, fail error) {
 // checkObjectives
 // It returns all Objectives or the error associated with it
 func checkObjectives(origin Objectives) (objectives Objectives, fail error) {
+	objectives.objectives = make(map[string]*Objective)
+	objectives.required, fail = copyMap(origin.required)
+
+	if nil != fail {
+		return objectives, fmt.Errorf("%w;\nError while copying required objectives", fail)
+	}
+
 	for key, value := range origin.required {
 		objectives.objectives[key], fail = checkRequired(*(origin.objectives[key]), value)
 

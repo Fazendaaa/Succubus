@@ -47,6 +47,202 @@ func TestParser(t *testing.T) {
 						"doc",
 					},
 				},
+				objectives: map[string]*Objective{
+					"base": &Objective{
+						name:      "base",
+						container: Container{},
+						tasks: map[string]*Task{
+							"run": &Task{
+								name:      "run",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"exit 0",
+									},
+								},
+							},
+							"test": &Task{
+								name:      "test",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"go test --verbose",
+									},
+								},
+							},
+							"add": &Task{
+								name:      "add",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "ENV",
+											destiny: "ENV",
+										},
+									},
+									commands: []string{
+										"go get $$ARGV[0]",
+									},
+								},
+							},
+							"rm": &Task{
+								name:      "rm",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"go mod tidy",
+									},
+								},
+							},
+						},
+					},
+					"dev": &Objective{
+						name:      "dev",
+						container: Container{},
+						tasks: map[string]*Task{
+							"anal": &Task{
+								name:      "anal",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"gosec -fmt=sonarqujbe -out report.json ./..",
+									},
+								},
+							},
+							"linter": &Task{
+								name:      "linter",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"golangci-lint run",
+									},
+								},
+							},
+							"doc": &Task{
+								name:      "doc",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"go doc .",
+									},
+								},
+							},
+						},
+					},
+					"extended": &Objective{
+						name:      "extended",
+						container: Container{},
+						tasks: map[string]*Task{
+							"coverage": &Task{
+								name:      "coverage",
+								container: Container{},
+								env_file:  "",
+								env: []Env{
+									{
+										source:  "",
+										destiny: "",
+									},
+								},
+								commands: Commands{
+									env: []Env{
+										{
+											source:  "",
+											destiny: "",
+										},
+									},
+									commands: []string{
+										"go test -cover ./...",
+									},
+								},
+							},
+						},
+					},
+				},
 			},
 		}
 		value, fail := ParseProject(src)
@@ -56,7 +252,7 @@ func TestParser(t *testing.T) {
 		}
 
 		if !reflect.DeepEqual(src, value) {
-			t.Errorf("got mismatching configurations:\n%v\n%v", src, value)
+			t.Errorf("got mismatching configurations:\n%#v\n\n%#v", src, value)
 		}
 	})
 }

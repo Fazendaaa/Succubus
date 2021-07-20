@@ -9,7 +9,7 @@ objectives:
       commands:
         get:
           env_file: /home/user/foo/bar
-          command: go get $ARGV[0]
+          command: go get $$ARGV[0]
       env:
         - ENV=${ENV}
     rm:

@@ -36,3 +36,15 @@ func removeEmptyStrings(s []string) []string {
 	}
 	return r
 }
+
+// copyMap
+// It returns
+func copyMap(origin map[string][]string) (dest map[string][]string, fail error) {
+	dest = make(map[string][]string)
+
+	for key, value := range origin {
+		dest[key] = value
+	}
+
+	return dest, fail
+}
