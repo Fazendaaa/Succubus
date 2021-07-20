@@ -30,7 +30,8 @@ Currently, in the company that I work for we have a CLI (Command Line Interface)
 - Succubus is a language/framework agnostic project manager and development manifest
 - It works by declaring objectives inside the given project
 - Each objective is a sequence of tasks
-- And a task is formed by determined rules
+- And a task is formed by determined commands
+- [Business](docs/company.md)/personal support so you can adjust the tool in the way to meet your own needs
 
 Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./succ.yaml) presented here. And the best part to start using it is that you don't even need to install it to run and maintain all of your projects made using a plethora of languages/frameworks and theirs respective versions.
 
@@ -217,5 +218,9 @@ Check more about this in [CONTRIBUTING.md](CONTRIBUTING.md). Here we have a list
 ### Norms
 
 - [Shell Grammar Rules](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_10_02)
+
+### Forums
+
+- [Why do I get a “cannot assign” error when setting value to a struct as a value in a map? [duplicate]](https://stackoverflow.com/a/32751792/7092954)
 
 {{ template:license }}

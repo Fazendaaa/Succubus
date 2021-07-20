@@ -23,3 +23,16 @@ func isLower(s string) (ok bool) {
 	}
 	return true
 }
+
+// removeEmptyStrings - Use this to remove empty string values inside an array.
+// https://gist.github.com/johnpili/84c3064d30a9b041c87e43ba4bcb63a2
+// This happens when allocation is bigger and empty
+func removeEmptyStrings(s []string) []string {
+	var r []string
+	for _, str := range s {
+		if str != "" {
+			r = append(r, str)
+		}
+	}
+	return r
+}

@@ -31,6 +31,7 @@ Atualmente na empresa que eu trabalho nós possuímos uma CLI (Command Line Inte
 - Ela funciona por declarar objetivos dentro de um projeto
 - Cada objetivo é uma sequência de tarefas
 - E cada tarefa é formada por determinadas regras
+- Suporte para sua [empresa](docs/company.pt.md)/seus projetos poderem ter a sua versao dela que atenda melhor as suas necessidades
 
 Succubus é utilizado para manter Succubus, você pode ver no arquivo [succ.yaml](./succ.yaml) aqui declarado. E a melhor parte é que você pode utilizar ele sem precisar instalá-lo e as respectivas linguagens, frameworks e pacotes que irá utilizar.
 
@@ -216,5 +217,9 @@ Veja mais sobre como contribuir [aqui](CONTRIBUTING.md). Aqui temos uma lista do
 ### Normas
 
 - [Shell Grammar Rules](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_10_02)
+
+### Forums
+
+- [Why do I get a “cannot assign” error when setting value to a struct as a value in a map? [duplicate]](https://stackoverflow.com/a/32751792/7092954)
 
 {{ template:license }}

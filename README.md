@@ -55,7 +55,8 @@ Currently, in the company that I work for we have a CLI (Command Line Interface)
 - Succubus is a language/framework agnostic project manager and development manifest
 - It works by declaring objectives inside the given project
 - Each objective is a sequence of tasks
-- And a task is formed by determined rules
+- And a task is formed by determined commands
+- [Business](docs/company.md)/personal support so you can adjust the tool in the way to meet your own needs
 
 Succubus is used to maintain Succubus, as you can see it in the [succ.yaml](./succ.yaml) presented here. And the best part to start using it is that you don't even need to install it to run and maintain all of your projects made using a plethora of languages/frameworks and theirs respective versions.
 

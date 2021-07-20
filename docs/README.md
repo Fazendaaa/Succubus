@@ -22,7 +22,7 @@
 
 ## What is it?
 
-- Succubus uses a project driven approach to handle software development through a "Broker Model", making it clear and enforcing the rules to each and every project that it handles it.
+- Succubus uses a project driven approach to handle software development through a "Broker Model", making it clear and enforcing the commands to each and every project that it handles it.
 - Succubus is expansible, so that you can add your own "flavor" to it
 - Works across many different OSes and their respective versions
 - Reduces the time to develop projects and deploy them by running it the code inside a control environment during development
@@ -30,6 +30,7 @@
 - A idempotence approach that avoids some unknown factor to break your development flow
 - Since Succubus doesn't required OS level requirements to handle the Project cycle, you won't have to poke around solutions like homebrew, chocolatey or any Linux package manager for that matter
 - Helps to execute old Projects in newer OSes and to execute new Projects in older OSes -- that sets people free to execute in any OS without having the need to update the Project to a whole new environment or downgrade the OS or even run it in a VM (Virtual Machine) just to execute the Project
+- Support for businesses -- read more at [company](company.md)
 
 ### Basics
 
@@ -180,10 +181,7 @@ The concept behind the whole "manifest" idea is to make it easier to deploy a ne
 | |----------------------| |
 | |        Tasks         | |
 | | |------------------| | |
-| | |      Rules       | | |
-| | | |--------------| | | |
-| | | |   Commands   | | | |
-| | | |--------------| | | |
+| | |     Commands     | | |
 | | |------------------| | |
 | |----------------------| |
 |--------------------------|
@@ -193,8 +191,7 @@ The core idea is to develop a project based in a set of concepts:
 
 1. A Project is formed by Objectives
 2. Those Objectives are formed by Tasks
-3. Those Tasks are a set of Rules
-4. And each Rule is a sequence of Commands
+3. And each Tasks is a sequence of Commands
 
 You can look at this like a [docker-compose](https://docs.docker.com/compose/) joining forces with [npm](https://www.npmjs.com/) to help maintain healthy a project.
 
@@ -252,7 +249,7 @@ This whole process also helps you to automate tasks later on down de line like:
 - Benchmarks
 - and so on
 
-That's because you are controling the environment rules, that's improve reproducibility by a lot as a side effect. You can see this as a FAB (Semiconductor fabrication plant) factory in which, by running 24/7, many teams are needed so that whole process can easily occurs without any hiccup; so FABs usually have [95% of its fabrication process automate](https://www.youtube.com/watch?v=FP_g-as29x0&feature=youtu.be) so many teams can work upon the same product during different steps of its fabrication. In a development environment this would mean that someone can take upon the work of the previous team without having to worry about having to configuring anything, just continue to work right after where the previous team/person stopped.
+That's because you are controling the environment commands, that's improve reproducibility by a lot as a side effect. You can see this as a FAB (Semiconductor fabrication plant) factory in which, by running 24/7, many teams are needed so that whole process can easily occurs without any hiccup; so FABs usually have [95% of its fabrication process automate](https://www.youtube.com/watch?v=FP_g-as29x0&feature=youtu.be) so many teams can work upon the same product during different steps of its fabrication. In a development environment this would mean that someone can take upon the work of the previous team without having to worry about having to configuring anything, just continue to work right after where the previous team/person stopped.
 
 ![jit](https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/jit.jpg)
 

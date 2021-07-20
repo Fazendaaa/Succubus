@@ -8,7 +8,6 @@
     - [Base](#base)
     - [Development](#development)
     - [Extended](#extended)
-  - [Rules](#rules)
   - [Commands](#commands)
 
 You can read more how can you take more advantage of it reading how the [container](container.md) containers works.
@@ -69,7 +68,7 @@ Docker-Compose are a great and readable way to define a system, but they are lim
 
 ## Tasks
 
-Tasks are the are the set of [Rules](#rules) in which every [Objective](#objectives) is defined upon.
+Tasks are the are the set of [Commands](#commands) in which every [Objective](#objectives) is defined upon.
 
 ### Base
 
@@ -106,26 +105,15 @@ Tasks are the are the set of [Rules](#rules) in which every [Objective](#objecti
 ...
 ```
 
-## Rules
-
-```yaml
-...
-base:
-  run: echo "Hello, World"
-  add: echo "Hello, World"
-  rm: echo "Hello, World"
-  test: echo "Hello, World"
-...
-```
-
 ## Commands
 
 ```yaml
 ...
 base:
-  run: |
-    echo "Hello, World"
-    echo "foo bar"
+  run:
+    env:
+      TEST="foo"
+    commands: echo "${TEST} bar"
 ...
 ```
 

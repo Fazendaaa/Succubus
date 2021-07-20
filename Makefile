@@ -1,3 +1,5 @@
+all: doc
+
 doc:
 	@docker buildx build \
 		--file docs/Dockerfile \

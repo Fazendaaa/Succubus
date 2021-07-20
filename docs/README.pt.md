@@ -30,6 +30,7 @@
 - Uma abordagem idempotente que evita fatores desconhecidos de quebrarem o fluxo de desenvolvimento
 - Como Succubus não precisa de nenhum requisito em nível de sistema operacional (SO) para cuidar do desenvolvimento do ciclo de um projeto, você não terá que ficar perdendo seu tempo com soluções como howebrew, chocolatey ou qualquer gerenciador de pacotes de Linux
 - Facilita a execução de Projetos antigos em sistemas novos e Projetos novos em sistemas antigos -- o que dá liberdade pra não ter que atualizar um SO só para atualizar um projeto ou ter que rodar uma versão antiga de um SO em virtual machine (VM)
+- Suporte para empresas -- leia mais em [company](company.pt.md)
 
 ### Fundamentos
 

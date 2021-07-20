@@ -1,6 +1,8 @@
 package succubus
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // checkEnv looks for the environment variables is declared in the same was
 // docker-compose does, besides checks the source one is declared to avoid any
@@ -44,14 +46,15 @@ func checkContainer(origin Container) (container Container, fail error) {
 	return Container(origin), fail
 }
 
-// checkRules
-func checkRules(origin Rules) (rules Rules, fail error) {
-	return rules, fail
+// checkCommands
+// It returns
+func checkCommands(origin Commands) (commands Commands, fail error) {
+	return commands, fail
 }
 
 // checkTask check for a Task corectness
 // It returns a fixed Task or an error
-func checkTask(origin Task) (task Task, fail error) {
+func checkTask(origin Task) (task *Task, fail error) {
 	task.container, fail = checkContainer(origin.container)
 
 	if nil != fail {
@@ -70,130 +73,67 @@ func checkTask(origin Task) (task Task, fail error) {
 		return task, fmt.Errorf("%w;\nenv malformed in the task", fail)
 	}
 
-	task.rules, fail = checkRules(origin.rules)
+	task.commands, fail = checkCommands(origin.commands)
 
 	if nil != fail {
-		return task, fmt.Errorf("%w;\nrules malformed in the task", fail)
+		return task, fmt.Errorf("%w;\ncommands malformed in the task", fail)
 	}
 
 	return task, fail
 }
 
-// checkBase
-// It returns the Base objective or the error associated with it
-func checkBase(origin Base) (base Base, fail error) {
-	base.add, fail = checkTask(origin.add)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\nadd rule presented in base task", fail)
-	}
-
-	base.rm, fail = checkTask(origin.rm)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\nrm rule presented in base task", fail)
-	}
-
-	base.test, fail = checkTask(origin.test)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\ntest rule presented in base task", fail)
-	}
-
-	base.test, fail = checkTask(origin.test)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\ntest rule presented in base task", fail)
-	}
-
-	return base, fail
-}
-
-// checkDev
-// It returns the Dev objective or the error associated with it
-func checkDev(origin Dev) (dev Dev, fail error) {
-	dev.doc, fail = checkTask(origin.doc)
-
-	if nil != fail {
-		return dev, fmt.Errorf("%w;\ndoc rule presented in base task", fail)
-	}
-
-	dev.anal, fail = checkTask(origin.anal)
-
-	if nil != fail {
-		return dev, fmt.Errorf("%w;\nanal rule presented in base task", fail)
-	}
-
-	dev.linter, fail = checkTask(origin.linter)
-
-	if nil != fail {
-		return dev, fmt.Errorf("%w;\nlinter rule presented in base task", fail)
-	}
-
-	return dev, fail
-}
-
-// checkObjective
-// It returns the Objective or the error associated with it
-func checkObjective(origin interface{}) (objective map[interface{}]interface{}, fail error) {
-	converted, ok := origin.(map[interface{}]interface{})
-
-	if !ok {
-		return objective, fmt.Errorf("invalid objective declaration")
-	}
-
-	for key, element := range converted {
-		objective[key], fail = taskToObjective(element)
+// checkRequired
+// It returns the required Objective or the error associated with it
+func checkRequired(origin Objective, values []string) (objective *Objective, fail error) {
+	for _, task := range values {
+		objective.tasks[task], fail = checkTask(*(origin.tasks[task]))
 
 		if nil != fail {
-			return objective, fmt.Errorf("%w;\ninvalid task -- '%s' -- in the objective", fail, key)
+			return objective, fmt.Errorf("%w;\n'%s' rule presented task", fail, task)
+		}
+	}
+
+	// Check for more than pre-defined values
+
+	return objective, fail
+}
+
+// checkExtended
+// It returns the Objective or the error associated with it
+func checkExtended(origin Objective) (objective *Objective, fail error) {
+	for key, value := range origin.tasks {
+		objective.tasks[key], fail = checkTask(*(value))
+
+		if nil != fail {
+			return objective, fmt.Errorf("%w;\n'%s' rule presented task", fail, key)
 		}
 	}
 
 	return objective, fail
 }
 
-// checkExtended
-// It returns the Extendeds objective or the error associated with it
-func checkExtended(origin []Extended) (extended []Extended, fail error) {
-	for userDefined := range origin {
-		element, fail := checkObjective(userDefined)
-
-		if nil != fail {
-			return extended, fmt.Errorf("%w;\n", fail)
-		}
-
-		converted, ok := element.(map[string]Extended)
-
-		if !ok {
-			return extended, fmt.Errorf("")
-		}
-
-		extended = append(extended, converted)
-	}
-
-	return extended, fail
-}
-
 // checkObjectives
 // It returns all Objectives or the error associated with it
 func checkObjectives(origin Objectives) (objectives Objectives, fail error) {
-	objectives.base, fail = checkBase(origin.base)
+	for key, value := range origin.required {
+		objectives.objectives[key], fail = checkRequired(*(origin.objectives[key]), value)
 
-	if nil != fail {
-		return objectives, fmt.Errorf("%w;\nbase objective malformed", fail)
+		if nil != fail {
+			return objectives, fmt.Errorf("%w;\nrequire '%s' objective is malformed", fail, key)
+		}
 	}
 
-	objectives.dev, fail = checkDev(origin.dev)
+	for key, value := range origin.objectives {
+		// Don't recheck the required ones
+		if nil != origin.required[key] {
+			continue
+		}
 
-	if nil != fail {
-		return objectives, fmt.Errorf("%w;\ndev objective malformed", fail)
-	}
+		objectives.objectives[key], fail = checkExtended(*value)
 
-	objectives.extended, fail = checkExtended(origin.extended)
-
-	if nil != fail {
-		return objectives, fmt.Errorf("%w;\nextended objective malformed", fail)
+		if nil != fail {
+			return objectives, fmt.Errorf("%w;\nextended objective malformed", fail)
+		}
 	}
 
 	return objectives, fail
@@ -259,7 +199,7 @@ func ParseProject(origin Project) (project Project, fail error) {
 	project.container, fail = checkContainer(origin.container)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed container  in project", fail)
+		return project, fmt.Errorf("%w;\nmalformed container in project", fail)
 	}
 
 	project.objectives, fail = checkObjectives(origin.objectives)

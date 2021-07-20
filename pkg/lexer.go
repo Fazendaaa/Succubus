@@ -3,6 +3,7 @@ package succubus
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"gopkg.in/yaml.v2"
 )
@@ -40,210 +41,113 @@ func interfaceToContainer(origin interface{}) (container Container, fail error) 
 	return container, fail
 }
 
-//
-func simpleCommandsToRules(origin string) (rules Rules, fail error) {
-	return rules, fail
+// containerToObjective
+// It return
+func containerToObjective(origin interface{}) (container Container, fail error) {
+	return container, fail
 }
 
-//
-func complexCommandsToRules(origin interface{}) (rules Rules, fail error) {
-	values, ok := origin.(map[interface{}]interface{})
+// commandsToTask
+// It return
+func commandToTask(origin interface{}) (commands Commands, fail error) {
+	command, ok := origin.(string)
 
 	if !ok {
-		return rules, fmt.Errorf("malformed command declaration")
+		return commands, fmt.Errorf("malformed '%s' task", command)
 	}
 
-	_, ok = values["commands"]
+	commands.commands = removeEmptyStrings(strings.Split(command, "\n"))
 
-	if !ok {
-		return rules, fmt.Errorf("malformed rules declaration")
-	}
-
-	if _, ok := values["env"]; ok {
-		return rules, fmt.Errorf("malformed rules declaration")
-	}
-
-	if _, ok := values["env_file"]; ok {
-		return rules, fmt.Errorf("malformed rules declaration")
-	}
-
-	return rules, fail
+	return commands, fail
 }
 
-// commandsToRules handles cases when rules as explicit with or without
-// environments variables presents.
-// It returns the equivalent
-func commandsToRules(origin interface{}) (rules Rules, fail error) {
-	if values, ok := origin.(string); ok {
-		return simpleCommandsToRules(values)
-	}
+func complexTask(origin map[interface{}]interface{}) (task *Task, fail error) {
+	task = &Task{}
+	// if nil != value["container"] {
+	// 	tasks[name].container = container
+	// }
+	// if nil != value["env"] {
 
-	return complexCommandsToRules(origin)
-}
+	// }
+	// if nil != value["env_file"] {
 
-// rulesToTask handles the case when the a Command is:
-// - just a command
-// - a command and/or env
-// - a sequence of both previous
-// It returns an error when the task is not a valid one
-func rulesToTask(origin interface{}) (task Task, fail error) {
-	values, ok := origin.(map[interface{}]interface{})
-
-	if !ok {
-		return task, fmt.Errorf("command malformed")
-	}
-
-	if _, ok = values["commands"]; !ok {
-		return task, fmt.Errorf("rules malformed, missing 'commands' definition")
-	}
-
-	commands, fail := commandsToRules(values["commands"])
-
-	if nil != fail {
-		return task, fmt.Errorf("%w;", fail)
-	}
-
-	task.rules = commands
-
-	if _, ok = values["env"]; ok {
-		// task.env = values["env"]
-	}
-
-	return task, fail
-}
-
-// stringToTasks converts the basic scenario when a command is just a simple
-// string.
-// It returns a Task object.
-func stringToTasks(origin interface{}) (task Task, fail error) {
-	// command, ok := origin.(string)
-	_, ok := origin.(string)
-
-	if !ok {
-		return task, fmt.Errorf("could not convert command")
-	}
-
-	// task.rules = []Command{
-	// 	{
-	// 		env:     []string{""},
-	// 		command: command,
-	// 	},
+	// }
+	// if nil != value["commands"] {
+	// 	tasks[name].command, fail = commandToTask(value)
+	// } else {
+	// 	tasks[name].command, fail = commandToTask(value)
 	// }
 
 	return task, fail
 }
 
-// taskToObjective handles the interface to Task conversion.
-// It returns a sequence of Task structures.
-func taskToObjective(origin interface{}) (task Task, fail error) {
-	task, fail = stringToTasks(origin)
-
-	if nil != fail {
-		return rulesToTask(origin)
-	}
-
-	return task, fail
-}
-
-// baseToObjective just handles the base tag conversion.
-// It returns a error if anything is wrong, like a nested structure or something
-// like it.
-func baseToObjective(origin map[interface{}]interface{}) (base Base, fail error) {
-	run, ok := origin["run"]
-
-	if !ok {
-		return base, fmt.Errorf("%w;\nmissing 'run' rules", fail)
-	}
-
-	base.run, fail = taskToObjective(run)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\nmalformed 'run' rules", fail)
-	}
-
-	add, ok := origin["add"]
-
-	if !ok {
-		return base, fmt.Errorf("%w;\nmissing 'add' rules", fail)
-	}
-
-	base.add, fail = taskToObjective(add)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\nmalformed 'add' rules", fail)
-	}
-
-	rm, ok := origin["rm"]
-
-	if !ok {
-		return base, fmt.Errorf("%w;\nmissing 'rm' rules", fail)
-	}
-
-	base.rm, fail = taskToObjective(rm)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\nmalformed 'rm' rules", fail)
-	}
-
-	test, ok := origin["test"]
-
-	if !ok {
-		return base, fmt.Errorf("%w;\nmissing 'test' rules", fail)
-	}
-
-	base.test, fail = taskToObjective(test)
-
-	if nil != fail {
-		return base, fmt.Errorf("%w;\nmalformed 'test' rules", fail)
-	}
-
-	return base, fail
-}
-
-// devToObjective just handles the dev tag conversion.
-// It returns a error if anything is wrong, like a nested structure or something
-// like it.
-func devToObjective(origin map[interface{}]interface{}) (dev Dev, fail error) {
-	return dev, fail
-}
-
-// extendedToObjective just handles the extended tag conversion.
-// It returns a error if anything is wrong, like a nested structure or something
-// like it.
-func extendedToObjective(origin map[interface{}]interface{}) (extendeds []Extended, fail error) {
-	return extendeds, fail
-}
-
-// tasksToObjectives
+// tasksToObjective
 // It return
-func tasksToObjectives(origin map[interface{}]interface{}) (objectives Objectives, fail error) {
-	if _, ok := origin["base"]; !ok {
-		return objectives, fmt.Errorf("missing 'base' objective")
-	}
-	if _, ok := origin["dev"]; !ok {
-		return objectives, fmt.Errorf("missing 'dev' objective")
+func tasksToObjective(origin map[interface{}]interface{}) (tasks map[string]*Task, fail error) {
+	tasks = make(map[string]*Task)
+
+	for key, value := range origin {
+		name, ok := key.(string)
+
+		if !ok {
+			return tasks, fmt.Errorf("malformed '%s' task", name)
+		}
+
+		complex, ok := value.(map[interface{}]interface{})
+
+		if ok {
+			tasks[name], fail = complexTask(complex)
+		} else {
+			tasks[name] = &Task{}
+			tasks[name].commands, fail = commandToTask(value)
+		}
+
+		if nil != fail {
+			return tasks, fmt.Errorf("%w;\nmalformed '%s' complex task", fail, name)
+		}
+
+		tasks[name].name = name
+
+		fmt.Printf("%#v\n", tasks[name])
 	}
 
-	base, ok := origin["base"].(map[interface{}]interface{})
+	return tasks, fail
+}
 
-	if !ok {
-		return objectives, fmt.Errorf("malformed 'base' objective")
-	}
+// objectiveToObjectives handles the reading process of Objective to Objetives,
+// as the required values cannot be declared in the manifest, it won't be
+// populated
+// It return the Objectives
+func objectiveToObjectives(origin map[interface{}]interface{}) (objectives Objectives, fail error) {
+	objectives.objectives = make(map[string]*Objective)
 
-	dev, ok := origin["dev"].(map[interface{}]interface{})
+	for key, value := range origin {
+		name, ok := key.(string)
 
-	if !ok {
-		return objectives, fmt.Errorf("malformed 'dev' objective")
-	}
+		if !ok {
+			return objectives, fmt.Errorf("malformed '%s' objective", name)
+		}
 
-	if objectives.base, fail = baseToObjective(base); nil != fail {
-		return objectives, fail
-	}
-	if objectives.dev, fail = devToObjective(dev); nil != fail {
-		return objectives, fail
-	}
-	if objectives.extended, fail = extendedToObjective(origin); nil != fail {
-		return objectives, fail
+		objectives.objectives[name] = &Objective{}
+		objectives.objectives[name].name = name
+		read, ok := value.(map[interface{}]interface{})
+
+		if !ok {
+			return objectives, fmt.Errorf("malformed '%s' objective", name)
+		}
+
+		if nil != read["container"] {
+			objectives.objectives[name].container, fail = containerToObjective(read["container"])
+		}
+		if nil != fail {
+			return objectives, fmt.Errorf("%w;\nmalformed container declaration in '%s' objective", fail, name)
+		}
+
+		objectives.objectives[name].tasks, fail = tasksToObjective(read)
+
+		if nil != fail {
+			return objectives, fmt.Errorf("%w;\nmalformed tasks in '%s' objective", fail, name)
+		}
 	}
 
 	return objectives, fail
@@ -283,7 +187,7 @@ func objetivesToProject(origin map[interface{}]interface{}) (objectives Objectiv
 		return objectives, fmt.Errorf("malformed objectives")
 	}
 
-	objectives, fail = tasksToObjectives(read)
+	objectives, fail = objectiveToObjectives(read)
 
 	if nil != fail {
 		return objectives, fmt.Errorf("%w;\nobjectives presented and malformed", fail)

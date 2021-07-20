@@ -56,6 +56,7 @@ Atualmente na empresa que eu trabalho nós possuímos uma CLI (Command Line Inte
 - Ela funciona por declarar objetivos dentro de um projeto
 - Cada objetivo é uma sequência de tarefas
 - E cada tarefa é formada por determinadas regras
+- Suporte para sua [empresa](docs/company.pt.md)/seus projetos poderem ter a sua versao dela que atenda melhor as suas necessidades
 
 Succubus é utilizado para manter Succubus, você pode ver no arquivo [succ.yaml](./succ.yaml) aqui declarado. E a melhor parte é que você pode utilizar ele sem precisar instalá-lo e as respectivas linguagens, frameworks e pacotes que irá utilizar.
 

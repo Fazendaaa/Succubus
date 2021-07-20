@@ -87,18 +87,6 @@ You can read more how can you take more advantage of it reading how the [contain
 ...
 ```
 
-## Rules
-
-```yaml
-...
-base:
-  run: echo "Hello, World"
-  add: echo "Hello, World"
-  rm: echo "Hello, World"
-  test: echo "Hello, World"
-...
-```
-
 ## Commands
 
 ```yaml

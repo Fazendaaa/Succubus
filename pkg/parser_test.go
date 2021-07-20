@@ -34,101 +34,19 @@ func TestParser(t *testing.T) {
 				},
 			},
 			objectives: Objectives{
-				base: Base{
-					run: Task{
-						rules: Rules{
-							commands: []Command{
-								{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
-										},
-									},
-									command: "",
-								},
-							},
-						},
+				required: map[string][]string{
+					"base": []string{
+						"run",
+						"test",
+						"add",
+						"rm",
 					},
-					add: Task{
-						rules: Rules{
-							commands: []Command{
-								{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
-										},
-									},
-									command: "",
-								},
-							},
-						},
-					},
-					rm: Task{
-						rules: Rules{
-							commands: []Command{
-								{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
-										},
-									},
-									command: "",
-								},
-							},
-						},
+					"dev": []string{
+						"anal",
+						"linter",
+						"doc",
 					},
 				},
-				dev: Dev{
-					doc: Task{
-						rules: Rules{
-							commands: []Command{
-								{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
-										},
-									},
-									command: "",
-								},
-							},
-						},
-					},
-					anal: Task{
-						rules: Rules{
-							commands: []Command{
-								{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
-										},
-									},
-									command: "",
-								},
-							},
-						},
-					},
-					linter: Task{
-						rules: Rules{
-							commands: []Command{
-								{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
-										},
-									},
-									command: "",
-								},
-							},
-						},
-					},
-				},
-				extended: nil,
 			},
 		}
 		value, fail := ParseProject(src)
