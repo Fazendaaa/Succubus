@@ -1,9 +1,22 @@
-# Project
+# Projeto
+
+Antes de continuar, por favor dê uma olhada em [O que é Succubus?](what.pt.md)
+
+- [Projeto](#projeto)
+  - [Specs](#specs)
+  - [Objetivos](#objetivos)
+  - [Sistema](#sistema)
+  - [Tarefas](#tarefas)
+    - [Base](#base)
+    - [Desenvolimento](#desenvolimento)
+    - [Estendidas](#estendidas)
+  - [Comandos](#comandos)
 
 ## Specs
 
 ```yaml
 [optional] name: ...
+[optional] tag: ...
 [optional] image: ...
 [optional] dockerfile: ...
 [optional] interact: ...
@@ -16,8 +29,14 @@
 ...
 ```
 
-- `name`: nome do Projeto
-- `image`: imagem Docker a ser utilizada
+- `name`: nome do Projeto:
+  - não pode conter letras em maiúsculo
+  - não pode conter espaços em branco
+- `tag`: marcador do Projeto a ser usada para o sistema de versionamentoÇ
+  - aceita apenas [versionamento de calendario](https://en.wikipedia.org/wiki/Software_versioning#Date_of_release) ou [versionamento semântico](https://semver.org/)
+- `image`: imagem Docker a ser utilizada:
+  - irá verificar primeiro se a imagem está disponível localmente, do contrário irá procurar baixar ela
+  - string no formato `<registry-owner>/<image-name>`
 - `dockerfile`: caminho para o Dockerfile a ser utilizado no projeto ou `false` para não utilizar o Dockerfile presente no mesmo projeto
 - `interact`: chamada de como invocar o interpretador a ser utilizado dentro do Projeto
 - `context`: qual diretório a ser utilizado como base do Projeto
@@ -25,7 +44,7 @@
 - [objectives](#objectives): ações definidas pelo usuário a serem tomadas no presente Projeto
 - [system](#system): definições de Docker-Compose a serem utilizados para expandir o horizonte de ambientes nos quais o Projeto podem se encontrar presentes
 
-## Objectives
+## Objetivos
 
 ```yaml
 [required] objectives:
@@ -37,7 +56,7 @@
 ...
 ```
 
-## System
+## Sistema
 
 ```yaml
 ...
@@ -52,7 +71,7 @@
 
 You can read more how can you take more advantage of it reading how the [container](container.md) containers works.
 
-## Tasks
+## Tarefas
 
 ### Base
 
@@ -66,7 +85,7 @@ You can read more how can you take more advantage of it reading how the [contain
 [required]        test: ...
 ```
 
-### Development
+### Desenvolimento
 
 ```yaml
 ...
@@ -77,7 +96,7 @@ You can read more how can you take more advantage of it reading how the [contain
 [required]        doc: ...
 ```
 
-### Extended
+### Estendidas
 
 ```yaml
 ...
@@ -87,7 +106,7 @@ You can read more how can you take more advantage of it reading how the [contain
 ...
 ```
 
-## Commands
+## Comandos
 
 ```yaml
 ...

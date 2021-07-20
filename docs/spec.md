@@ -1,5 +1,7 @@
 # Project
 
+Before continuing please take a look at [What is Succubus?](what.md)
+
 - [Project](#project)
   - [Specs](#specs)
   - [Objectives](#objectives)
@@ -16,6 +18,7 @@ You can read more how can you take more advantage of it reading how the [contain
 
 ```yaml
 [optional] name: ...
+[optional] tag: ...
 [optional] image: ...
 [optional] dockerfile: ...
 [optional] interact: ...
@@ -28,8 +31,14 @@ You can read more how can you take more advantage of it reading how the [contain
 ...
 ```
 
-- `name`: Project name
-- `image`: Docker image to be used
+- `name`: Project name:
+  - cannot contain upper case letters
+  - cannot contain empty spaces
+- `tag`: Project tag to be used as a versioning system:
+  - only accepts [calendar versioning](https://en.wikipedia.org/wiki/Software_versioning#Date_of_release) or [semantic versioning](https://semver.org/)
+- `image`: Docker image to be used:
+  - it will check if available locally first, then will try to download if not available
+  - string in the format `<registry-owner>/<image-name>`
 - `dockerfile`: Dockerfile path or `false` value to not use the current defined Dockerfile in the Project folder
 - `interact`: call to invoke the interpreter to run it inside the Project
 - `context`: which directory to use as Project root
