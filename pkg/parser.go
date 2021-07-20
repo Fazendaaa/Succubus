@@ -9,6 +9,8 @@ import (
 // runtimes issues.
 // It returns wether or not everything is ok
 func checkEnv(origin []Env) (env []Env, fail error) {
+	env = make([]Env, len(origin))
+
 	return env, fail
 }
 
@@ -49,6 +51,9 @@ func checkContainer(origin Container) (container Container, fail error) {
 // checkCommands
 // It returns
 func checkCommands(origin Commands) (commands Commands, fail error) {
+	commands.env = origin.env
+	commands.commands = origin.commands
+
 	return commands, fail
 }
 
@@ -56,6 +61,7 @@ func checkCommands(origin Commands) (commands Commands, fail error) {
 // It returns a fixed Task or an error
 func checkTask(origin Task) (task *Task, fail error) {
 	task = &Task{}
+	task.name = origin.name
 	task.container, fail = checkContainer(origin.container)
 
 	if nil != fail {
