@@ -1,10 +1,10 @@
 package succubus
 
 // Load checks for:
-// 1. whether or not the project as a valid image reference?
-// 2. is there a Dockerfile listed in the config?
-// 3. is there a Dockerfile presented in the project directory?
-// It returns whether or not the config file is ok
+// 1. whether or not the project is has ambient issues
+// 2. whether or not the project is has declaration issues
+// 3. whether or not the project is has Project pattern issues
+// It returns whether or not the Project is ok
 func Load(projectPath string) (project Project, fail error) {
 	lexed, fail := LexProject(projectPath)
 
@@ -18,5 +18,5 @@ func Load(projectPath string) (project Project, fail error) {
 		return parsed, fail
 	}
 
-	return project, fail
+	return SemanticAnalysis(parsed)
 }
