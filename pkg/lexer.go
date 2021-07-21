@@ -8,9 +8,9 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// checkProject looks for the config file
+// checkConfig looks for the config file
 // It returns the file or an error
-func checkProject(projectPath string) (data []byte, fail error) {
+func checkConfig(projectPath string) (data []byte, fail error) {
 	file, fail := readFileOrDir(projectPath)
 
 	if nil != fail {
@@ -28,17 +28,24 @@ func checkProject(projectPath string) (data []byte, fail error) {
 
 //
 func interfaceToImage(origin interface{}) (image Image, fail error) {
+	read, ok := origin.(string)
+
+	if !ok {
+		return image, fmt.Errorf("image declaration is malformed")
+	}
+
+	split := strings.Split(read, "/")
+
+	if 1 <= len(split) {
+		image.name = split[0]
+	}
+
 	return image, fail
 }
 
 //
 func interfaceToDockerfile(origin interface{}) (dockerfile Dockerfile, fail error) {
 	return dockerfile, fail
-}
-
-// interfaceToContainer
-func interfaceToContainer(origin interface{}) (container Container, fail error) {
-	return container, fail
 }
 
 // containerToObjective
@@ -61,22 +68,81 @@ func commandToTask(origin interface{}) (commands Commands, fail error) {
 	return commands, fail
 }
 
+// interfaceToEnv
+//
+func interfaceToEnv(origin interface{}) (env []Env, fail error) {
+	read, ok := origin.([]interface{})
+
+	if !ok {
+		return env, fmt.Errorf("error while reading env declaration")
+	}
+
+	env = make([]Env, len(read))
+
+	for index, value := range read {
+		declared, ok := value.(string)
+
+		if !ok {
+			return env, fmt.Errorf("malformed env declaration")
+		}
+
+		environments := strings.Split(declared, "=")
+
+		if 2 != len(environments) {
+			return env, fmt.Errorf("malformed env declaration, env -- %s -- has more than one declaration", read)
+		}
+
+		env[index].source = environments[0]
+		env[index].destiny = environments[1]
+	}
+
+	return env, fail
+}
+
+// interfaceToEnvFile
+//
+func interfaceToEnvFile(origin interface{}) (env string, fail error) {
+	return env, fail
+}
+
+// interfaceToContainer
+//
+func interfaceToContainer(origin interface{}) (container Container, fail error) {
+	return container, fail
+}
+
+// complexTask
+//
 func complexTask(origin map[interface{}]interface{}) (task *Task, fail error) {
 	task = &Task{}
-	// if nil != value["container"] {
-	// 	tasks[name].container = container
-	// }
-	// if nil != value["env"] {
 
-	// }
-	// if nil != value["env_file"] {
+	if nil != origin["container"] {
+		task.container, fail = interfaceToContainer(origin["container"])
+	}
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nError while getting task container decalaration values", fail)
+	}
 
-	// }
-	// if nil != value["commands"] {
-	// 	tasks[name].command, fail = commandToTask(value)
-	// } else {
-	// 	tasks[name].command, fail = commandToTask(value)
-	// }
+	if nil != origin["env"] {
+		task.env, fail = interfaceToEnv(origin["env"])
+	}
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nError while getting task env decalaration values", fail)
+	}
+
+	if nil != origin["env_file"] {
+		task.env_file, fail = interfaceToEnvFile(origin["env_file"])
+	}
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nError while getting task env_file decalaration values", fail)
+	}
+
+	if nil != origin["commands"] {
+		task.commands, fail = commandToTask(origin["commands"])
+	}
+	if nil != fail {
+		return task, fmt.Errorf("%w;\nError while getting task commands decalaration values", fail)
+	}
 
 	return task, fail
 }
@@ -100,6 +166,7 @@ func tasksToObjective(origin map[interface{}]interface{}) (tasks map[string]*Tas
 		} else {
 			tasks[name] = &Task{}
 			tasks[name].commands, fail = commandToTask(value)
+			tasks[name].env = make([]Env, 0)
 		}
 
 		if nil != fail {
@@ -154,19 +221,17 @@ func objectiveToObjectives(origin map[interface{}]interface{}) (objectives Objec
 // containerToProject
 func containerToProject(origin map[interface{}]interface{}) (container Container, fail error) {
 	if _, ok := origin["image"]; ok {
-		container, fail = interfaceToContainer(origin["image"])
-
-		if nil != fail {
-			return container, fmt.Errorf("%w;\nimage presented and malformed", fail)
-		}
+		container.dockerfile.base, fail = interfaceToImage(origin["image"])
+	}
+	if nil != fail {
+		return container, fmt.Errorf("%w;\nimage presented and malformed", fail)
 	}
 
 	if _, ok := origin["dockerfile"]; ok {
-		container, fail = interfaceToContainer(origin["dockerfile"])
-
-		if nil != fail {
-			return container, fmt.Errorf("%w;\ndockerfile presented and malformed", fail)
-		}
+		container.dockerfile, fail = interfaceToDockerfile(origin["dockerfile"])
+	}
+	if nil != fail {
+		return container, fmt.Errorf("%w;\ndockerfile presented and malformed", fail)
 	}
 
 	return container, fail
@@ -191,6 +256,8 @@ func objetivesToProject(origin map[interface{}]interface{}) (objectives Objectiv
 		return objectives, fmt.Errorf("%w;\nobjectives presented and malformed", fail)
 	}
 
+	objectives.required = make(map[string][]string)
+
 	return objectives, fail
 }
 
@@ -207,6 +274,11 @@ func tagToProject(read map[interface{}]interface{}) (value string, fail error) {
 // nameToProject
 func nameToProject(read map[interface{}]interface{}) (value string, fail error) {
 	return value, fail
+}
+
+// interactToProject
+func interactToProject(read map[interface{}]interface{}) (interact Commands, fail error) {
+	return interact, fail
 }
 
 // interfaceToProject as many use cases might not need Succubus full power, but to
@@ -245,6 +317,12 @@ func interfaceToProject(read map[interface{}]interface{}) (project Project, fail
 		return project, fmt.Errorf("%w;\nmalformed project name", fail)
 	}
 
+	project.interact, fail = interactToProject(read)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed project name", fail)
+	}
+
 	return project, fail
 }
 
@@ -252,7 +330,7 @@ func interfaceToProject(read map[interface{}]interface{}) (project Project, fail
 // or not it's a valid one.
 // It returns whether or not the config file is valid and any error encountered.
 func LexProject(projectPath string) (project Project, fail error) {
-	data, fail := checkProject(projectPath)
+	data, fail := checkConfig(projectPath)
 
 	if nil != fail {
 		return project, fail
