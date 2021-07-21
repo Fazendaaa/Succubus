@@ -34,7 +34,10 @@ You can read more how can you take more advantage of it reading how the [contain
 - `name`: Project name:
   - cannot contain upper case letters
   - cannot contain empty spaces
-- `tag`: Project tag to be used as a versioning system:
+- `tag`: Project tag to be used as something like `dev`,`hom` or even `prod`:
+  - cannot contain upper case letters
+  - cannot contain empty spaces
+- `version`: Project version to be used:
   - only accepts [calendar versioning](https://en.wikipedia.org/wiki/Software_versioning#Date_of_release) or [semantic versioning](https://semver.org/)
 - `image`: Docker image to be used:
   - it will check if available locally first, then will try to download if not available

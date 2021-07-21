@@ -32,7 +32,10 @@ Antes de continuar, por favor dê uma olhada em [O que é Succubus?](what.pt.md)
 - `name`: nome do Projeto:
   - não pode conter letras em maiúsculo
   - não pode conter espaços em branco
-- `tag`: marcador do Projeto a ser usada para o sistema de versionamentoÇ
+- `tag`: marcador do Projeto a ser utilizada como `dev`, `hom` ou mesmo `prod`:
+  - não pode conter letras em maiúsculo
+  - não pode conter espaços em branco
+- `version`: vers'ao do Projeto a ser usada:
   - aceita apenas [versionamento de calendario](https://en.wikipedia.org/wiki/Software_versioning#Date_of_release) ou [versionamento semântico](https://semver.org/)
 - `image`: imagem Docker a ser utilizada:
   - irá verificar primeiro se a imagem está disponível localmente, do contrário irá procurar baixar ela

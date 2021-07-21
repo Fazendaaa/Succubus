@@ -23,7 +23,7 @@ func checkEnvFile(origin string) (env_file string, fail error) {
 // checkDockerfile
 //
 func checkDockerfile(origin Dockerfile) (dockerfile Dockerfile, fail error) {
-	if "" != origin.base.name && !isLower(origin.base.name) {
+	if hasUpper(origin.base.name) {
 		return dockerfile, fmt.Errorf("wrong image format name: '%s'", origin.base.name)
 	}
 
@@ -151,8 +151,8 @@ func checkObjectives(origin Objectives) (objectives Objectives, fail error) {
 // checkProjectName
 // Returns the project name or why is not allowed
 func checkProjectName(origin string) (name string, fail error) {
-	if "" != origin && isUpper(origin) {
-		return name, fmt.Errorf("project name -- '%s' -- has a upper case name which is not allowed", origin)
+	if hasUpper(origin) {
+		return name, fmt.Errorf("Project name -- '%s' -- has a upper case name which is not allowed", origin)
 	}
 
 	return origin, fail
@@ -161,8 +161,8 @@ func checkProjectName(origin string) (name string, fail error) {
 // checkProjectTag
 // Returns the project tag or why is not allowed
 func checkProjectTag(origin string) (tag string, fail error) {
-	if "" == origin {
-		return tag, fail
+	if hasUpper(origin) {
+		return tag, fmt.Errorf("Project tag -- '%s' -- has a upper case name which is not allowed", origin)
 	}
 
 	return origin, fail
@@ -171,10 +171,22 @@ func checkProjectTag(origin string) (tag string, fail error) {
 // checkProjectVersion
 // Returns the project version or why is not allowed
 func checkProjectVersion(origin string) (version string, fail error) {
-	if "" == origin {
-		return version, fail
+	if isSemanticVersion(origin) || isCalendarVersion(origin) {
+		return origin, fail
 	}
 
+	return version, fmt.Errorf("Project has a version which is not declared as Semantic Version or Calendar Version -- which is not allowed")
+}
+
+// checkProjectInteract
+// It returns the project interact command or why is not allowed
+func checkProjectInteract(origin Commands) (interact Commands, fail error) {
+	return origin, fail
+}
+
+// checkProjectSystems
+// It returns the project systems definition or why is not allowed
+func checkProjectSystems(origin Systems) (systems Systems, fail error) {
 	return origin, fail
 }
 
@@ -191,6 +203,12 @@ func ParseProject(origin Project) (project Project, fail error) {
 
 	if nil != fail {
 		return project, fmt.Errorf("%w;\nmalformed name in project", fail)
+	}
+
+	project.interact, fail = checkProjectInteract(origin.interact)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed interact in project", fail)
 	}
 
 	project.tag, fail = checkProjectTag(origin.tag)
@@ -215,6 +233,12 @@ func ParseProject(origin Project) (project Project, fail error) {
 
 	if nil != fail {
 		return project, fmt.Errorf("%w;\nmalformed objectives in project", fail)
+	}
+
+	project.systems, fail = checkProjectSystems(origin.systems)
+
+	if nil != fail {
+		return project, fmt.Errorf("%w;\nmalformed systems in project", fail)
 	}
 
 	return project, fail

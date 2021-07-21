@@ -1,27 +1,32 @@
 package succubus
 
-import "unicode"
+import (
+	"regexp"
+	"unicode"
+)
 
-// isUpper [this](https://stackoverflow.com/a/59293875/7092954)
-// It returns whether or all characters are upper case
-func isUpper(s string) (ok bool) {
+// hasUpper
+// It returns whether container upper case or not
+func hasUpper(s string) (ok bool) {
 	for _, r := range s {
-		if !unicode.IsUpper(r) && unicode.IsLetter(r) {
-			return false
+		if unicode.IsLetter(r) && unicode.IsUpper(r) {
+			return true
 		}
 	}
-	return true
+
+	return false
 }
 
-// isUpper [this](https://stackoverflow.com/a/59293875/7092954)
-// It returns whether or all characters are lower case
-func isLower(s string) (ok bool) {
+// hasLower
+// It returns whether container lower case or not
+func hasLower(s string) (ok bool) {
 	for _, r := range s {
-		if !unicode.IsLower(r) && unicode.IsLetter(r) {
-			return false
+		if unicode.IsLetter(r) && unicode.IsLower(r) {
+			return true
 		}
 	}
-	return true
+
+	return false
 }
 
 // removeEmptyStrings - Use this to remove empty string values inside an array.
@@ -29,11 +34,13 @@ func isLower(s string) (ok bool) {
 // This happens when allocation is bigger and empty
 func removeEmptyStrings(s []string) []string {
 	var r []string
+
 	for _, str := range s {
 		if str != "" {
 			r = append(r, str)
 		}
 	}
+
 	return r
 }
 
@@ -61,4 +68,20 @@ func keysOf(origin map[string]*Task) (keys []string, fail error) {
 	}
 
 	return keys, fail
+}
+
+// isSemanticVersion
+// It returns whether or not is Semantic Version
+func isSemanticVersion(origin string) (ok bool) {
+	condtion, _ := regexp.Compile(`\d+.\d+.\d*`)
+
+	return condtion.MatchString(origin)
+}
+
+// isCalendarVersion
+// It returns whether or not is Semantic Version
+func isCalendarVersion(origin string) (ok bool) {
+	condtion, _ := regexp.Compile(`\d{2}.\d{2}.\d*`)
+
+	return condtion.MatchString(origin)
 }

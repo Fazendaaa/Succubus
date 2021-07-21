@@ -8,9 +8,14 @@ import (
 func TestParser(t *testing.T) {
 	t.Run("identity", func(t *testing.T) {
 		src := Project{
-			tag:     "",
-			name:    "",
-			version: "",
+			tag:     "hom",
+			name:    "foo",
+			version: "21.07",
+			interact: Commands{
+				commands: []string{
+					"foo",
+				},
+			},
 			container: Container{
 				env_file: "",
 				dockerfile: Dockerfile{
