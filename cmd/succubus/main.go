@@ -2,15 +2,19 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
+	"github.com/Fazendaaa/Succubus/pkg"
 	"github.com/spf13/cobra"
 )
 
-func main() {
-	var echoTimes int
+func cmdToCobra(cmd CMD) (ok bool, fail error) {
+	return ok, fail
+}
 
-	var cmdPrint = &cobra.Command{
+func main() {
+	cmdPrint := &cobra.Command{
 		Use:   "print [string to print]",
 		Short: "Print anything to the screen",
 		Long: `print is for printing anything back to the screen.
@@ -21,7 +25,7 @@ For many years people have printed back to the screen.`,
 		},
 	}
 
-	var cmdEcho = &cobra.Command{
+	cmdEcho := &cobra.Command{
 		Use:   "echo [string to echo]",
 		Short: "Echo anything to the screen",
 		Long: `echo is for echoing anything back.
@@ -32,23 +36,14 @@ Echo works a lot like print, except it has a child command.`,
 		},
 	}
 
-	var cmdTimes = &cobra.Command{
-		Use:   "times [string to echo]",
-		Short: "Echo anything to the screen more times",
-		Long: `echo things multiple times back to the user by providing
-a count and a string.`,
-		Args: cobra.MinimumNArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			for i := 0; i < echoTimes; i++ {
-				fmt.Println("Echo: " + strings.Join(args, " "))
-			}
-		},
+	appName := os.Getenv("SUCC_NAME")
+	if "" == appName {
+		appName = "succ"
+	}
+	rootCmd := &cobra.Command{
+		Use: appName,
 	}
 
-	cmdTimes.Flags().IntVarP(&echoTimes, "times", "t", 1, "times to echo the input")
-
-	var rootCmd = &cobra.Command{Use: "app"}
 	rootCmd.AddCommand(cmdPrint, cmdEcho)
-	cmdEcho.AddCommand(cmdTimes)
 	rootCmd.Execute()
 }
