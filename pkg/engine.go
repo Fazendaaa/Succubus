@@ -7,7 +7,9 @@ import (
 	"os"
 
 	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
+	"github.com/docker/docker/pkg/stdcopy"
 )
 
 type Docker struct {
@@ -72,18 +74,35 @@ func (engine *Engine) registryImage(image Image) (ok bool, fail error) {
 
 func (docker *Docker) execute(command []Commands) (ok bool, fail error) {
 	ctx := context.Background()
-	response, fail := docker.client.ContainerExecCreate(ctx,
-		docker.containerID,
-		types.ExecConfig{
-			AttachStderr: true,
-			AttachStdout: true,
-			Cmd:          command[0].commands,
-		},
-	)
+	response, fail := docker.client.ContainerCreate(ctx, &container.Config{
+		Image: "alpine",
+		Cmd:   []string{"echo", "hello world"},
+		Tty:   false,
+	}, nil, nil, nil, "")
 
 	if nil != fail {
+		return ok, fmt.Errorf("%w;\nerror while trying to create a container to run given '%s' command", fail, command[0].commands)
+	}
+
+	if fail = docker.client.ContainerStart(ctx, response.ID, types.ContainerStartOptions{}); fail != nil {
 		return ok, fmt.Errorf("%w;\nerror while trying to execute given '%s' command", fail, command[0].commands)
 	}
+
+	statusCh, errCh := docker.client.ContainerWait(ctx, response.ID, container.WaitConditionNotRunning)
+	select {
+	case fail = <-errCh:
+		if fail != nil {
+			return ok, fmt.Errorf("%w;\nerror while trying to create a container to run given '%s' command", fail, command[0].commands)
+		}
+	case <-statusCh:
+	}
+
+	out, fail := docker.client.ContainerLogs(ctx, response.ID, types.ContainerLogsOptions{ShowStdout: true})
+	if fail != nil {
+		return ok, fmt.Errorf("%w;\nerror while trying to create a container to run given '%s' command", fail, command[0].commands)
+	}
+
+	stdcopy.StdCopy(os.Stdout, os.Stderr, out)
 
 	return ok, fail
 }
