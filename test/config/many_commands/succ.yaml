@@ -11,7 +11,7 @@ objectives:
       commands:
         go get $$ARGV[0]
       env:
-        ENV=${ENV}
+        - ENV=${ENV}
     rm: go mod tidy
 
   dev:
