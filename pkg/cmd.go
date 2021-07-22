@@ -11,7 +11,7 @@ type Param struct {
 }
 
 type CMD struct {
-	name  string
-	usage Usage
-	args  []Param
+	name   string
+	usage  Usage
+	params []Param
 }
