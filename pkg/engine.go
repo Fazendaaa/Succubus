@@ -71,15 +71,15 @@ func (engine *Engine) registryImage(image Image) (ok bool, fail error) {
 }
 
 func (docker *Docker) execute(command []Commands) (ok bool, fail error) {
-	// ctx := context.Background()
-	// response, fail := docker.client.ContainerExecCreate(ctx,
-	// 	docker.containerID,
-	// 	types.ExecConfig{
-	// 		AttachStderr: true,
-	// 		AttachStdout: true,
-	// 		Cmd:          command[0].commands,
-	// 	},
-	// )
+	ctx := context.Background()
+	response, fail := docker.client.ContainerExecCreate(ctx,
+		docker.containerID,
+		types.ExecConfig{
+			AttachStderr: true,
+			AttachStdout: true,
+			Cmd:          command[0].commands,
+		},
+	)
 
 	if nil != fail {
 		return ok, fmt.Errorf("%w;\nerror while trying to execute given '%s' command", fail, command[0].commands)
