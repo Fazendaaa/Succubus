@@ -1,0 +1,1 @@
+- add a doc notation to yaml like JSDoc or something like it to define command and objectives CLI descriptions
