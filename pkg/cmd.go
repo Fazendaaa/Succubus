@@ -10,7 +10,6 @@ type Usage struct {
 type CMD struct {
 	Name     string
 	Usage    Usage
-	Args     int
+	Params   []string // Just the parameters name
 	Function func(...interface{})
-	Flags    map[string][]CMD
 }

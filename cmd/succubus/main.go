@@ -11,7 +11,7 @@ import (
 
 func main() {
 	succCMD := make([](succubus.CMD), 2)
-	appName := os.Getenv("SUCC_NAME")
+	appName := os.Getenv("APP_NAME")
 	rootCmd := &cobra.Command{
 		Use: appName,
 	}
@@ -25,7 +25,7 @@ func main() {
 			Use:   command.Name,
 			Short: command.Usage.Short,
 			Long:  command.Usage.Long,
-			Args:  cobra.MinimumNArgs(command.Args),
+			Args:  cobra.MinimumNArgs(len(command.Params)),
 			Run: func(cmd *cobra.Command, args []string) {
 				fmt.Println("Print: " + strings.Join(args, " "))
 				command.Function(args)
