@@ -1,19 +1,16 @@
 package succubus
 
+// Stores the description related to given command
 type Usage struct {
 	Short string
 	Long  string
 }
 
-type Exec struct {
+// Stores the given command
+type CMD struct {
 	Name     string
 	Usage    Usage
+	Args     int
 	Function func(...interface{})
-	Cmd      *CMD
-}
-
-type CMD struct {
-	Name  string
-	Usage Usage
-	Flags map[string][]Exec
+	Flags    map[string][]CMD
 }
