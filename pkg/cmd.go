@@ -1,19 +1,19 @@
 package succubus
 
 type Usage struct {
-	short string
-	long  string
+	Short string
+	Long  string
 }
 
 type Exec struct {
-	name     string
-	usage    Usage
-	function func(...interface{})
-	cmd      *CMD
+	Name     string
+	Usage    Usage
+	Function func(...interface{})
+	Cmd      *CMD
 }
 
 type CMD struct {
-	name  string
-	usage Usage
-	flags map[string][]Exec
+	Name  string
+	Usage Usage
+	Flags map[string][]Exec
 }

@@ -1,5 +1,8 @@
 all: doc
 
+run:
+	@go run ./cmd/succubus/main.go
+
 doc:
 	@docker buildx build \
 		--file docs/Dockerfile \
