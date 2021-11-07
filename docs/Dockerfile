@@ -1,4 +1,4 @@
-FROM node:16.0.0-alpine3.13
+FROM node:gallium-alpine3.13
 
 RUN [ "npm", "install", "-g", "npm" ]
 
