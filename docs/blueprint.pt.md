@@ -166,18 +166,12 @@ succ run
 succ test
 ```
 
-## Running
+## Executando
 
 Você não precisa instalar Go para rodar esta ferramenta, apenas o Docker. E para fazer isso e dar um *test-drive*, você pode fazer isso apenas colando a seguinte linha no seu terminal:
 
 ```shell
-alias succ='docker run -it --volume $(pwd):/project --workdir /project fazenda/succubus'
-```
-
-E só rodar o seguinte comando para ver se tudo está funcionado de acordo ao esperado:
-
-```shell
-succ --help
+shell'docker run -it --volume $(pwd):/project --workdir /project fazenda/succubus
 ```
 
 Esta abordagem possuí algumas limitações porem é uma grande maneira de molhar seus dedos e iniciar logo a usar a ferramenta; se suas necessidades não forem suportadas por esta maneira você pode sempre procurar [instalar](#instalar) ela.
@@ -187,6 +181,73 @@ Esta abordagem possuí algumas limitações porem é uma grande maneira de molha
 Eu sei que a empresa Docker é meio que um "B.O." em alguns circulos, por isso que a ideia desta ferramenta é procurar se manter atrás de uma camada de *Motor* de abstração, permitindo uma troca se necessária.
 
 ## Instalar
+
+### Go
+
+```shell
+go install github.com/Fazendaaa/Succubus@latest
+```
+
+Caso decida em utilizar o binario distribuido atravez do Go, só se lembre de usar `Succubus` ao invés de `succubus` para executar os comandos.
+
+#### Sem carregar
+
+Provavelmente está faltando as seguintes configurações:
+
+```shell
+export GOPATH="$HOME/go/"
+export PATH="$PATH:$GOPATH/bin/"
+```
+
+### Binário
+
+Primeiro de uma olhada no projeto [zyedidia/eget](https://github.com/zyedidia/eget)
+
+```shell
+curl https://zyedidia.github.io/eget.sh | sh
+./eget Fazendaaa/Succubus
+mv Succubus $HOME/.local/bin/succubus
+```
+
+### Docker
+
+Você não precisa instalar o Go para usar esta ferramenta, apenas Docker. E para testar você só precisa rodar a seguinte linha no seu terminal:
+
+```shell
+alias succubus='docker run -it --volume ${PWD}:${PWD} --workdir ${PWD} fazenda/succubus'
+```
+
+E então executar o seguinte comando para ter certeza que tudo está funcionando como o esperado:
+
+```shell
+succubus --help
+```
+
+Após você confirmar que tudo está funcionando direitinho, pode fazer o seguinte para iniciar um projeto:
+
+```shell
+succubus init .
+```
+
+## Uninstalling
+
+### Go
+
+```shell
+rm $GOPATH/bin/Succubus
+```
+
+### Binary
+
+```shell
+rm $HOME/.local/bin/succubus
+```
+
+### Docker
+
+```shell
+docker rmi --force fazenda/succubus
+```
 
 ## Autor
 

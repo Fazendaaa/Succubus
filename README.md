@@ -1,4 +1,4 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">Succubus</h1>
+<!-- ⚠️ This README has been generated from the file(s) "docs/blueprint.md" ⚠️--><h1 align="center">Succubus</h1>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Fazendaaa/Succubus/master/assets/img/logo.svg" alt="Logo" width="150" height="150" />

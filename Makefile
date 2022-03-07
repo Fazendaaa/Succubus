@@ -1,23 +1,31 @@
-all: doc
-
-run:
-	@go run ./cmd/succubus/main.go
-
-doc:
+build-docs:
 	@docker buildx build \
 		--file docs/Dockerfile \
 		--platform linux/amd64 \
-		--load --tag appnest \
+		--push --tag fazenda/appnest \
 		docs/
-# Jerry Rig
+
+doc:
 	@docker run --rm \
-		--volume $(shell pwd)/docs:/home/node/app \
-		--workdir /home/node/app appnest \
-		npx @appnest/readme generate -o render.md
+		--volume ${PWD}:${PWD} \
+		--workdir ${PWD} fazenda/appnest \
+		--package docs/package.json \
+		--config docs/blueprint.json \
+		--input docs/blueprint.pt.md \
+		--output README.pt.md
 	@docker run --rm \
-		--volume $(shell pwd)/docs:/home/node/app \
-		--workdir /home/node/app appnest \
-		npx @appnest/readme generate -i blueprint.pt.md -o render.pt.md
-	@cp docs/render.md README.md
-	@cp docs/render.pt.md README.pt.md
-	@rm docs/render.*
+		--volume ${PWD}:${PWD} \
+		--workdir ${PWD} fazenda/appnest \
+		--package docs/package.json \
+		--config docs/blueprint.json \
+		--input docs/blueprint.md \
+		--output README.md
+
+run:
+	@go run ./main.go
+
+build:
+	@docker buildx build \
+		--platform linux/amd64 \
+		--load --tag succubus \
+		.
