@@ -223,13 +223,7 @@ succ test
 You don't need to install Go to run this tool, just Docker. And to do so to give it a try, you can do it just by running the following line in your terminal:
 
 ```shell
-alias succ='docker run -it --volume $(pwd):/project --workdir /project fazenda/succubus'
-```
-
-And then running the following to check whether or not is working properly:
-
-```shell
-succ --help
+docker run -it --volume $(pwd):/project --workdir /project fazenda/succubus
 ```
 
 This approach has some limitations but is a great way to tip your toes and start right way using the tool; if your needs aren't meet by it, you can always [install](#installing) the tool.
@@ -245,6 +239,76 @@ I know that Docker Inc is kinda of a "hot topic" in some circles, that's why thi
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#installing)
 
 ## ➤ Installing
+
+### Go
+
+```shell
+go install github.com/Fazendaaa/Succubus@latest
+```
+
+In case you choose this route, just remember to use `Succubus` instead of `succubus` while using the command.
+
+#### Not loading
+
+Probably missing the following:
+
+```shell
+export GOPATH="$HOME/go/"
+export PATH="$PATH:$GOPATH/bin/"
+```
+
+### Binary
+
+Take a look first at [zyedidia/eget](https://github.com/zyedidia/eget)
+
+```shell
+curl https://zyedidia.github.io/eget.sh | sh
+./eget Fazendaaa/Succubus
+mv Succubus $HOME/.local/bin/succubus
+```
+
+### Docker
+
+You don't need to install Go to run this tool, just Docker. And to do so to give it a try, you can do it just by running the following line in your terminal:
+
+```shell
+alias succubus='docker run -it --volume ${PWD}:${PWD} --workdir ${PWD} fazenda/succubus'
+```
+
+And then running the following to check whether or not is working properly:
+
+```shell
+succubus --help
+```
+
+After that you can run the following just to fell free to run the following:
+
+```shell
+succubus init .
+```
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#uninstalling)
+
+## ➤ Uninstalling
+
+### Go
+
+```shell
+rm $GOPATH/bin/Succubus
+```
+
+### Binary
+
+```shell
+rm $HOME/.local/bin/succubus
+```
+
+### Docker
+
+```shell
+docker rmi --force fazenda/succubus
+```
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/water.png)](#author)
