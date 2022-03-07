@@ -24,8 +24,12 @@ doc:
 run:
 	@go run ./main.go
 
-build:
+docker:
 	@docker buildx build \
 		--platform linux/amd64 \
 		--load --tag succubus \
 		.
+	@docker run -it \
+		--volume ${PWD}:${PWD} \
+		--workdir ${PWD} \
+		succubus

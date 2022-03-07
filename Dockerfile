@@ -20,3 +20,5 @@ LABEL author="fazenda"
 LABEL project="succubus"
 
 COPY --from=base /usr/bin/succubus /usr/bin/succubus
+
+ENTRYPOINT [ "succubus" ]

@@ -11,7 +11,7 @@ var rootCmd = &cobra.Command{
 	Use:   "succubus",
 	Short: "Succubus is project manager",
 	Long: `Succubus is made with Go to help you handle all of your project needs.
-Complete documentation is available at https://github.com/Fazendaaa/Shojo
+Complete documentation is available at https://github.com/Fazendaaa/Succubus
 
 Succubus is also part of the Container tooling For Developers (CFD) initiative:
 https://github.com/Fazendaaa/CFD`,
