@@ -9,7 +9,7 @@ import (
 
 var upgradeCmd = &cobra.Command{
 	Use:   "upgrade [project path]",
-	Short: "Runs the current project",
+	Short: "Upgrades the current project",
 	Long:  ``,
 	Args:  samael.ValidateProjectPath(projectPath),
 	Run: func(cmd *cobra.Command, params []string) {

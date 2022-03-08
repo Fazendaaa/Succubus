@@ -7,9 +7,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var docCmd = &cobra.Command{
-	Use:   "doc [package(s) to add]",
-	Short: "Documentation in the current project",
+var initCmd = &cobra.Command{
+	Use:   "init [project's path]",
+	Short: "Initialization of the project project",
 	Long:  ``,
 	Args:  samael.ValidateProjectPath(projectPath),
 	Run: func(cmd *cobra.Command, params []string) {
@@ -39,6 +39,6 @@ var docCmd = &cobra.Command{
 }
 
 func init() {
-	docCmd.Flags().StringVarP(&projectPath, "project path", "p", "", "optional succubus.yaml to run documentation process")
-	rootCmd.AddCommand(docCmd)
+	initCmd.Flags().StringVarP(&projectPath, "project path", "p", "", "optional succubus.yaml to init project")
+	rootCmd.AddCommand(initCmd)
 }
