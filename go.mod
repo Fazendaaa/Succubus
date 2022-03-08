@@ -3,7 +3,7 @@ module github.com/Fazendaaa/Succubus
 go 1.16
 
 require (
-	github.com/Fazendaaa/Samael v0.0.0-20220308134108-a3096dfae0eb
+	github.com/Fazendaaa/Samael v0.0.0-20220308160721-181aba36ba76
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/containerd/containerd v1.6.1 // indirect
 	github.com/docker/distribution v2.8.0+incompatible // indirect
