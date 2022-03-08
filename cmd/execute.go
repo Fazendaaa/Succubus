@@ -7,9 +7,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var runCmd = &cobra.Command{
-	Use:   "run [project path]",
-	Short: "Runs the current project",
+var execCmd = &cobra.Command{
+	Use:   "exec [subcomand to execute]",
+	Short: "Execute some the current project",
 	Long:  ``,
 	Args:  samael.ValidateProjectPath(projectPath),
 	Run: func(cmd *cobra.Command, params []string) {
@@ -39,6 +39,6 @@ var runCmd = &cobra.Command{
 }
 
 func init() {
-	runCmd.Flags().StringVarP(&projectPath, "project path", "p", "", "optional succubus.yaml to run project")
-	rootCmd.AddCommand(runCmd)
+	execCmd.Flags().StringVarP(&projectPath, "project path", "p", "", "optional succubus.yaml to execute project")
+	rootCmd.AddCommand(execCmd)
 }

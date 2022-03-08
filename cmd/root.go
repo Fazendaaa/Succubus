@@ -7,6 +7,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var projectPath string
+
 var rootCmd = &cobra.Command{
 	Use:   "succubus",
 	Short: "Succubus is project manager",
