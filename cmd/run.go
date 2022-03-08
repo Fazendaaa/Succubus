@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	samael "github.com/Fazendaaa/Samael/pkg"
+	"github.com/Fazendaaa/Succubus/controllers"
 	"github.com/spf13/cobra"
 )
 
@@ -22,8 +23,8 @@ var runCmd = &cobra.Command{
 			return
 		}
 
-		// resultChannel := controllers.AddPackages(params, projectPath)
-		// fail = consumeChannel(params, "installing", spinner, resultChannel)
+		resultChannel := controllers.Run(params, projectPath)
+		fail = samael.ConsumeChannel(params, spinner, resultChannel)
 
 		if nil != fail {
 			fmt.Println()

@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	samael "github.com/Fazendaaa/Samael/pkg"
 	"github.com/Fazendaaa/Succubus/controllers"
 	"github.com/spf13/cobra"
@@ -13,30 +11,7 @@ var rmCmd = &cobra.Command{
 	Short: "Removes a packages/libraries from the current project",
 	Long:  ``,
 	Args:  samael.ValidateProjectPath(projectPath),
-	Run: func(cmd *cobra.Command, params []string) {
-		spinner, fail := samael.CreateSpinner(" removing", "")
-
-		if nil != fail {
-			fmt.Println()
-			fmt.Println(fail)
-
-			return
-		}
-
-		resultChannel := controllers.Rm(params, projectPath)
-		fail = samael.ConsumeChannel(params, spinner, resultChannel)
-
-		if nil != fail {
-			fmt.Println()
-			fmt.Println(fail)
-
-			samael.KillSpinner(spinner, false)
-
-			return
-		}
-
-		samael.KillSpinner(spinner, true)
-	},
+	Run:   samael.RunCmd(&projectPath, " removing...", controllers.Rm),
 }
 
 func init() {
