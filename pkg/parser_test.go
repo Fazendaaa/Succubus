@@ -67,15 +67,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"exit 0",
+										commands: []string{
+											"exit 0",
+										},
 									},
 								},
 							},
@@ -89,15 +91,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"go test --verbose",
+										commands: []string{
+											"go test --verbose",
+										},
 									},
 								},
 							},
@@ -111,15 +115,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "ENV",
-											destiny: "ENV",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "ENV",
+												destiny: "ENV",
+											},
 										},
-									},
-									commands: []string{
-										"go get $ARGV[0]",
+										commands: []string{
+											"go get $ARGV[0]",
+										},
 									},
 								},
 							},
@@ -133,15 +139,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"go mod tidy",
+										commands: []string{
+											"go mod tidy",
+										},
 									},
 								},
 							},
@@ -161,15 +169,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"gosec -fmt=sonarqujbe -out report.json ./..",
+										commands: []string{
+											"gosec -fmt=sonarqujbe -out report.json ./..",
+										},
 									},
 								},
 							},
@@ -183,15 +193,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"golangci-lint run",
+										commands: []string{
+											"golangci-lint run",
+										},
 									},
 								},
 							},
@@ -205,15 +217,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"go doc .",
+										commands: []string{
+											"go doc .",
+										},
 									},
 								},
 							},
@@ -233,15 +247,17 @@ func TestParser(t *testing.T) {
 										destiny: "",
 									},
 								},
-								commands: Commands{
-									env: []Env{
-										{
-											source:  "",
-											destiny: "",
+								commands: []Commands{
+									Commands{
+										env: []Env{
+											{
+												source:  "",
+												destiny: "",
+											},
 										},
-									},
-									commands: []string{
-										"go test -cover ./...",
+										commands: []string{
+											"go test -cover ./...",
+										},
 									},
 								},
 							},

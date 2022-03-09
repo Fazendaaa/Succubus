@@ -5,12 +5,13 @@ objectives:
     test:
       go test --verbose
     add:
+      env:
+        - ENV=${ENV}
       commands:
         get:
           env_file: /home/user/foo/bar
           command: go get $ARGV[0]
-      env:
-        - ENV=${ENV}
+        tidy: go mod tidy
     rm:
       go mod tidy
 

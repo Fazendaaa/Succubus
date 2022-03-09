@@ -50,9 +50,13 @@ func checkContainer(origin Container) (container Container, fail error) {
 
 // checkCommands
 // It returns
-func checkCommands(origin Commands) (commands Commands, fail error) {
-	commands.env = origin.env
-	commands.commands = origin.commands
+func checkCommands(origin []Commands) (commands []Commands, fail error) {
+	commands = make([]Commands, len(origin))
+
+	for index, command := range origin {
+		commands[index].env = command.env
+		commands[index].commands = command.commands
+	}
 
 	return commands, fail
 }
@@ -171,7 +175,7 @@ func checkProjectTag(origin string) (tag string, fail error) {
 // checkProjectVersion
 // Returns the project version or why is not allowed
 func checkProjectVersion(origin string) (version string, fail error) {
-	if isSemanticVersion(origin) || isCalendarVersion(origin) {
+	if "" == origin || isSemanticVersion(origin) || isCalendarVersion(origin) {
 		return origin, fail
 	}
 

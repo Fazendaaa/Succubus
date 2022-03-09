@@ -33,16 +33,91 @@ func containerToObjective(origin interface{}) (container Container, fail error) 
 	return container, fail
 }
 
-// commandsToTask
-// It return
-func commandToTask(origin interface{}) (commands Commands, fail error) {
-	command, ok := origin.(string)
+func complexTaskToCommands(origin map[string]interface{}) (commands []Commands, fail error) {
+	var index = 0
+	commands = make([]Commands, len(origin))
 
-	if !ok {
-		return commands, fmt.Errorf("malformed '%s' task", command)
+	for key, task := range origin {
+		commands[index].name = key
+
+		switch task.(type) {
+		default:
+			return commands, fmt.Errorf("error while processing '%s' task", origin)
+		case string:
+			command, ok := task.(string)
+
+			if !ok {
+				return commands, fmt.Errorf("error while processing command from '%s' task", origin)
+			}
+
+			commands[index].commands = []string{command}
+		case map[string]interface{}:
+			read, ok := task.(map[string]interface{})
+
+			if !ok {
+				return commands, fmt.Errorf("error while processing '%s' task", origin)
+			}
+
+			command, ok := read["command"].(string)
+
+			if !ok {
+				return commands, fmt.Errorf("error while processing command from '%s' task", origin)
+			}
+
+			commands[index].commands = []string{command}
+
+			env_file, ok := read["env_file"].(string)
+
+			if ok {
+				commands[index].env_file = env_file
+			}
+
+			env, ok := read["env"].(string)
+
+			if ok {
+				commands[index].env = make([]Env, 1)
+				commands[index].env[0], fail = CreateEnv(env)
+
+				if nil != fail {
+					return commands, fmt.Errorf("error while processing env from '%s' task", origin)
+				}
+			}
+		}
+
+		index++
 	}
 
-	commands.commands = removeEmptyStrings(strings.Split(command, "\n"))
+	return commands, fail
+}
+
+// commandsToTask
+// It return
+func commandToTask(origin interface{}) (commands []Commands, fail error) {
+	switch origin.(type) {
+	default:
+		return commands, fmt.Errorf("malformed '%s' task", origin)
+	case string:
+		command, ok := origin.(string)
+
+		if !ok {
+			return commands, fmt.Errorf("")
+		}
+
+		commands = make([]Commands, 1)
+		commands[0].commands = removeEmptyStrings(strings.Split(command, "\n"))
+	case map[string]interface{}:
+		task, ok := origin.(map[string]interface{})
+
+		if !ok {
+			return commands, fmt.Errorf("malformed '%s' task in map[string]interface{}", origin)
+		}
+
+		commands, fail = complexTaskToCommands(task)
+
+		if nil != fail {
+			return commands, fmt.Errorf("%w;\nmalformed '%s' task during complex task", fail, origin)
+		}
+	}
 
 	return commands, fail
 }

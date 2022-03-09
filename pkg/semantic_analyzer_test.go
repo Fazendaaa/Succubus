@@ -27,9 +27,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"exit 0",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"exit 0",
+										},
 									},
 								},
 							},
@@ -38,9 +40,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"go test --verbose",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"go test --verbose",
+										},
 									},
 								},
 							},
@@ -49,9 +53,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"go get $ARGV[0]",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"go get $ARGV[0]",
+										},
 									},
 								},
 							},
@@ -60,9 +66,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"go mod tidy",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"go mod tidy",
+										},
 									},
 								},
 							},
@@ -77,9 +85,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"gosec -fmt=sonarqujbe -out report.json ./..",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"gosec -fmt=sonarqujbe -out report.json ./..",
+										},
 									},
 								},
 							},
@@ -88,9 +98,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"golangci-lint run",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"golangci-lint run",
+										},
 									},
 								},
 							},
@@ -99,9 +111,11 @@ func TestSemanticAnalysis(t *testing.T) {
 								env_file:  "",
 								env:       make([]Env, 0),
 								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"go doc .",
+								commands: []Commands{
+									Commands{
+										commands: []string{
+											"go doc .",
+										},
 									},
 								},
 							},

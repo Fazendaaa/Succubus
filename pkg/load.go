@@ -12,7 +12,7 @@ import (
 // 3. whether or not the project is has Project pattern issues
 // It returns whether or not the Project is ok
 func Load(projectPath string) (project Project, fail error) {
-	lexed, fail := samael.LexProject("succubus", projectPath, projectFunc)
+	lexed, fail := samael.LexProject("succ", projectPath, projectFunc)
 
 	if nil != fail {
 		return project, fail
