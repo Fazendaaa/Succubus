@@ -119,7 +119,7 @@ func TestParser(t *testing.T) {
 										},
 									},
 									commands: []string{
-										"go get $$ARGV[0]",
+										"go get $ARGV[0]",
 									},
 								},
 							},

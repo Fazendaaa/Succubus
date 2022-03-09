@@ -56,8 +56,8 @@ interact: python
 objectives:
   base:
     test: python -m pytest .
-    add: pip3 install $$ARGV
-    rm: pip3 uninstall $$ARGV
+    add: pip3 install $ARGV
+    rm: pip3 uninstall $ARGV
 
   dev:
     anal: |

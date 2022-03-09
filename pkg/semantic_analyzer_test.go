@@ -51,7 +51,7 @@ func TestSemanticAnalysis(t *testing.T) {
 								container: Container{},
 								commands: Commands{
 									commands: []string{
-										"go get $$ARGV[0]",
+										"go get $ARGV[0]",
 									},
 								},
 							},

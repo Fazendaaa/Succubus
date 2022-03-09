@@ -6,7 +6,7 @@ objectives:
       go test --verbose
     add:
       env_file: /home/user/foo/bar
-      commands: go get $$ARGV[0]
+      commands: go get $ARGV[0]
       env:
         - ENV=${ENV}
     rm:

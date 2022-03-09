@@ -3,7 +3,7 @@ image: golang:1.16.4
 objectives:
   base:
     test: go test --verbose
-    add: go get $$ARGV[0]
+    add: go get $ARGV[0]
     rm: go mod tidy
 
   dev:

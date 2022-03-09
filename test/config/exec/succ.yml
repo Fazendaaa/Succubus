@@ -5,10 +5,11 @@ objectives:
     test:
       go test --verbose
     add:
+      commands: go get $ARGV[0]
       env:
         - ENV=${ENV}
-      commands: go get $ARGV[0]
-    rm: go mod tidy
+    rm:
+      go mod tidy
 
   dev:
     anal:
@@ -18,5 +19,9 @@ objectives:
     doc:
       go doc .
 
-  extended:
-    coverage: go test -cover ./...
+  exec:
+    foo: echo "foo"
+    bar:
+      env:
+        - ENV=${ENV}
+      commands: echo ${ENV}
