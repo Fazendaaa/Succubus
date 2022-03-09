@@ -2,29 +2,8 @@ package succubus
 
 import (
 	"fmt"
-	"io/ioutil"
 	"strings"
-
-	"gopkg.in/yaml.v2"
 )
-
-// checkConfig looks for the config file
-// It returns the file or an error
-func checkConfig(projectPath string) (data []byte, fail error) {
-	file, fail := readFileOrDir(projectPath)
-
-	if nil != fail {
-		return nil, fail
-	}
-
-	read, fail := ioutil.ReadFile(file)
-
-	if nil != fail {
-		return nil, fail
-	}
-
-	return read, fail
-}
 
 //
 func interfaceToImage(origin interface{}) (image Image, fail error) {
@@ -113,7 +92,7 @@ func interfaceToContainer(origin interface{}) (container Container, fail error) 
 
 // complexTask
 //
-func complexTask(origin map[interface{}]interface{}) (task *Task, fail error) {
+func complexTask(origin map[string]interface{}) (task *Task, fail error) {
 	task = &Task{}
 
 	if nil != origin["container"] {
@@ -149,17 +128,11 @@ func complexTask(origin map[interface{}]interface{}) (task *Task, fail error) {
 
 // tasksToObjective
 // It return
-func tasksToObjective(origin map[interface{}]interface{}) (tasks map[string]*Task, fail error) {
+func tasksToObjective(origin map[string]interface{}) (tasks map[string]*Task, fail error) {
 	tasks = make(map[string]*Task)
 
-	for key, value := range origin {
-		name, ok := key.(string)
-
-		if !ok {
-			return tasks, fmt.Errorf("malformed '%s' task", name)
-		}
-
-		complex, ok := value.(map[interface{}]interface{})
+	for name, value := range origin {
+		complex, ok := value.(map[string]interface{})
 
 		if ok {
 			tasks[name], fail = complexTask(complex)
@@ -183,19 +156,13 @@ func tasksToObjective(origin map[interface{}]interface{}) (tasks map[string]*Tas
 // as the required values cannot be declared in the manifest, it won't be
 // populated
 // It return the Objectives
-func objectiveToObjectives(origin map[interface{}]interface{}) (objectives Objectives, fail error) {
+func objectiveToObjectives(origin map[string]interface{}) (objectives Objectives, fail error) {
 	objectives.objectives = make(map[string]*Objective)
 
-	for key, value := range origin {
-		name, ok := key.(string)
-
-		if !ok {
-			return objectives, fmt.Errorf("malformed '%s' objective", name)
-		}
-
+	for name, value := range origin {
 		objectives.objectives[name] = &Objective{}
 		objectives.objectives[name].name = name
-		read, ok := value.(map[interface{}]interface{})
+		read, ok := value.(map[string]interface{})
 
 		if !ok {
 			return objectives, fmt.Errorf("malformed '%s' objective", name)
@@ -244,7 +211,7 @@ func objetivesToProject(origin map[interface{}]interface{}) (objectives Objectiv
 		return objectives, fmt.Errorf("missing objectives")
 	}
 
-	read, ok := origin["objectives"].(map[interface{}]interface{})
+	read, ok := origin["objectives"].(map[string]interface{})
 
 	if !ok {
 		return objectives, fmt.Errorf("malformed objectives")
@@ -281,67 +248,52 @@ func interactToProject(read map[interface{}]interface{}) (interact Commands, fai
 	return interact, fail
 }
 
-// interfaceToProject as many use cases might not need Succubus full power, but to
+// projectFunc as many use cases might not need Succubus full power, but to
 // handle code base is easy always to handle the "worst case scenario", this
 // function does that, translate the user specific configuration to a more
 // generic one.
 // It returns the config file as full blown Succubus standard
-func interfaceToProject(read map[interface{}]interface{}) (project Project, fail error) {
-	project.container, fail = containerToProject(read)
+func projectFunc(
+	filename string,
+	read map[interface{}]interface{}) (_ interface{}, fail error) {
+	result := Project{
+		filename: filename,
+	}
+	result.container, fail = containerToProject(read)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed project container", fail)
+		return result, fmt.Errorf("%w;\nmalformed project container", fail)
 	}
 
-	project.objectives, fail = objetivesToProject(read)
+	result.objectives, fail = objetivesToProject(read)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed project objectives", fail)
+		return result, fmt.Errorf("%w;\nmalformed project objectives", fail)
 	}
 
-	project.version, fail = versionToProject(read)
+	result.version, fail = versionToProject(read)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed project version", fail)
+		return result, fmt.Errorf("%w;\nmalformed project version", fail)
 	}
 
-	project.tag, fail = tagToProject(read)
+	result.tag, fail = tagToProject(read)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed project tag", fail)
+		return result, fmt.Errorf("%w;\nmalformed project tag", fail)
 	}
 
-	project.name, fail = nameToProject(read)
+	result.name, fail = nameToProject(read)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed project name", fail)
+		return result, fmt.Errorf("%w;\nmalformed project name", fail)
 	}
 
-	project.interact, fail = interactToProject(read)
+	result.interact, fail = interactToProject(read)
 
 	if nil != fail {
-		return project, fmt.Errorf("%w;\nmalformed project name", fail)
+		return result, fmt.Errorf("%w;\nmalformed project commands", fail)
 	}
 
-	return project, fail
-}
-
-// LexProject just reads the given Succubus config file and checks it whether
-// or not it's a valid one.
-// It returns whether or not the config file is valid and any error encountered.
-func LexProject(projectPath string) (project Project, fail error) {
-	data, fail := checkConfig(projectPath)
-
-	if nil != fail {
-		return project, fail
-	}
-
-	read := make(map[interface{}]interface{})
-	fail = yaml.Unmarshal([]byte(data), &read)
-
-	if nil != fail {
-		return project, fail
-	}
-
-	return interfaceToProject(read)
+	return result, fail
 }

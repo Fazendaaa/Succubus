@@ -73,15 +73,15 @@ func keysOf(origin map[string]*Task) (keys []string, fail error) {
 // isSemanticVersion
 // It returns whether or not is Semantic Version
 func isSemanticVersion(origin string) (ok bool) {
-	condtion, _ := regexp.Compile(`\d+.\d+.\d*`)
+	condition, _ := regexp.Compile(`\d+.\d+.\d*`)
 
-	return condtion.MatchString(origin)
+	return condition.MatchString(origin)
 }
 
 // isCalendarVersion
 // It returns whether or not is Semantic Version
 func isCalendarVersion(origin string) (ok bool) {
-	condtion, _ := regexp.Compile(`\d{2}.\d{2}.\d*`)
+	condition, _ := regexp.Compile(`\d{2}.\d{2}.\d*`)
 
-	return condtion.MatchString(origin)
+	return condition.MatchString(origin)
 }

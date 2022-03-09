@@ -3,11 +3,13 @@ package succubus
 import (
 	"reflect"
 	"testing"
+
+	samael "github.com/Fazendaaa/Samael/pkg"
 )
 
 func TestLex(t *testing.T) {
 	t.Run("default", func(t *testing.T) {
-		value, fail := LexProject("../test/config/default/")
+		value, fail := samael.LexProject("succ", "../test/config/default/", projectFunc)
 
 		if nil != fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)
@@ -15,7 +17,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("extended", func(t *testing.T) {
-		value, fail := LexProject("../test/config/extended/")
+		value, fail := samael.LexProject("succ", "../test/config/extended/", projectFunc)
 
 		if nil != fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)
@@ -23,7 +25,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("missing", func(t *testing.T) {
-		value, fail := LexProject("../test/config/missing/")
+		value, fail := samael.LexProject("succ", "../test/config/missing/", projectFunc)
 
 		if nil == fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)
@@ -31,7 +33,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("named", func(t *testing.T) {
-		value, fail := LexProject("../test/config/named/foo.yaml")
+		value, fail := samael.LexProject("succ", "../test/config/named/foo.yaml", projectFunc)
 
 		if nil != fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)
@@ -39,7 +41,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("yml", func(t *testing.T) {
-		value, fail := LexProject("../test/config/yml/")
+		value, fail := samael.LexProject("succ", "../test/config/yml/", projectFunc)
 
 		if nil != fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)
@@ -47,7 +49,7 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("many commands", func(t *testing.T) {
-		value, fail := LexProject("../test/config/many_commands/")
+		value, fail := samael.LexProject("succ", "../test/config/many_commands/", projectFunc)
 
 		if nil != fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)
@@ -55,7 +57,9 @@ func TestLex(t *testing.T) {
 	})
 
 	t.Run("simple", func(t *testing.T) {
+		filename := "../test/config/simple/"
 		value := Project{
+			filename: filename + "succ.yml",
 			container: Container{
 				dockerfile: Dockerfile{
 					base: Image{
@@ -147,7 +151,7 @@ func TestLex(t *testing.T) {
 				},
 			},
 		}
-		src, fail := LexProject("../test/config/simple/")
+		src, fail := samael.LexProject("succ", filename, projectFunc)
 
 		if nil != fail {
 			t.Errorf("got:\n%v\nand the given error condition:\n%s", value, fail)

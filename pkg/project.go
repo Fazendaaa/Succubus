@@ -1,6 +1,7 @@
 package succubus
 
 type Project struct {
+	filename  string
 	version   string
 	tag       string
 	name      string
