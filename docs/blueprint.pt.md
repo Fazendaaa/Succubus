@@ -45,7 +45,6 @@ interact: python
 
 objectives:
   base:
-    run: python manage.py runserver
     test: python -m pytest .
     add: pip3 install $$ARGV
     rm: pip3 uninstall $$ARGV
@@ -56,12 +55,15 @@ objectives:
       python -m bandit -r ./src
     linter: python -m mypy ./src
     doc: python -m sphinx-apidoc -o source ../
+
+  exec:
+    run: python manage.py runserver
 ```
 
 Apenas abra o seu terminal e digite:
 
 ```shell
-succ run
+succ exec run
 ```
 
 E veja seu site rodando em `http://localhost`.
@@ -154,10 +156,10 @@ succ add [ pkg01 pkg02 pkg03=1.3 ... ]
 succ rm [ pkg01 pkg02 pkg03 ... ]
 ```
 
-### run
+### exec
 
 ```shell
-succ run
+succ exec <execution unit name>
 ```
 
 ### test

@@ -3,7 +3,6 @@ image: golang
 objectives:
   base:
     env_file: /home/user/foo/bar
-    run: exit 0
     test:
       go test --verbose
     add:

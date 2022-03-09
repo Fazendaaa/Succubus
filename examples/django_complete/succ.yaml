@@ -1,6 +1,5 @@
 objectives:
   base:
-    run: python manage.py runserver
     test: python -m pytest .
     add: pip3 install $$ARGV
     rm: pip3 uninstall $$ARGV
@@ -12,7 +11,7 @@ objectives:
     linter: python -m mypy ./src
     doc: python -m sphinx-apidoc -o source ../
 
-  security:
-    
+  exec:
+    run: python manage.py runserver
 
 system: ./docker-compose.dev.yml

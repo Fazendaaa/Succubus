@@ -2,9 +2,6 @@ image: golang
 
 objectives:
   base:
-    run: |
-      echo "here"
-      exit 0
     test:
       go test --verbose
     add:

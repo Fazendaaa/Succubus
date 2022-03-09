@@ -55,7 +55,6 @@ interact: python
 
 objectives:
   base:
-    run: python manage.py runserver
     test: python -m pytest .
     add: pip3 install $$ARGV
     rm: pip3 uninstall $$ARGV
@@ -66,12 +65,15 @@ objectives:
       python -m bandit -r ./src
     linter: python -m mypy ./src
     doc: python -m sphinx-apidoc -o source ../
+
+  exec:
+    run: python manage.py runserver
 ```
 
 O qual os comandos podem ser acessados rodando o seguinte comando:
 
 ```shell
-succ run
+succ exec run
 ```
 
 No seu terminal verá a mensagem do projeto de Python + Django rodando e acessível pelo seu navegador; rodando containers desta maneira:

@@ -70,17 +70,6 @@ func TestLex(t *testing.T) {
 						name:      "base",
 						container: Container{},
 						tasks: map[string]*Task{
-							"run": &Task{
-								name:      "run",
-								env_file:  "",
-								env:       make([]Env, 0),
-								container: Container{},
-								commands: Commands{
-									commands: []string{
-										"exit 0",
-									},
-								},
-							},
 							"test": &Task{
 								name:      "test",
 								env_file:  "",
