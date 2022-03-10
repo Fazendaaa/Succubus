@@ -15,9 +15,16 @@
 
 </div>
 
-# Como seria se o NPM tivesse um bebê com o Docker-Compose?
+# A ponte entre seu projeto e Docker
 
-> você pode também ver como um "Makefile com esteróides" ou apenas uma "camada de expansão" para as suas linguagens/frameworks... Ou simplesmente: "a maneira sem esforço de fazer as coisas certas"
+Você pode também ver como:
+
+- _"Makefile com esteróides"_
+- Uma _"camada de expansão"_ para as suas linguagens/frameworks
+- O resultdo de um bebê do [npm](https://www.npmjs.com/) com o [Docker-Compose](https://docs.docker.com/compose/)
+- O primeiro passo para facilitar seu processo de transição para o [Kubernetes](https://kubernetes.io/)
+
+Ou simplesmente: _"a maneira sem esforço de fazer as coisas certas"_
 
 Bem vindo ao pacote {{ pkg.name }} de Fazendaaa. Esta é a versão {{ pkg.version }}!
 

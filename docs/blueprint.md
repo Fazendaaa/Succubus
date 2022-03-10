@@ -15,9 +15,16 @@
 
 </div>
 
-# What if NPM had a baby with Docker-Compose?
+# The bridge between your project and Docker
 
-> you can also see it as a "Makefile with steroids" or just as an "augmented layer" to your language/framework... Or simply: "the effortless way to do things right"
+You can also see it as:
+
+- _"Makefile with steroids"_
+- an _"augmented layer"_ to your language/framework...
+- The result if [npm](https://www.npmjs.com/) had a baby with [Docker-Compose](https://docs.docker.com/compose/)
+- The first step to make your [Kubernetes](https://kubernetes.io/) transition easy
+
+Or simply: _"the effortless way to do things right"_
 
 Welcome to Fazendaaa's {{ pkg.name }}. This is version {{ pkg.version }}!
 
