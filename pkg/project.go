@@ -14,3 +14,7 @@ type Project struct {
 	objectives Objectives
 	systems    Systems
 }
+
+func CreateProject(projectPath string) (fail error) {
+	return fail
+}
